@@ -115,9 +115,7 @@ function showStart() {
     startSpan.innerHTML = start;
     goToStartButton.style.visibility = "visible";
  
-    if (end !== null) {
-        saveRunButton.style.visibility = "visible";
-    }
+    
 }
  
 function setStart() {
@@ -140,9 +138,7 @@ function showEnd() {
     endSpan.innerHTML = end;
     goToEndButton.style.visibility = "visible";
  
-    if (start !== null) {
-        saveRunButton.style.visibility = "visible";
-    }
+    
 }
  
 function setEnd() {
