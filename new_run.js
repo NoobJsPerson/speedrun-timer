@@ -1,3 +1,10 @@
+function integerify(number){
+  if(number.toString().match(/[0-9]+\.[0-9]9[0-9]+/)){
+    return Math.floor(number*10)/10+0.1;
+  } else {
+    return number;
+  }
+}
 // Load URL Params
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -26,12 +33,15 @@ const goToStartButton = document.getElementById('go-to-start');
 const endSpan = document.getElementById('end');
 const goToEndButton = document.getElementById('go-to-end');
 const currentTimeSpan = document.getElementById('current-time');
+const currentFrameSpan = document.getElementById('current-frame');
 var videoDiv = document.getElementById('video-div');
 
 // Create page variables
 var start = null;
 var end = null;
 var currentMillis = 0;
+var currentFrame= 0;
+var framerate = 60;
  
 // Fallback Player
 var player = {
@@ -48,26 +58,33 @@ var player = {
         throw 'unimplemented';
     }
 };
- 
+
+function validateFramerate (){
+  framerate = parseInt(document.getElementById("framerate").value||"60");
+}
  
 function updateCurrentTime() {
     currentMillis = Math.floor(player.getCurrentTime() * 1000);
+    currentFrame = Math.floor(player.getCurrentTime() * framerate);
+    
 }
  
 function setTime(millis) {
     player.pauseVideo();
-    player.seekTo(millis / 1000);
+    player.seekTo(millis);
 }
  
 function stepBy(amount) {
     player.pauseVideo();
     updateCurrentTime();
-    setTime(Math.max(0, currentMillis + amount));
+    setTime(Math.max(0, integerify(currentFrame / framerate + amount *(1/framerate))));
+    
+    
 }
  
 function updateTotalTime() {
     if (start !== null && end !== null) {
-        const timeDiff = end - start;
+        let timeDiff = end - start;
         var timeStr = "";
  
         // handle negative time I guess
@@ -76,7 +93,7 @@ function updateTotalTime() {
             timeDiff *= -1;
         }
         
-        const framerate = parseInt(document.getElementById("framerate").value||"60");
+   
         let frames = (timeDiff / 1000) * framerate;
         
         let minutes =0,hours=0;
@@ -114,7 +131,7 @@ function showStart() {
     startSpan.innerHTML = start;
     goToStartButton.style.visibility = "visible";
  
-
+    
 }
  
 function setStart() {
@@ -137,7 +154,7 @@ function showEnd() {
     endSpan.innerHTML = end;
     goToEndButton.style.visibility = "visible";
  
- 
+    
 }
  
 function setEnd() {
@@ -157,6 +174,7 @@ function goToEnd() {
 function updateCurrentTimeSpan() {
     updateCurrentTime();
     currentTimeSpan.innerHTML = currentMillis;
+    currentFrameSpan.innerHTML = currentFrame;
 }
  
 function onPlayerReady() {
