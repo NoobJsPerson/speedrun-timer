@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <title>Better Speedrun Timer</title>
 <input type="button" onclick="window.location = '/';" value="Back to Home" />
-<button onclick="window.location.href= 'https://github.com/NoobJsPerson/speedrun-timer'">Source Code</button>
 <br>
 <div>
     <div id="video-div"></div>
@@ -12,13 +11,13 @@ Step forward or backward:
 <label for="framerate">framerate</label>
 <input type="text" value="60" id="framerate" onchange="validateFramerate()">
 <br>
-<input type="button" value="+10" onclick="stepBy(10000)" />
-<input type="button" value="+5" onclick="stepBy(5000)" />
-<input type="button" value="+1" onclick="stepBy(1000)" />
+<input type="button" value="+10k" onclick="stepBy(10000)" />
+<input type="button" value="+5k" onclick="stepBy(5000)" />
+<input type="button" value="+1k" onclick="stepBy(1000)" />
 <input type="button" value="+500" onclick="stepBy(500)" />
 <input type="button" value="+100" onclick="stepBy(100)" />
 <input type="button" value="+50" onclick="stepBy(50)" />
-<input type="button" value="+10" onclick="stepBy(10)" />
+<input type="button" value="+10m" onclick="stepBy(10)" />
 <input type="button" value="+5" onclick="stepBy(5)" />
 <input type="button" value="+1" onclick="stepBy(1)" />
 <br>
@@ -29,7 +28,7 @@ Step forward or backward:
 <input type="button" value="-100" onclick="stepBy(-100)" />
 <input type="button" value="-50" onclick="stepBy(-50)" />
 <input type="button" value="-10" onclick="stepBy(-10)" />
-<input type="button" value="-5" onclick="stepBy(-5)" />
+<input type="button" value="-5m" onclick="stepBy(-5)" />
 <input type="button" value="-1" onclick="stepBy(-1)" />
 <br>
 Current Time (in milliseconds): <span id="current-time">0</span>
@@ -52,8 +51,9 @@ Current Frame: <span id="current-frame">0</span>
               
         
     </div>
-            <div>
-            <button id='save-run' type="submit" style="visibility: hidden">Save Run</button>
-        </div>
+ <textarea id="modMessage" cols="40" rows="5" disabled></textarea>
+ <br>
+    
+    <button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
 
 <script src="new_run.js"></script>
