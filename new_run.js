@@ -1,9 +1,8 @@
 function integerify(number){
-  if(number.toString().match(/[0-9]+\.[0-9]9[0-9]+/)){
+  if(number.toString().match(/[0-9]+\.[0-9]9[0-9]+/))
     return Math.floor(number*10)/10+0.1;
-  } else if(number.toString().match(/[0-9]+\.[0-9][0-9]9[0-9]+/)){
+   else if(number.toString().match(/[0-9]+\.[0-9][0-9]9[0-9]+/))
     return Math.floor(number*100)/100+0.01;
-    }
    else if(number ==0.5833333333333333) return 0.59;
    else return number;
    
@@ -62,19 +61,19 @@ var player = {
     }
 };
 
-function validateFramerate (){
+function validateFramerate(){
   framerate = parseInt(document.getElementById("framerate").value||"60");
 }
  
 function updateCurrentTime() {
     currentMillis = Math.floor(player.getCurrentTime() * 1000);
     currentFrame = Math.floor(player.getCurrentTime() * framerate);
-    
 }
  
 function setTime(millis) {
     player.pauseVideo();
     player.seekTo(millis);
+    console.log(millis);
 }
  
 function stepBy(amount) {
@@ -88,13 +87,10 @@ function stepBy(amount) {
 function updateTotalTime() {
     if (start !== null && end !== null) {
         let timeDiff = end - start;
-        var timeStr = "";
+        
  
         // handle negative time I guess
-        if (timeDiff < 0) {
-            timeStr += "-";
-            timeDiff *= -1;
-        }
+        
         
    
         let frames = (timeDiff / 1000) * framerate;
@@ -119,10 +115,11 @@ function updateTotalTime() {
         minutes = minutes < 10 ? '0' + minutes : minutes;
     }
  
-        timeStr += hours.toString() + 'h ' + minutes.toString() + 'm ' + seconds.toString() + 's ' + ms.toString() + 'ms';
+        const timeStr = hours.toString() + 'h ' + minutes.toString() + 'm ' + seconds.toString() + 's ' + ms.toString() + 'ms';
     
  
         totalTimeSpan.innerHTML = timeStr;
+        
     }
 }
  
