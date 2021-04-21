@@ -1,11 +1,24 @@
+function format(duration){
+   console.log(duration)
+    let hours = Math.floor(duration/360000);
+ 
+    let minutes = Math.floor((duration % 360000)/60000);
+    let seconds = ((duration % 60000)/1000).toFixed(3);
+    
+    minutes = minutes < 10 ? "0"+minutes: minutes;
+    seconds = seconds < 10 ? "0"+seconds: seconds;
+
+  return hours+":"+minutes+":"+seconds;
+  
+};
 function integerify(number){
-  if(number.toString().match(/[0-9]+\.[0-9]9[0-9]+/))
+  if(number.toString().match(/[0-9]+\.[0-9]9[0-9]+/)){
     return Math.floor(number*10)/10+0.1;
-   else if(number.toString().match(/[0-9]+\.[0-9][0-9]9[0-9]+/))
+  } else if(number == 0.5833333333333333){
+    return 0.59;
+  } else if(number.toString().match(/[0-9]+\.[0-9][0-9]9[0-9]+/)) {
     return Math.floor(number*100)/100+0.01;
-   else if(number ==0.5833333333333333) return 0.59;
-   else return number;
-   
+  } else return number;
 }
 // Load URL Params
 function getParameterByName(name, url = window.location.href) {
@@ -35,6 +48,8 @@ const goToStartButton = document.getElementById('go-to-start');
 const endSpan = document.getElementById('end');
 const goToEndButton = document.getElementById('go-to-end');
 const currentTimeSpan = document.getElementById('current-time');
+const modMessageText = document.getElementById("modMessage");
+const modMessageButton = document.getElementById("modMessageButton");
 const currentFrameSpan = document.getElementById('current-frame');
 var videoDiv = document.getElementById('video-div');
 
@@ -61,19 +76,19 @@ var player = {
     }
 };
 
-function validateFramerate(){
+function validateFramerate (){
   framerate = parseInt(document.getElementById("framerate").value||"60");
 }
  
 function updateCurrentTime() {
     currentMillis = Math.floor(player.getCurrentTime() * 1000);
     currentFrame = Math.floor(player.getCurrentTime() * framerate);
+    
 }
  
 function setTime(millis) {
     player.pauseVideo();
     player.seekTo(millis);
-    console.log(millis);
 }
  
 function stepBy(amount) {
@@ -83,18 +98,25 @@ function stepBy(amount) {
     
     
 }
- 
+ function copyModMessage() {
+	// Allow user to copy mod message to clipboard
+	
+	modMessageText.focus();
+	modMessageText.select();
+	document.execCommand('copy');
+	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`);
+}
 function updateTotalTime() {
-    if (start !== null && end !== null) {
-        let timeDiff = end - start;
-        
- 
+    
         // handle negative time I guess
+      if (start !== null && end !== null) {
+        const endFrame = Math.floor((end / 1000) * framerate);
         
+        const startFrame = Math.floor((start / 1000) * framerate);
         
-   
-        let frames = (timeDiff / 1000) * framerate;
-        
+        let frames = endFrame - startFrame
+       
+     
         let minutes =0,hours=0;
         let seconds = Math.floor(frames / framerate);
         frames %= framerate;
@@ -107,19 +129,26 @@ function updateTotalTime() {
     if (seconds >= 60) {
         minutes = Math.floor(seconds / 60);
         seconds = seconds % 60;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
+        
     }
     if (minutes >= 60) {
         hours = Math.floor(minutes / 60);
         minutes = minutes % 60;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
+        
     }
- 
-        const timeStr = hours.toString() + 'h ' + minutes.toString() + 'm ' + seconds.toString() + 's ' + ms.toString() + 'ms';
+    minutes = minutes < 10 ? '0' + minutes : minutes;
     
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    
+        timeStr = hours.toString() + ':' + minutes.toString() + ':' + seconds.toString() + '.'+ ms.toString() ;
+        
+        const modMessage = `Mod Message: time starts at ${format(start)} and ends at ${format(end)} with a framerate of ${framerate} fps to get a final time of ${timeStr}`
  
         totalTimeSpan.innerHTML = timeStr;
-        
+        modMessageText.value = modMessage
+
+        modMessageButton.disabled = false;
+        modMessageText.disabled = false;
     }
 }
  
@@ -143,7 +172,7 @@ function setStart() {
 }
  
 function goToStart() {
-    setTime(start);
+    setTime(start/1000);
 }
  
 function showEnd() {
@@ -166,7 +195,7 @@ function setEnd() {
 }
  
 function goToEnd() {
-    setTime(end);
+    setTime(end/1000);
 }
  
 
