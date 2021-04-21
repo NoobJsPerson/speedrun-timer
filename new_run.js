@@ -114,8 +114,9 @@ function updateTotalTime() {
         
         const startFrame = Math.floor((start / 1000) * framerate);
         
-        let frames = endFrame - startFrame
-       
+        let frames = endFrame - startFrame;
+        
+        if(frames < 0) return;
      
         let minutes =0,hours=0;
         let seconds = Math.floor(frames / framerate);
