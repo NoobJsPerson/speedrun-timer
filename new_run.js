@@ -110,9 +110,9 @@ function updateTotalTime() {
     
         // handle negative time I guess
       if (start !== null && end !== null && start < end) {
-        const endFrame = Math.floor((end / 1000) * framerate);
+        const endFrame = Math.round((end / 1000) * framerate);
         
-        const startFrame = Math.floor((start / 1000) * framerate);
+        const startFrame = Math.round((start / 1000) * framerate);
         
         let frames = endFrame - startFrame;
        
