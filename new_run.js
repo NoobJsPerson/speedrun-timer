@@ -58,7 +58,7 @@ var start = null;
 var end = null;
 var currentMillis = 0;
 var currentFrame= 0;
-var framerate = 60;
+var framerate = 30;
  
 // Fallback Player
 var player = {
