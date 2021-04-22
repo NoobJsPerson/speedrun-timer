@@ -14,8 +14,8 @@ function format(duration){
 function integerify(number){
 	// to fix increasing current frame in 60, 30 and 24 fps
   if(number.toString().match(/[0-9]+\.[0-9]9[0-9]+/)) return Math.floor(number*10)/10+0.1;
-   else if(number == 0.5833333333333333) return 0.59;
    else if(number.toString().match(/[0-9]+\.[0-9][0-9]9[0-9]+/)) return Math.floor(number*100)/100+0.01;
+   else if(number == 0.5833333333333333) return 0.59;
    else return number;
 }
 // Load URL Params
