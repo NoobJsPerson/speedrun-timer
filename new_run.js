@@ -14,11 +14,9 @@ function format(duration){
 function integerify(number){
   if(number.toString().match(/[0-9]+\.[0-9]9[0-9]+/)){
     return Math.floor(number*10)/10+0.1;
-  } else if(number == 0.5833333333333333){
-    return 0.59;
-  } else if(number.toString().match(/[0-9]+\.[0-9][0-9]9[0-9]+/)) {
-    return Math.floor(number*100)/100+0.01;
-  } else return number;
+   else if(number == 0.5833333333333333) return 0.59;
+   else if(number.toString().match(/[0-9]+\.[0-9][0-9]9[0-9]+/)) return Math.floor(number*100)/100+0.01;
+   else return number;
 }
 // Load URL Params
 function getParameterByName(name, url = window.location.href) {
