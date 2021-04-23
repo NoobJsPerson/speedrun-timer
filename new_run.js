@@ -85,7 +85,7 @@ function setTime(millis) {
 function stepBy(amount) {
     player.pauseVideo();
     updateCurrentTime();
-    setTime(+currentFrame + amount)/framerate);
+    setTime((currentFrame + amount)/framerate);
     
     
 }
