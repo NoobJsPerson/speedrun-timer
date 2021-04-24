@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<title>Better Speedrun Timer</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Better Speedrun Timer</title>
+        <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="normal">
 <input type="button" onclick="window.location = '/';" value="Back to Home" />
-<br>
-<div>
-    <div id="video-div"></div>
+<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'">Source Code</button>
 </div>
 <br>
+    <div id="video-div"></div>
+<br>
+<div class="normal">
 Step forward or backward:
 <br>
 <label for="framerate">framerate</label>
@@ -28,32 +36,35 @@ Step forward or backward:
 <input type="button" value="-100" onclick="stepBy(-100)" />
 <input type="button" value="-50" onclick="stepBy(-50)" />
 <input type="button" value="-10" onclick="stepBy(-10)" />
-<input type="button" value="-5m" onclick="stepBy(-5)" />
+<input type="button" value="-5" onclick="stepBy(-5)" />
 <input type="button" value="-1" onclick="stepBy(-1)" />
 <br>
 Current Time (in milliseconds): <span id="current-time">0</span>
 <br>
 Current Frame: <span id="current-frame">0</span>
 <br>
+<div>
         <input type="hidden" id="start-value" name="startValue" value="" />
         Start Time: <span id="start">Not set</span>
         <input id='set-start' type="button" value="Set current time as start" onclick="setStart()" />
         <input id='go-to-start' type="button" value="Go to start time" onclick="goToStart()" style="visibility: hidden" />
-    
+    </div>
     <div>
            <input type="hidden" id="end-value" name="endValue" value="" />
         End Time: <span id="end">Not set</span>
         <input id='set-end' type="button" value="Set current time as end" onclick="setEnd()" />
         <input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()" style="visibility: hidden" />
-    </div>
-    <div>
+  </div>
         Total Time: <span id="total-time">Please set a start and end time</span>
               
         
-    </div>
+    
  <textarea id="modMessage" cols="40" rows="5" disabled></textarea>
  <br>
     
     <button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
+    </div>
+    <script src="new_run.js"></script>
+    </body>
+    
 
-<script src="new_run.js"></script>
