@@ -1,22 +1,43 @@
 <!DOCTYPE html>
+
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Amine's Playground</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Better Speedrun Timer</title>
+</head>
   <body>
-    <h1>Welcome</h1>
-<p>Hello, It's me <strong>Amine El Baghdadi </strong> also known as <strong>AmineCrafter101</strong><br><br>Here you'll find all my open source projects that might help you out</p>
-<a href="https://github.com/NoobJsPerson/runget">RunGet Bot</a>
-<p>RunGet is a discord bot with the prefix <strong>.</strong> that posts recent verified runs from Speedrun.com</p>
-<a href="https://github.com/NoobJsPerson/website">This Website</a>
-<p>This website was built using HTML, CSS and JavaScript only without any libraries</p>
-<a href="https://github.com/NoobJsPerson/speedrun-timer">speedrun-timer</a>
-<p>speedrun-timer is a iframe based tool to calculate the duration between two points in a YouTube video</p>
-<div class="minitext"> Copyright 2021 © El Baghdadi Amine. No Rights Reserved.</div>
-<button onclick="changeMode()">Change Mode</button>
-    <script src="script.js"></script>
+  <label for="url">YouTube Video URL</label>
+  <input id="url" type="text">
+  <button onclick="redirect()">Compute time</button> 
+<script>
+const inputUrl = document.getElementById('url');
+ 
+function parseYoutubeId(videoUrl) {
+    var reg1 = videoUrl.match(/youtube\..+?\/watch.*?v=(.*?)(?:&|\/|$)/);
+    if (reg1 && reg1.length >= 2) {
+        return reg1[1];
+    }
+ 
+    var reg2 = videoUrl.match(/youtu\.be\/(.*?)(?:\?|&|\/|$)/);
+    if (reg2 && reg2.length >= 2) {
+        return reg2[1];
+    }
+ 
+    var reg3 = videoUrl.match(/youtube\..+?\/embed\/(.*?)(?:\?|&|\/|$)/);
+    if (reg3 && reg3.length >= 2) {
+        return reg3[1];
+    }
+ 
+    return videoUrl;
+}
+ 
+function redirect() {
+    window.location.href = "/new_run.html?id=" + parseYoutubeId(inputUrl.value);
+}
+</script>
+
+
+    
   </body>
 </html>
