@@ -10,7 +10,7 @@ function format(duration){
 
   return hours+":"+minutes+":"+seconds;
   
-}
+};
 // Load URL Params
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -68,7 +68,7 @@ var player = {
 };
 
 function validateFramerate (){
-  framerate = parseInt(document.getElementById("framerate").value||"60");
+  framerate = parseInt(document.getElementById("framerate").value||framerate);
 }
  
 function updateCurrentTime() {
@@ -83,9 +83,10 @@ function setTime(millis) {
 }
  
 function stepBy(amount) {
+ let step=Math.round(1/framerate*1000)/1000;
     player.pauseVideo();
     updateCurrentTime();
-    setTime((currentFrame + amount)/framerate);
+    setTime(Math.max(0, currentFrame / framerate + amount*step));
     
     
 }
@@ -100,16 +101,20 @@ function stepBy(amount) {
 function updateTotalTime() {
     
         // handle negative time I guess
-      if (start !== null && end !== null && start < end) {
+      if (start !== null && end !== null && start <= end) {
+        
+        
         const endFrame = Math.round(end / 1000 * framerate) 
         
         const startFrame = Math.round(start / 1000 *framerate );
         
-        let frames = endFrame - startFrame;
+        let frames = endFrame - startFrame
         
-       
+        
+        
+        
      
-        let minutes =0,hours=0;
+        let minutes =0,hours;
         let seconds = Math.floor(frames / framerate);
         frames %= framerate;
         let ms = Math.round(frames / framerate * 1000); 
@@ -132,9 +137,9 @@ function updateTotalTime() {
     
     seconds = seconds < 10 ? '0' + seconds : seconds;
     
-        timeStr = hours.toString() + ':' + minutes.toString() + ':' + seconds.toString() + '.'+ ms.toString() ;
+        timeStr = hours?hours.toString() + ':':'' + minutes.toString() + ':' + seconds.toString() + '.'+ ms.toString() ;
         
-        const modMessage = `Mod Message: time starts at ${format(start)} and ends at ${format(end)} with a framerate of ${framerate} fps to get a final time of ${timeStr}`
+        const modMessage = `Mod Message: time starts at ${format(start)} and ends at ${format(end)} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://speedrun-timer.itsmeme11.repl.co)`
  
         totalTimeSpan.innerHTML = timeStr;
         modMessageText.value = modMessage
@@ -210,8 +215,8 @@ function onPlayerReady() {
  
     function onYouTubePlayerAPIReady() {
         youtube = new YT.Player("video-div", {
-            width: 960,
-            height: 540,
+            width: document.documentElement.clientWidth,
+            height: document.documentElement.clientWidth * (540/960),
             videoId: videoId,
             events: {
                 'onReady': onYoutubeReady
