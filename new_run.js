@@ -42,7 +42,10 @@ const currentTimeSpan = document.getElementById('current-time');
 const modMessageText = document.getElementById("modMessage");
 const modMessageButton = document.getElementById("modMessageButton");
 const currentFrameSpan = document.getElementById('current-frame');
-var videoDiv = document.getElementById('video-div');
+let videoDiv = document.getElementById('video-div');
+const type = getParameterByName("type");
+const width = document.documentElement.clientWidth;
+const height = document.documentElement.clientWidth * (540/960);
 
 // Create page variables
 var start = null;
@@ -208,12 +211,14 @@ function onPlayerReady() {
 }
  
 // Load the player.
+    if(type == "y"){
+
     var youtube;
  
     function onYouTubePlayerAPIReady() {
         youtube = new YT.Player("video-div", {
-            width: document.documentElement.clientWidth,
-            height: document.documentElement.clientWidth * (540/960),
+            width,
+            height,
             videoId: videoId,
             events: {
                 'onReady': onYoutubeReady
@@ -238,3 +243,35 @@ function onPlayerReady() {
         };
         onPlayerReady();
     }
+} else {
+  var twitch = new Twitch.Player("video-div", {
+        width,
+        height,
+        video: videoId
+    });
+    
+    twitch.pause();
+
+    player = {
+        seekTo: function (timestamp) {
+            player.playVideo();
+            setTimeout(function() {
+                twitch.seek(timestamp);
+                setTimeout(function() {
+                    twitch.seek(timestamp);
+                    player.pauseVideo();
+                }, 50)
+            }, 50);
+        },
+        pauseVideo: function () {
+          twitch.pause();
+        },
+        getCurrentTime: function () { return twitch.getCurrentTime(); },
+        playVideo: function () {
+          twitch.play(); 
+        }
+    };
+
+    onPlayerReady();
+  
+}
