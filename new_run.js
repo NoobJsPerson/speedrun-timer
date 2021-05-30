@@ -271,8 +271,8 @@ if(type == "y"){
           twitch.play(); 
         }
     };
-    twitch.addEventListener(Twitch.Player.READY,() =>{
-      onPlayerReady();
-      setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps,3000)
-      });
+    twitch.addEventListener(Twitch.Player.READY,onPlayerReady);
+    twitch.addEventListener(Twitch.Player.PLAYING,() => {
+    	setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps,3000)
+    });
 }
