@@ -72,7 +72,8 @@ var player = {
 };
 
 function validateFramerate (){
-  framerate = parseInt(document.getElementById("framerate").value||framerate);
+  framerate = parseInt(framerateElement.value||framerate);
+  framerateElement.value = framerate;
 }
  
 function updateCurrentTime() {
@@ -207,8 +208,8 @@ function updateCurrentTimeSpan() {
 function onPlayerReady() {
     videoDiv = document.getElementById('video-div');
     player.playVideo();
+    if(type == "t") setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps,6000);
     setInterval(updateCurrentTimeSpan, 50);
-    
 }
  
 // Load the player.
@@ -272,7 +273,4 @@ if(type == "y"){
         }
     };
     twitch.addEventListener(Twitch.Player.READY,onPlayerReady);
-    twitch.addEventListener(Twitch.Player.PLAYING,() => {
-    	setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps,3000)
-    });
 }
