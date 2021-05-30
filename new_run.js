@@ -46,6 +46,7 @@ let videoDiv = document.getElementById('video-div');
 const type = getParameterByName("type");
 const width = document.documentElement.clientWidth;
 const height = document.documentElement.clientWidth * (540/960);
+const framerateElement = document.getElementById("framerate");
 
 // Create page variables
 var start = null;
@@ -211,7 +212,7 @@ function onPlayerReady() {
 }
  
 // Load the player.
-    if(type == "y"){
+if(type == "y"){
 
     var youtube;
  
@@ -249,8 +250,6 @@ function onPlayerReady() {
         height,
         video: videoId
     });
-    
-    twitch.pause();
 
     player = {
         seekTo: function (timestamp) {
@@ -266,12 +265,14 @@ function onPlayerReady() {
         pauseVideo: function () {
           twitch.pause();
         },
-        getCurrentTime: function () { return twitch.getCurrentTime(); },
+        getCurrentTime: function () { return twitch.getCurrentTime();
+		},
         playVideo: function () {
           twitch.play(); 
         }
     };
-
-    onPlayerReady();
-  
+    twitch.addEventListener(Twitch.Player.READY,() =>{
+      onPlayerReady();
+      setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps,3000)
+      });
 }
