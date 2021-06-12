@@ -1,3 +1,10 @@
+function interpolate(template, variables){
+	return template.replace(/\${[^{]+}/g, (match) => {
+		const path = match.slice(2, -1).trim();
+		return variables[path];
+	});
+}
+
 function format(duration){
    console.log(duration)
     let hours = Math.floor(duration/360000);
@@ -43,11 +50,10 @@ const modMessageText = document.getElementById("modMessage");
 const modMessageButton = document.getElementById("modMessageButton");
 const currentFrameSpan = document.getElementById('current-frame');
 let videoDiv = document.getElementById('video-div');
-const type = getParameterByName("type");
 const width = document.documentElement.clientWidth;
 const height = document.documentElement.clientWidth * (540/960);
 const framerateElement = document.getElementById("framerate");
-
+let cmm = localStorage.getItem("cmm") || "Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://speedrun-timer.itsmeme11.repl.co)";
 // Create page variables
 var start = null;
 var end = null;
@@ -88,9 +94,12 @@ function setTime(millis) {
 }
  
 function stepBy(amount) {
+ let step=Math.round(1/framerate*1000)/1000;
     player.pauseVideo();
     updateCurrentTime();
-    setTime((currentFrame + amount)/framerate);
+    setTime(Math.max(0, currentFrame / framerate + amount*step));
+    
+    
 }
  function copyModMessage() {
 	// Allow user to copy mod message to clipboard
@@ -140,9 +149,14 @@ function updateTotalTime() {
     seconds = seconds < 10 ? '0' + seconds : seconds;
     
         timeStr = hours?hours.toString() + ':':'' + minutes.toString() + ':' + seconds.toString() + '.'+ ms.toString() ;
+        const params = {
+          start: format(start),
+          end: format(end),
+          timeStr,
+          framerate
+        }
         
-        const modMessage = `Mod Message: time starts at ${format(start)} and ends at ${format(end)} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://speedrun-timer.itsmeme11.repl.co)`
- 
+        const modMessage = interpolate(cmm,params);
         totalTimeSpan.innerHTML = timeStr;
         modMessageText.value = modMessage
 
