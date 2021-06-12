@@ -7,9 +7,9 @@ function interpolate(template, variables){
 
 function format(duration){
    console.log(duration)
-    let hours = Math.floor(duration/360000);
+    let hours = ~~(duration/360000);
  
-    let minutes = Math.floor((duration % 360000)/60000);
+    let minutes = ~~((duration % 360000)/60000);
     let seconds = ((duration % 60000)/1000).toFixed(3);
     
     minutes = minutes < 10 ? "0"+minutes: minutes;
@@ -120,13 +120,10 @@ function updateTotalTime() {
         const startFrame = Math.round(start / 1000 *framerate );
         
         let frames = endFrame - startFrame
-        
-        
-        
-        
-     
+
         let minutes =0,hours;
-        let seconds = Math.floor(frames / framerate);
+        
+        let seconds = ~~(frames / framerate);
         frames %= framerate;
         let ms = Math.round(frames / framerate * 1000); 
         if (ms < 10) {
@@ -135,12 +132,12 @@ function updateTotalTime() {
         ms = '0' + ms;
     }
     if (seconds >= 60) {
-        minutes = Math.floor(seconds / 60);
+        minutes = ~~(seconds / 60);
         seconds = seconds % 60;
         
     }
     if (minutes >= 60) {
-        hours = Math.floor(minutes / 60);
+        hours = ~~(minutes / 60);
         minutes = minutes % 60;
         
     }
