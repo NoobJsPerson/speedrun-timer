@@ -95,12 +95,9 @@ function setTime(millis) {
 }
  
 function stepBy(amount) {
- let step=Math.round(1/framerate*1000)/1000;
     player.pauseVideo();
     updateCurrentTime();
-    setTime(Math.max(0, currentFrame / framerate + amount*step));
-    
-    
+    setTime((currentFrame + amount)/framerate);
 }
  function copyModMessage() {
 	// Allow user to copy mod message to clipboard
