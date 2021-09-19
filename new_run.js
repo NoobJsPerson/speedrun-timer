@@ -6,8 +6,7 @@ function interpolate(template, variables){
 }
 
 function format(duration){
-   console.log(duration)
-    let hours = ~~(duration/360000);
+    let hours = ~~(duration/3600000);
  
     let minutes = ~~((duration % 360000)/60000);
     let seconds = ((duration % 60000)/1000).toFixed(3);
@@ -118,38 +117,15 @@ function updateTotalTime() {
         const startFrame = Math.round(start / 1000 *framerate );
         
         let frames = endFrame - startFrame
-
-        let minutes =0,hours;
         
-        let seconds = ~~(frames / framerate);
-        frames %= framerate;
-        let ms = Math.round(frames / framerate * 1000); 
-        if (ms < 10) {
-        ms = '00' + ms;
-    } else if (ms < 100) {
-        ms = '0' + ms;
-    }
-    if (seconds >= 60) {
-        minutes = ~~(seconds / 60);
-        seconds = seconds % 60;
-        
-    }
-    if (minutes >= 60) {
-        hours = ~~(minutes / 60);
-        minutes = minutes % 60;
-        
-    }
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    
-        timeStr = hours?hours.toString() + ':':'' + minutes.toString() + ':' + seconds.toString() + '.'+ ms.toString() ;
+        let ms = ~~(frames * 1000 / framerate);
+        let timeStr = format(ms);
         const params = {
           start: format(start),
           end: format(end),
           timeStr,
           framerate
-        }
+        };
         
         const modMessage = interpolate(cmm,params);
         totalTimeSpan.innerHTML = timeStr;
