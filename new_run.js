@@ -1,3 +1,10 @@
+// adjusts video player's size
+let width = document.documentElement.clientWidth;
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+	document.body.style.margin = 0;
+} else {
+	width /= 1.5;
+}
 function interpolate(template, variables){
 	return template.replace(/\${[^{]+}/g, (match) => {
 		const path = match.slice(2, -1).trim();
@@ -49,7 +56,6 @@ const modMessageText = document.getElementById("modMessage");
 const modMessageButton = document.getElementById("modMessageButton");
 const currentFrameSpan = document.getElementById('current-frame');
 let videoDiv = document.getElementById('video-div');
-const width = document.documentElement.clientWidth;
 const height = document.documentElement.clientWidth * (540/960);
 const framerateElement = document.getElementById("framerate");
 const type = getParameterByName("type");
