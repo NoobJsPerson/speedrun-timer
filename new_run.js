@@ -17,7 +17,7 @@ function interpolate(template, variables){
 function format(duration){
     let hours = ~~(duration/3600000);
  
-    let minutes = ~~((duration % 360000)/60000);
+    let minutes = ~~((duration % 3600000)/60000);
     let seconds = ((duration % 60000)/1000).toFixed(3);
     
     minutes = minutes < 10 ? "0"+minutes: minutes;
@@ -93,7 +93,7 @@ function validateFramerate (){
 function updateCurrentTime() {
     currentMillis = Math.floor(player.getCurrentTime() * 1000);
     currentFrame = Math.floor(player.getCurrentTime() * framerate);
-    
+    console.log(format(currentMillis));
 }
  
 function setTime(millis) {
@@ -111,7 +111,7 @@ function stepBy(amount) {
 	
 	modMessageText.focus();
 	modMessageText.select();
-	document.execCommand('copy');
+	document.exec('copy');
 	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`);
 }
 function updateTotalTime() {
@@ -120,11 +120,11 @@ function updateTotalTime() {
       if (start !== null && end !== null && start <= end) {
         
         
-        const endFrame = end / 1000 * framerate;
-        const startFrame = start / 1000 * framerate;
+        const endFrame = Math.round(end / 1000 * framerate);
+        const startFrame = Math.round(start / 1000 * framerate);
         const frames = endFrame - startFrame;
         
-        let ms = ~~(frames * 1000 / framerate);
+        let ms = ~~(frames / 1000 * framerate);
         let timeStr = format(ms);
         const params = {
           start: format(start),
