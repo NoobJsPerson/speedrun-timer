@@ -93,7 +93,6 @@ function validateFramerate (){
 function updateCurrentTime() {
     currentMillis = Math.floor(player.getCurrentTime() * 1000);
     currentFrame = Math.floor(player.getCurrentTime() * framerate);
-    console.log(format(currentMillis));
 }
  
 function setTime(millis) {
