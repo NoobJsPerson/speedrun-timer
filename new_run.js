@@ -120,11 +120,9 @@ function updateTotalTime() {
       if (start !== null && end !== null && start <= end) {
         
         
-        const endFrame = Math.round(end / 1000 * framerate) 
-        
-        const startFrame = Math.round(start / 1000 *framerate );
-        
-        let frames = endFrame - startFrame
+        const endFrame = end / 1000 * framerate;
+        const startFrame = start / 1000 * framerate;
+        const frames = endFrame - startFrame;
         
         let ms = ~~(frames * 1000 / framerate);
         let timeStr = format(ms);
