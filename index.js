@@ -1,10 +1,6 @@
 const  inputUrl = document.getElementById('url');
 const theme = localStorage.getItem("theme");
 document.documentElement.setAttribute("theme", localStorage.getItem('theme'));
-if(!currentModMessage){
-  localStorage.setItem("cmm",modMessage);
-  currentModMessage = modMessage;
-}
 function parseTwitchId(vodUrl) {
     const reg = vodUrl.match(/twitch\.tv\/videos\/(\d+)/);
     if (reg && reg.length >= 2) return reg[1];
