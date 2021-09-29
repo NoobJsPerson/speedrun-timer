@@ -17,7 +17,7 @@ function interpolate(template, variables){
 function format(duration){
     let hours = ~~(duration/3600000);
  
-    let minutes = ~~((duration % 360000)/60000);
+    let minutes = ~~((duration % 3600000)/60000);
     let seconds = ((duration % 60000)/1000).toFixed(3);
     
     minutes = minutes < 10 ? "0"+minutes: minutes;
