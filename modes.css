@@ -1,0 +1,15 @@
+[theme="dark"]{
+	--text-color: white;
+	--background-color: black;
+}
+[theme="light"]{
+	--text-color: black;
+	--background-color: white;
+}
+body {
+	background-color: var(--background-color);
+	color: var(--text-color);
+}
+textarea {
+	display: block;
+}
