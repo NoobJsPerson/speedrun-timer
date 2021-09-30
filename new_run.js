@@ -1,12 +1,3 @@
-// adjusts video player's size
-/*
-let width = document.documentElement.clientWidth;
-if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-	document.body.style.margin = 0;
-} else {
-	width /= 1.5;
-}
-*/
 function interpolate(template, variables){
 	return template.replace(/\${[^{]+}/g, (match) => {
 		const path = match.slice(2, -1).trim();
@@ -58,7 +49,6 @@ const modMessageText = document.getElementById("modMessage");
 const modMessageButton = document.getElementById("modMessageButton");
 const currentFrameSpan = document.getElementById('current-frame');
 let videoDiv = document.getElementById('video-div');
-//const height = document.documentElement.clientWidth * (540/960);
 const framerateElement = document.getElementById("framerate");
 const type = getParameterByName("type");
 let cmm = localStorage.getItem("cmm") || "Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://speedrun-timer.itsmeme11.repl.co)";
@@ -68,6 +58,9 @@ var end = null;
 var currentMillis = 0;
 var currentFrame= 0;
 var framerate = 30;
+
+// Apply Appearance Mode
+document.documentElement.setAttribute("theme", localStorage.getItem('theme'));
  
 // Fallback Player
 var player = {
@@ -93,7 +86,6 @@ function validateFramerate (){
 function updateCurrentTime() {
     currentMillis = Math.floor(player.getCurrentTime() * 1000);
     currentFrame = Math.floor(player.getCurrentTime() * framerate);
-    
 }
  
 function setTime(millis) {
@@ -111,18 +103,20 @@ function stepBy(amount) {
 	
 	modMessageText.focus();
 	modMessageText.select();
-	document.execCommand('copy');
+	document.exec('copy');
 	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`);
 }
 function updateTotalTime() {
     
         // handle negative time I guess
       if (start !== null && end !== null && start <= end) {
-        const endFrame = end / 1000 * framerate;
-        const startFrame = start / 1000 * framerate;
+        
+        
+        const endFrame = Math.round(end / 1000 * framerate);
+        const startFrame = Math.round(start / 1000 * framerate);
         const frames = endFrame - startFrame;
         
-        let ms = ~~(frames * 1000 / framerate);
+        let ms = ~~(frames / 1000 * framerate);
         let timeStr = format(ms);
         const params = {
           start: format(start),
@@ -208,8 +202,6 @@ if(type == "y"){
  
     function onYouTubePlayerAPIReady() {
         youtube = new YT.Player("video-div", {
-            //width,
-            //height,
             videoId: videoId,
             events: {
                 'onReady': onYoutubeReady
@@ -236,8 +228,6 @@ if(type == "y"){
     }
 } else {
   var twitch = new Twitch.Player("video-div", {
-        //width,
-        //height,
         video: videoId
     });
 
