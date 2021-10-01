@@ -17,7 +17,6 @@ function format(duration){
   return hours+":"+minutes+":"+seconds;
   
 };
-};
 // Load URL Params
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
