@@ -17,3 +17,4 @@ function changeMode() {
   document.documentElement.setAttribute("theme", wanted)
   localStorage.setItem("theme", wanted);
 }
+
