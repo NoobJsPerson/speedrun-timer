@@ -116,7 +116,7 @@ function updateTotalTime() {
         const startFrame = Math.round(start / 1000 * framerate);
         const frames = endFrame - startFrame;
         
-        let ms = ~~(frames / 1000 * framerate);
+        let ms = ~~(frames * 1000 / framerate);
         let timeStr = format(ms);
         const params = {
           start: format(start),
