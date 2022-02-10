@@ -6,9 +6,12 @@
 	--text-color: black;
 	--background-color: white;
 }
-body {
+textarea, button, input, body {
 	background-color: var(--background-color);
 	color: var(--text-color);
+}
+input {
+	margin: 5px 5px 5px 5px;
 }
 textarea {
 	display: block;
