@@ -21,6 +21,7 @@
 <input type="button" onclick="window.location = '/speedrun-timer';" value="Back to Home" />
 <button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'">Source Code</button>
 </div>
+<div class="for-player">
 <br>
     <div id="video-div"></div>
 <br>
@@ -67,7 +68,24 @@ Current Frame: <span id="current-frame">0</span>
         <input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()" style="visibility: hidden" />
   </div>
         Total Time: <span id="total-time">Please set a start and end time</span>
-              
+  </div>
+</div>
+  <div class="for-debug" style="display: none;">
+    <p>
+    <label for="framerateAlt">framerate</label>
+<input type="text" value="30" id="framerateAlt" onchange="validateFramerate()">
+    </p>
+    <p>
+      <label for="startobj">Starting frame: </label>
+      <input type="text" id="startobj" style='width:80%' onchange='parseForTime(event)' />
+    </p>
+    <p>
+      <label for="endobj">Ending frame: </label>
+      <input type="text" id="endobj" style='width:80%' onchange='parseForTime(event)' />
+    </p>
+    <h3 id="video-time">Video Time</h3>
+    <button id="computeButton" onclick="updateTotalTime()">Compute time</button>
+  </div>    
         
     
  <textarea id="modMessage" cols="40" rows="5" disabled></textarea>
