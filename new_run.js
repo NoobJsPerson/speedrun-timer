@@ -58,6 +58,7 @@ var end = null;
 var currentMillis = 0;
 var currentFrame= 0;
 var framerate = 30;
+let isLoaded = false;
 
 // Apply Appearance Mode
 document.documentElement.setAttribute("theme", localStorage.getItem('theme'));
@@ -82,7 +83,7 @@ function validateFramerate (){
   framerate = parseInt(framerateElement.value||framerate);
   framerateElement.value = framerate;
 }
- 
+
 function updateCurrentTime() {
     currentMillis = Math.floor(player.getCurrentTime() * 1000);
     currentFrame = Math.floor(player.getCurrentTime() * framerate);
@@ -199,17 +200,37 @@ function onPlayerReady() {
 if(type == "y"){
 
     var youtube;
- 
     function onYouTubePlayerAPIReady() {
         youtube = new YT.Player("video-div", {
             videoId: videoId,
+            playerVars:{
+                rel: 0,
+            },
             events: {
-                'onReady': onYoutubeReady
+                'onReady': onYoutubeReady,
+                'onError': onYoutubeError,
+                'onStateChange': onYoutubeChange
             }
         });
+      setTimeout(() => {
+        if(isLoaded != true) onYoutubeError();
+      },5000);
+        
+    }
+
+    function onYoutubeChange(event) {
+      if(event.data == -1) isLoaded = true;
+    }
+
+    function onYoutubeError(event) {
+      console.log(event)
+      document.querySelector(".for-debug").style.display = "initial";
+      document.querySelector(".for-player").style.display = "none";
+      
     }
  
     function onYoutubeReady() {
+      console.log("ready")
         player = {
             seekTo: function(timestamp) {
                 youtube.seekTo(timestamp);
@@ -245,11 +266,23 @@ if(type == "y"){
         pauseVideo: function () {
           twitch.pause();
         },
-        getCurrentTime: function () { return twitch.getCurrentTime();
+        getCurrentTime: function () {
+            return twitch.getCurrentTime();
 		},
         playVideo: function () {
           twitch.play(); 
         }
     };
     twitch.addEventListener(Twitch.Player.READY,onPlayerReady);
+}
+function computeFromDebugValues(){
+
+}
+function parseForTime(event) {
+   framerate = parseInt(document.getElementById('framerateAlt').value || framerate);
+    const lct = parseFloat((JSON.parse(event.target.value)).lct);
+    if(isNaN(lct)) return;
+    if(event.target.id == "startobj") start = lct
+    else end = lct
+    document.getElementById(event.target.id).value = `${Math.floor(lct * framerate) / framerate}`;
 }
