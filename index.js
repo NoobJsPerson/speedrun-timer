@@ -19,6 +19,10 @@ function parseYoutubeId(videoUrl) {
     if (reg3 && reg3.length >= 2) {
         return reg3[1];
     }
+    const reg4 = videoUrl.match(/youtube\..+?\/shorts\/(.*?)(?:&|\/|$)/);
+    if (reg4 && reg4.length >= 2) {
+        return reg4[1];
+    }
     return videoUrl;
 }
 
