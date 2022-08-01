@@ -1,4 +1,4 @@
-let modMessage = 'Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://speedrun-timer.itsmeme11.repl.co)';
+let modMessage = "Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)";
 let currentModMessage = localStorage.getItem("cmm");
 document.getElementById("cstmmsg").value = currentModMessage;
 if(!currentModMessage){
