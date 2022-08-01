@@ -51,7 +51,7 @@ const currentFrameSpan = document.getElementById('current-frame');
 let videoDiv = document.getElementById('video-div');
 const framerateElement = document.getElementById("framerate");
 const type = getParameterByName("type");
-let cmm = localStorage.getItem("cmm") || "Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://speedrun-timer.itsmeme11.repl.co)";
+let cmm = localStorage.getItem("cmm") || "Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)";
 // Create page variables
 var start = null;
 var end = null;
