@@ -1,7 +1,7 @@
-function interpolate(template, letiables) {
+function interpolate(template, variables) {
     return template.replace(/\${[^{]+}/g, (match) => {
         const path = match.slice(2, -1).trim();
-        return letiables[path];
+        return variables[path];
     });
 }
 
