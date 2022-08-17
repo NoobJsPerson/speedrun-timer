@@ -96,7 +96,7 @@ function copyModMessage() {
 
     modMessageText.focus();
     modMessageText.select();
-    document.exec('copy');
+    document.execCommand('copy');
     alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`);
 }
 function updateTotalTime() {
