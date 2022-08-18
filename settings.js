@@ -18,3 +18,8 @@ function changeMode() {
   localStorage.setItem("theme", wanted);
 }
 
+function resetmodmessage(event) {
+  localStorage.setItem("cmm",modMessage);
+  currentModMessage = modMessage;
+  document.getElementById('cstmmsg').value = currentModMessage;
+}
