@@ -25,7 +25,8 @@ let tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
+//date
+let crdate = NaN;
 
 // Load page elements
 const totalTimeSpan = document.getElementById('total-time'),
@@ -111,11 +112,15 @@ function updateTotalTime() {
 
         let ms = ~~(frames * 1000 / framerate);
         let timeStr = format(ms);
+        //get current date
+        crdate = new Date();
+        //adds the date to the params
         const params = {
             start: format(start),
             end: format(end),
             timeStr,
-            framerate
+            framerate,
+            crdate
         };
 
         const modMessage = interpolate(cmm, params);
