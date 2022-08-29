@@ -11,6 +11,7 @@ If there is any translation error or you want to add a new language see the expl
 * [marty123](https://github.com/marty321) contributer
 * [Oxknifer](https://github.com/zromick) bug tester
 * [Badisnotfunny](https://github.com/badonyt) Contributer and translator(Portuguese)
-* [Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated italian
+* [Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated italian and french
+* [Badisnotfunny brother, Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated spanish
 
 If you think i forgot to credit you make an issue or dm me on discord `AmineCrafter101#7818`

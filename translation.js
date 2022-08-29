@@ -79,6 +79,25 @@ function translate(){
             document.getElementById("backtohome").value="Page d'accueil";
 
         }catch(error){}
+    }else if(getCookie("LA") == "SP"){
+        //settings
+        try{  
+            document.getElementById("theme").innerHTML="Cambiar de tema";
+            document.getElementById("cmds").innerHTML="Mensaje personalizado";
+            document.getElementById("resetbutton").innerHTML="Reiniciar";
+        }catch(error){}
+        //home
+        try{
+            document.getElementById("lfyt").innerHTML="Cargar desde Youtube";
+            document.getElementById("lft").innerHTML="Cargar desde Twitch";
+            document.getElementById("settingsbutton").innerHTML="Ajustes";
+        }catch(error){}
+        //new run and settings
+        try{
+            document.getElementById("sourcecodebutton").innerHTML="Código fuente";
+            document.getElementById("backtohome").value="Inicio";
+
+        }catch(error){}
     }
     
     
