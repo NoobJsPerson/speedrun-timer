@@ -60,6 +60,25 @@ function translate(){
             document.getElementById("backtohome").value="Pagina Iniziale";
 
         }catch(error){}
+    }else if(getCookie("LA") == "FR"){
+        //settings
+        try{  
+            document.getElementById("theme").innerHTML="Change le Thème";
+            document.getElementById("cmds").innerHTML="Message Personnalisé";
+            document.getElementById("resetbutton").innerHTML="Réinitialiser";
+        }catch(error){}
+        //home
+        try{
+            document.getElementById("lfyt").innerHTML="Charger depuis Youtube";
+            document.getElementById("lft").innerHTML="Charger depuis Twitch";
+            document.getElementById("settingsbutton").innerHTML="Réglages";
+        }catch(error){}
+        //new run and settings
+        try{
+            document.getElementById("sourcecodebutton").innerHTML="Code source";
+            document.getElementById("backtohome").value="Page d'accueil";
+
+        }catch(error){}
     }
     
     

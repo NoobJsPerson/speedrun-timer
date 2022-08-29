@@ -15,6 +15,9 @@
         }else if(currentflag == "IT"){
             console.log("IT")
             changeimage("IT")
+        }else if(currentflag == "FR"){
+            console.log("FR")
+            changeimage("FR")
         }else{
             console.log("uk")
             document.cookie = "LA=UK; expires=Tues, 18 Dec 3068 12:00:00 UTC";
@@ -35,6 +38,8 @@
         }else if(currentflag == "PT"){
             changeimage("IT")
         }else if(currentflag == "IT"){
+            changeimage("FR")
+        }else if(currentflag == "FR"){
             changeimage("UK")
         }
     }
@@ -52,6 +57,10 @@
             document.cookie = "LA=IT; expires=Tues, 18 Dec 3068 12:00:00 UTC"; 
             currentflag = getCookie("LA")
             document.getElementById("flag").src = "./flags/IT.png"
+        }else if(fla == "FR"){
+            document.cookie = "LA=FR; expires=Tues, 18 Dec 3068 12:00:00 UTC"; 
+            currentflag = getCookie("LA")
+            document.getElementById("flag").src = "./flags/FR.png"
         }
     }
     //see if something changed with external tool. Every 500 milliseconds
