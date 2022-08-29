@@ -7,5 +7,7 @@ A small and accurate mobile friendly runs timer website
 * [YummyBeacon5](https://github.com/YummyBacon5) bug tester and contributer
 * [marty123](https://github.com/marty321) contributer
 * [Oxknifer](https://github.com/zromick) bug tester
+* [Badisnotfunny](https://github.com/badonyt) Contributer and translator(Portuguese)
+* [Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated italian
 
 If you think i forgot to credit you make an issue or dm me on discord `AmineCrafter101#7818`

@@ -10,13 +10,20 @@
   <link rel="stylesheet" href="modes.css">
 </head>
 <body>
-<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'">Source Code</button>
-<input type="button" onclick="window.location = '/speedrun-timer';" value="Back to Home" />
-<button onclick="changeMode()">Change Theme</button>
-<h3 for="cstmmsg">Custom Mod Message</h3>
+<img src="./flags/UK.png" alt="Edit" id="flag" onclick="changes()"/>
+<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'" id="sourcecodebutton">Source Code</button>
+<input type="button" onclick="window.location = '/speedrun-timer';" value="Back to Home" id="backtohome"/>
+<button onclick="changeMode()" id="theme">Change Theme</button>
+<h3 for="cstmmsg" id="cmds">Custom Mod Message</h3>
 <textarea id="cstmmsg" cols="40" rows="6" onchange="smm(event)"></textarea>
-<button onclick="resetmodmessage()">Reset</button>
+<button onclick="resetmodmessage()" id="resetbutton">Reset</button>
 <p><code>${start}</code> : what second the timer starts<br><code>${end}</code> : what second the timer ends<br><code>${framerate}</code> : framerate of the video<br><code>${timeStr}</code> : final time</p>
+
+<!-- put flag in top right corner -->
+<style>#flag{float: right;}</style>
+<!-- call image button script -->
+<script src="./imagebutton.js"></script>
+<script src="./translation.js"></script>
 </body>
 
 </html>
