@@ -17,7 +17,10 @@
 <h3 for="cstmmsg" id="cmds">Custom Mod Message</h3>
 <textarea id="cstmmsg" cols="40" rows="6" onchange="smm(event)"></textarea>
 <button onclick="resetmodmessage()" id="resetbutton">Reset</button>
-<p><code>${start}</code> : what second the timer starts<br><code>${end}</code> : what second the timer ends<br><code>${framerate}</code> : framerate of the video<br><code>${timeStr}</code> : final time</p>
+<p><code>${start}</code> : <span id="wstts">what second the timer starts</span><br>
+<code>${end}</code> : <span id="wstte">what second the timer ends</span><br>
+<code>${framerate}</code> : <span id="fv">framerate of the video</span><br>
+<code>${timeStr}</code> : <span id="ft">final time</span></p>
 
 <!-- put flag in top right corner -->
 <style>#flag{float: right;}</style>
