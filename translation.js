@@ -105,17 +105,17 @@ function translate(){
         }catch(error){}
 
         try {
-            document.getElementById("ctml").innerHTML="Ora corrente (in millisecondi): ";
+            document.getElementById("ctml").innerHTML="Ora atuale (in millisecondi): ";
             document.getElementById("cf").innerHTML="Cornice attuale: ";
             document.getElementById("sfb").innerHTML="Fai un passo avanti o indietro: ";
             document.getElementById("fra").innerHTML="frequenza dei fotogrammi";
-            document.getElementById("st").innerHTML="Volta di inizio: ";
+            document.getElementById("st").innerHTML="Ora di inizio: ";
             document.getElementById("et").innerHTML="Il tempo di completamento: ";
             document.getElementById("ttt").innerHTML="Tempo Totale: ";
-            document.getElementById("set-start").value = "Imposta l'ora corrente come inizio";
+            document.getElementById("set-start").value = "Imposta l'ora atuale come inizio";
             document.getElementById("go-to-start").value = "Vai all'ora di inizio";
             document.getElementById("modMessageButton").innerHTML = "Copia il messaggio negli Appunti";
-            document.getElementById("set-end").value = "Imposta l'ora corrente come fine";
+            document.getElementById("set-end").value = "Imposta l'ora atuale come fine";
             document.getElementById("go-to-end").value = "Vai al tempo della fine";
             
         } catch (error) {}
@@ -193,7 +193,7 @@ function translate(){
             document.getElementById("et").innerHTML="Tiempo de finalización: ";
             document.getElementById("ttt").innerHTML="Tiempo Total: ";
             document.getElementById("set-start").value = "Establecer la hora actual como inicio";
-            document.getElementById("go-to-start").value = "Ir a la tiempo de inicio";
+            document.getElementById("go-to-start").value = "Ir al tiempo de inicio";
             document.getElementById("modMessageButton").innerHTML = "Copiar mensaje al portapapeles";
             document.getElementById("set-end").value = "Establecer la hora actual como final";
             document.getElementById("go-to-end").value = "Ir a la hora de finalización";
