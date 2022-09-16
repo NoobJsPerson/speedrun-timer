@@ -9,21 +9,21 @@
         currentflag = getCookie("LA")
 
         if(currentflag == "PT"){
-            console.log("PT")
+            console.log('%cLanguage=PT', 'color:red;font-weight:bold;')
             changeimage("PT")
         
         }else if(currentflag == "IT"){
-            console.log("IT")
+            console.log('%cLanguage=IT', 'color:green;font-weight:bold;')
             changeimage("IT")
         }else if(currentflag == "FR"){
-            console.log("FR")
+            console.log('%cLanguage=FR', 'color:blue;font-weight:bold;')
             changeimage("FR")
         }else if(currentflag == "SP"){
-            console.log("SP")
+            console.log('%cLanguage=SP', 'color:moccasin;font-weight:bold;')
             document.cookie = "LA=SP; expires=Tues, 18 Dec 3068 12:00:00 UTC";
             changeimage("SP")
         }else{
-            console.log("uk")
+            console.log('%cLanguage=UK', 'font-weight:bold;')
             document.cookie = "LA=UK; expires=Tues, 18 Dec 3068 12:00:00 UTC";
             changeimage("UK")
         }
