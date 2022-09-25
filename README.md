@@ -6,6 +6,7 @@ A small and accurate mobile friendly runs timer website
 * [Mango0x45](https://github.com/Mango0x45) maker of https://github.com/Mango0x45/retime.mcbe.wtf it helped me learn how to implement dark mode
 * [YummyBeacon5](https://github.com/YummyBacon5) bug tester and contributer
 * [marty123](https://github.com/marty321) contributer
+* [badonyt](https://github.com/badonyt) contributer
 * [Oxknifer](https://github.com/zromick) bug tester
 
 If you think i forgot to credit you make an issue or dm me on discord `AmineCrafter101#7818`
