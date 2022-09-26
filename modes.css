@@ -78,6 +78,10 @@ textarea {
 	color: rgb(255, 255, 255);
 }
 
+[theme="dark"] ::placeholder {
+	color: rgb(75, 75, 95);
+}
+
 [theme="light"] input {
 	background-color: rgb(216, 216, 216);
 	color: rgb(0, 0, 0);
@@ -87,6 +91,10 @@ textarea {
 [theme="light"] input:hover {
 	background-color: rgb(160, 160, 160);
 	color: rgb(0, 0, 0);
+}
+
+[theme="light"] ::placeholder {
+	color: rgb(83, 83, 83);
 }
 
 [theme="dark"] button {
