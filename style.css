@@ -15,9 +15,15 @@ div {
 	padding: 3px;
 }
 
-#better-speedrun-timer{
+.title{
 	font-size: 100px;
 	font-weight: 600;
+}
+
+.header-buttons button {
+	height: 12px;
+	border-radius: 12px;
+	border: 0px solid rgba(0, 0, 0, 0);
 }
 
 input {
