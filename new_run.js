@@ -216,6 +216,7 @@ if (type == "y") {
 
     function onYoutubeError(event) {
         console.log(event)
+        if(event.data === '5') return; // return if the video is private
         document.querySelector(".for-debug").style.display = "initial";
         document.querySelector(".for-player").style.display = "none";
 

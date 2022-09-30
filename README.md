@@ -9,6 +9,7 @@ If there is any translation error or you want to add a new language see the expl
 * [Mango0x45](https://github.com/Mango0x45) maker of https://github.com/Mango0x45/retime.mcbe.wtf it helped me learn how to implement dark mode
 * [YummyBeacon5](https://github.com/YummyBacon5) bug tester and contributer
 * [marty123](https://github.com/marty321) contributer
+* [badonyt](https://github.com/badonyt) contributer
 * [Oxknifer](https://github.com/zromick) bug tester
 * [Badisnotfunny](https://github.com/badonyt) Contributer and translator(Portuguese)
 * [Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated italian and french
