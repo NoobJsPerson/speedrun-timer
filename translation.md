@@ -11,7 +11,7 @@ To translate this website you will have to follow these instructions
 
 Doubts? see the Translationdata.json example at the bottom of this page
 ### Settings.html
-1. Open [settings.json](./settings.json)
+1. Open [settings.html](./settings.html)
 2. In about line 19, you will find a select html element <br> then one line before. Copy the previous elemente, and change how you write it. And the value change it to the title(acronym) that you put in the [translationdata.json](./translationdata.json)
 
 
