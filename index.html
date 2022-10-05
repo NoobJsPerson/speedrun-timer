@@ -23,6 +23,7 @@
   <title>Better Speedrun Timer</title>
   <link rel="stylesheet" href="modes.css">
   <script src="index.js" defer></script>
+  <script src="translation.js" defer></script>
 
 </head>
 
@@ -31,10 +32,10 @@
   <label for="url">YouTube Video URL</label>
 
   <input id="url" type="text">
+  
+  <button onclick="redirectYoutube()" id="lfyt">Load from YouTube</button> <button onclick="redirectTwitch()" id="lft">Load from Twitch</button>
 
-  <button onclick="redirectYoutube()">Load from YouTube</button> <button onclick="redirectTwitch()">Load from Twitch</button>
-
-  <button onclick="window.location.href = 'settings.html'">Settings</button>
+  <button onclick="window.location.href = 'settings.html'" id="settingsbutton">Settings</button>
 
 
 

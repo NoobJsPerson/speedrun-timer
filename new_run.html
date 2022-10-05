@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="modes.css">
     <script src="new_run.js" defer></script>
     <link rel="stylesheet" href="modes.css">
+    <script src="./translation.js" defer></script>
     <style>
     	body { margin: auto; display: block; }
     	.normal { margin: 10px; }
@@ -18,17 +19,17 @@
   </head>
   <body>
     <div class="normal">
-<input type="button" onclick="window.location = '/speedrun-timer';" value="Back to Home" />
-<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'">Source Code</button>
+<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'" id="sourcecodebutton">Source Code</button>
+<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
 </div>
 <div class="for-player">
 <br>
     <div id="video-div"></div>
 <br>
 <div class="normal">
-Step forward or backward:
+<span id="sfb">Step forward or backward: </span>
 <br>
-<label for="framerate">framerate</label>
+<label for="framerate" id="fra">framerate</label>
 <input type="text" value="30" id="framerate" onchange="validateFramerate()">
 <br>
 <input type="button" value="+10k" onclick="stepBy(10000)" />
@@ -51,23 +52,23 @@ Step forward or backward:
 <input type="button" value="-5" onclick="stepBy(-5)" />
 <input type="button" value="-1" onclick="stepBy(-1)" />
 <br>
-Current Time (in milliseconds): <span id="current-time">0</span>
+<span id="ctml">Current Time (in milliseconds): </span><span id="current-time">0</span>
 <br>
-Current Frame: <span id="current-frame">0</span>
+<span id="cf">Current Frame: </span><span id="current-frame">0</span>
 <br>
 <div>
         <input type="hidden" id="start-value" name="startValue" value="" />
-        Start Time: <span id="start">Not set</span>
+        <span id="st">Start Time: </span><span id="start">Not set</span>
         <input id='set-start' type="button" value="Set current time as start" onclick="setStart()" />
         <input id='go-to-start' type="button" value="Go to start time" onclick="goToStart()" style="visibility: hidden" />
     </div>
     <div>
            <input type="hidden" id="end-value" name="endValue" value="" />
-        End Time: <span id="end">Not set</span>
+        <span id="et">End Time: </span><span id="end">Not set</span>
         <input id='set-end' type="button" value="Set current time as end" onclick="setEnd()" />
         <input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()" style="visibility: hidden" />
   </div>
-        Total Time: <span id="total-time">Please set a start and end time</span>
+        <span id="ttt">Total Time: </span><span id="total-time">Please set a start and end time</span>
   </div>
 </div>
   <div class="for-debug" style="display: none;">
