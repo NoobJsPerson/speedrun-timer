@@ -15,8 +15,9 @@ You finished everything you have to do in [translationdata.json](./translationda
 
 
 
-#### Translationdata.json example
-Your file translation should look likes this, with 
+#### Translationdata.json
+**THIS IS AN EXAMPLE** <br>
+The end of your file should look likes this:
 
 "previous language acronym":{<br>
         [translation]<br>
