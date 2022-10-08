@@ -6,6 +6,7 @@ To translate this website you will have to follow these instructions
 1. Open [translationdata.json](./translationdata.json)
 2. Copy the english translation(from lines 2 to 27 without the comma,)
 3. Add a comma to the end of the last translation(to this: "}")
+4. Paste what you have copied
 5. Translate everything, the title should be the acronym of a the language<br>
 
 
