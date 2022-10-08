@@ -31,3 +31,6 @@ The end of your file should look likes this:
         [translation]<br>
     }<br>
 }
+
+# Still with doubts?
+See the video tutorial [here](https://www.youtube.com/watch?v=X0S9CvgGs6E)
