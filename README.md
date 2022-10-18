@@ -1,8 +1,7 @@
 # speedrun-timer
 A small and accurate mobile friendly runs timer website
 # Translation
-If there is any translation error or you want to add a new language see the explanation in this video: [Explanation](https://www.youtube.com/watch?v=5YsTLPBsg-U)
-
+To add a new language please check [The Translation Guide](./translation.md)
 # credits
 * [Slashinfty](https://github.com/slashinfty) maker of https://github.com/slashinfty/yt-frame-timer that this site was inspired from
 * [VikeMK](https://github.com/VikeMK) maker of https://mk8dx-speedrun-timer.azurewebsites.net/ that this site was based on
