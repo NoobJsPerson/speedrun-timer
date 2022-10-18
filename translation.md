@@ -4,7 +4,7 @@ This tutorial is divided in 2 parts, which is divided in how many files you have
 ### Translationdata.json
 To translate this website you will have to follow these instructions
 1. Open [translationdata.json](./translationdata.json)
-2. Copy the english translation(from lines 2 to 27 without the comma,)
+2. Copy the english translation(from lines 2 to 27 without the comma ",")
 3. Add a comma to the end of the last translation(to this: "}")
 4. Paste what you have copied
 5. Translate everything, the title should be the acronym of a the language<br>
@@ -24,13 +24,15 @@ Doubts? see the Translationdata.json example at the bottom of this page
 **THIS IS AN EXAMPLE** <br>
 The end of your file should look likes this:
 
-"previous language acronym":{<br>
-        [translation]<br>
+```
+"previous language acronym":{
+        [translation]
 },<br>
-"language translating acronym":{<br>
-        [translation]<br>
+"language translating acronym":{
+        [translation]
     }<br>
 }
+```
 
 # Still with doubts?
 See the video tutorial [here](https://www.youtube.com/watch?v=X0S9CvgGs6E)
