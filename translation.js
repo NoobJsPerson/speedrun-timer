@@ -19,7 +19,7 @@ function translatePage(isFirstCall) {
 		if (!translation) return; // dont crash if a invalid language is provided (by devtools for example)
 		for (i in translation) {
 			const el = document.getElementById(i)
-			if(el) el.innerHTML = translation[i];
+			if(el) el.innerText = translation[i];
 		}
 	})
 }
