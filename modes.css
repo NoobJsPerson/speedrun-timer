@@ -16,27 +16,29 @@ div {
 }
 
 #better-speedrun-timer{
-	font-size: 100px;
+	font-size: 8vw;
 	font-weight: 600;
 }
 
 input {
-	padding: 7px;
+	background-color: rgb(216, 216, 216);
+	color: rgb(0, 0, 0);
+	padding: 7pt;
 	border-radius: 7px;
-	border: 0px solid rgba(0, 0, 0, 0);
+	border: none;
 }
 
 button {
-	padding: 7px;
+	padding: 7pt;
 	border-radius: 7px;
-	border: 0px solid rgba(0, 0, 0, 0);
+	border: none;
 }
 
 textarea {
 	resize: none;
-	padding: 7px;
+	padding: 7pt;
 	border-radius: 7px;
-	border: 0px solid rgba(0, 0, 0, 0);
+	border: none;
 }
 
 [theme="dark"] .header-buttons button {
@@ -126,5 +128,5 @@ textarea {
 
 [theme="light"] textarea {
 	color: rgb(0, 0, 0);
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(216, 216, 216);
 }
