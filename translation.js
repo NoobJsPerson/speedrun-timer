@@ -1,7 +1,9 @@
 function translatePage(isFirstCall) {
 	const lang = localStorage.getItem("LA");
 	// dont try to translate the page to English when its first loaded since its already in English
+
 	if (isFirstCall && lang == "EN" || !lang) return;
+
 	const trainingData = new Promise((resolve) => {
 		const oReq = new XMLHttpRequest();
 		oReq.overrideMimeType("application/json");

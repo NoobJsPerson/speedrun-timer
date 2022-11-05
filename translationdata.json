@@ -24,7 +24,7 @@
         "modMessageButton":"Copy Mod Message to Clipboard",
         "set-end":"Set current time as end",
         "go-to-end":"Go to end time",
-		"total-time":"Please set a start and end time"
+        "total-time":"Please set a start and end time"
     },
     "PT":{
         "theme":"Mudar o tema",
@@ -51,7 +51,7 @@
         "modMessageButton":"Copiar mensagem para a área de transferência",
         "set-end":"Definir o tempo atual como o fim",
         "go-to-end":"Ir para o tempo final",
-		"total-time":"Defina um horário de início e término"
+        "total-time":"Defina um horário de início e término"
     },
     "IT":{
         "theme":"Cambia Tema",
@@ -78,7 +78,7 @@
         "modMessageButton":"Copia il messaggio negli Appunti",
         "set-end":"Imposta l'ora atuale come fine",
         "go-to-end":"Vai al tempo della fine",
-		"total-time":"Si prega di impostare un'ora di inizio e di fine"
+        "total-time":"Si prega di impostare un'ora di inizio e di fine"
     },
     "FR":{
         "theme":"Change le Thème",
@@ -105,7 +105,7 @@
         "modMessageButton":"Copier le message dans le presse-papiers",
         "set-end":"Définir le temps actuelle comme fin",
         "go-to-end":"Aller à la fin",
-		"total-time":"Veuillez définir un moment de début et de fin"
+        "total-time":"Veuillez définir un moment de début et de fin"
     },
     "SP":{
         "theme":"Cambiar de tema",
@@ -132,6 +132,6 @@
         "modMessageButton":"Copiar mensaje al portapapeles",
         "set-end":"Establecer la hora actual como final",
         "go-to-end":"Ir a la hora de finalización",
-		"total-time":"Establezca una hora de inicio y finalización"
+        "total-time":"Establezca una hora de inicio y finalización"
     }
 }
