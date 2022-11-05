@@ -8,5 +8,6 @@ A small and accurate mobile friendly runs timer website
 * [marty123](https://github.com/marty321) contributer
 * [badonyt](https://github.com/badonyt) contributer
 * [Oxknifer](https://github.com/zromick) bug tester
+* [ConnerConnerConner](https://github.com/ConnerConnerConner) responsible for the better styling
 
 If you think i forgot to credit you make an issue or dm me on discord `AmineCrafter101#7818`

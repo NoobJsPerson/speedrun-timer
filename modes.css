@@ -15,12 +15,12 @@ div {
 	padding: 3px;
 }
 
-#better-speedrun-timer{
+#better-speedrun-timer {
 	font-size: 8vw;
 	font-weight: 600;
 }
 
-input {
+input, select {
 	background-color: rgb(216, 216, 216);
 	color: rgb(0, 0, 0);
 	padding: 7pt;
@@ -35,6 +35,7 @@ button {
 }
 
 textarea {
+	display: block;
 	resize: none;
 	padding: 7pt;
 	border-radius: 7px;
@@ -69,7 +70,7 @@ textarea {
 	color: rgb(0, 0, 0);
 }
 
-[theme="dark"] input {
+[theme="dark"] input, [theme="dark"] select {
 	background-color: rgb(31, 31, 44);
 	color: rgb(255, 255, 255);
 	transition: 0.25s;
@@ -84,7 +85,7 @@ textarea {
 	color: rgb(75, 75, 95);
 }
 
-[theme="light"] input {
+[theme="light"] input, [theme="light"] select {
 	background-color: rgb(216, 216, 216);
 	color: rgb(0, 0, 0);
 	transition: 0.25s;

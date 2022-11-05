@@ -2,21 +2,37 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Settings</title>
-  <link rel="stylesheet" href="modes.css">
-  <script src="settings.js" defer></script>
-  <link rel="stylesheet" href="modes.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Settings</title>
+	<link rel="stylesheet" href="modes.css">
+	<script src="./translation.js" defer></script>
+	<script src="settings.js" defer></script>
+	<link rel="stylesheet" href="modes.css">
 </head>
+
 <body>
-<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'">Source Code</button>
-<input type="button" onclick="window.location = '/index.html';" value="Back to Home" />
-<button onclick="changeMode()">Change Theme</button>
-<h3 for="cstmmsg">Custom Mod Message</h3>
-<textarea id="cstmmsg" cols="40" rows="6" onchange="smm(event)"></textarea>
-<button onclick="resetmodmessage()">Reset</button>
-<p><code>${start}</code> : what second the timer starts<br><code>${end}</code> : what second the timer ends<br><code>${framerate}</code> : framerate of the video<br><code>${timeStr}</code> : final time</p>
+	<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'" id="sourcecodebutton">Source
+		Code</button>
+	<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
+	<button onclick="changeMode()" id="theme">Change Theme</button>
+	<select style="float: right;">
+		<option value="EN" selected>English</option>
+		<option value="PT">Português</option>
+		<option value="IT">Italiano</option>
+		<option value="FR">Français</option>
+		<option value="SP">Español</option>
+	</select>
+
+	<h3 for="cstmmsg" id="cmds">Custom Mod Message</h3>
+	<textarea id="cstmmsg" cols="40" rows="6" onchange="smm(event)"></textarea>
+	<button onclick="resetmodmessage()" id="resetbutton">Reset</button>
+	<p><code>${start}</code> : <span id="wstts">what moment the timer starts</span><br>
+		<code>${end}</code> : <span id="wstte">what moment the timer ends</span><br>
+		<code>${framerate}</code> : <span id="fv">framerate of the video</span><br>
+		<code>${timeStr}</code> : <span id="ft">final time</span>
+	</p>
+
 </body>
 
 </html>
