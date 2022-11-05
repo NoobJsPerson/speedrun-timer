@@ -10,6 +10,7 @@ To add a new language please check [The Translation Guide](./translation.md)
 * [marty123](https://github.com/marty321) contributer
 * [badonyt](https://github.com/badonyt) contributer
 * [Oxknifer](https://github.com/zromick) bug tester
+* [ConnerConnerConner](https://github.com/ConnerConnerConner) responsible for the better styling
 * [Badisnotfunny](https://github.com/badonyt) Contributer and translator(Portuguese)
 * [Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated italian and french
 * [Badisnotfunny brother, Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated spanish

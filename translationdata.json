@@ -23,7 +23,8 @@
         "go-to-start":"Go to start time",
         "modMessageButton":"Copy Mod Message to Clipboard",
         "set-end":"Set current time as end",
-        "go-to-end":"Go to end time"
+        "go-to-end":"Go to end time",
+        "total-time":"Please set a start and end time"
     },
     "PT":{
         "theme":"Mudar o tema",
@@ -38,7 +39,7 @@
         "settingsbutton":"Definições",
         "sourcecodebutton":"Codigo Fonte",
         "backtohome":"Pagina principal",
-        "ctml":"Tempo Atual(Milisegundos): ",
+        "ctml":"Tempo Atual (Milisegundos): ",
         "cf":"Quadro Atual: ",
         "sfb":"Para a frente ou para trás: ",
         "fra":"taxa de quadros",
@@ -49,7 +50,8 @@
         "go-to-start":"Ir para o tempo de início",
         "modMessageButton":"Copiar mensagem para a área de transferência",
         "set-end":"Definir o tempo atual como o fim",
-        "go-to-end":"Ir para o tempo final"
+        "go-to-end":"Ir para o tempo final",
+        "total-time":"Defina um horário de início e término"
     },
     "IT":{
         "theme":"Cambia Tema",
@@ -75,7 +77,8 @@
         "go-to-start":"Vai all'ora di inizio",
         "modMessageButton":"Copia il messaggio negli Appunti",
         "set-end":"Imposta l'ora atuale come fine",
-        "go-to-end":"Vai al tempo della fine"
+        "go-to-end":"Vai al tempo della fine",
+        "total-time":"Si prega di impostare un'ora di inizio e di fine"
     },
     "FR":{
         "theme":"Change le Thème",
@@ -101,7 +104,8 @@
         "go-to-start":"Aller au début",
         "modMessageButton":"Copier le message dans le presse-papiers",
         "set-end":"Définir le temps actuelle comme fin",
-        "go-to-end":"Aller à la fin"
+        "go-to-end":"Aller à la fin",
+        "total-time":"Veuillez définir un moment de début et de fin"
     },
     "SP":{
         "theme":"Cambiar de tema",
@@ -127,6 +131,7 @@
         "go-to-start":"Ir al tiempo de inicio",
         "modMessageButton":"Copiar mensaje al portapapeles",
         "set-end":"Establecer la hora actual como final",
-        "go-to-end":"Ir a la hora de finalización"
+        "go-to-end":"Ir a la hora de finalización",
+        "total-time":"Establezca una hora de inicio y finalización"
     }
 }

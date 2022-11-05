@@ -1,19 +1,133 @@
-[theme="dark"]{
-	--text-color: white;
-	--background-color: black;
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600&display=swap');
+
+html body {
+	line-height: 1.5;
+	font-family: 'Lexend Deca', sans-serif;
+	font-weight: 400;
 }
-[theme="light"]{
-	--text-color: black;
-	--background-color: white;
+
+iframe {
+	padding: 5px;
+	border-radius: 15px;
 }
-textarea, button, input, body {
-	background-color: var(--background-color);
-	color: var(--text-color);
-	border-color: var(--text-color);
+
+div {
+	padding: 3px;
 }
-input {
-	margin: 5px 5px 5px 5px;
+
+#better-speedrun-timer {
+	font-size: 8vw;
+	font-weight: 600;
 }
+
+input, select {
+	background-color: rgb(216, 216, 216);
+	color: rgb(0, 0, 0);
+	padding: 7pt;
+	border-radius: 7px;
+	border: none;
+}
+
+button {
+	padding: 7pt;
+	border-radius: 7px;
+	border: none;
+}
+
 textarea {
 	display: block;
+	resize: none;
+	padding: 7pt;
+	border-radius: 7px;
+	border: none;
+}
+
+[theme="dark"] .header-buttons button {
+	background-color: rgb(31, 31, 44);
+	color: rgb(255, 255, 255);
+}
+
+[theme="white"] .header-buttons button {
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+}
+
+[theme="dark"] {
+	background-color: rgb(23, 23, 29);
+	color: rgb(255, 255, 255);
+}
+
+[theme="light"] {
+	background-color: rgb(255, 255, 255);
+	color:rgb(0, 0, 0)
+}
+
+[theme="dark"] .title {
+	color: rgb(255, 255, 255);
+}
+
+[theme="light"] .title {
+	color: rgb(0, 0, 0);
+}
+
+[theme="dark"] input, [theme="dark"] select {
+	background-color: rgb(31, 31, 44);
+	color: rgb(255, 255, 255);
+	transition: 0.25s;
+}
+
+[theme="dark"] input:hover {
+	background-color: rgb(40, 40, 58);
+	color: rgb(255, 255, 255);
+}
+
+[theme="dark"] ::placeholder {
+	color: rgb(75, 75, 95);
+}
+
+[theme="light"] input, [theme="light"] select {
+	background-color: rgb(216, 216, 216);
+	color: rgb(0, 0, 0);
+	transition: 0.25s;
+}
+
+[theme="light"] input:hover {
+	background-color: rgb(160, 160, 160);
+	color: rgb(0, 0, 0);
+}
+
+[theme="light"] ::placeholder {
+	color: rgb(83, 83, 83);
+}
+
+[theme="dark"] button {
+	background-color: rgb(31, 31, 44);
+	color: rgb(255, 255, 255);
+	transition: 0.25s;
+}
+
+[theme="dark"] button:hover {
+	background-color: rgb(40, 40, 58);
+	color: rgb(255, 255, 255);
+}
+
+[theme="light"] button {
+	background-color: rgb(216, 216, 216);
+	color: rgb(0, 0, 0);
+	transition: 0.25s
+}
+
+[theme="light"] button:hover {
+	background-color: rgb(160, 160, 160);
+	color: rgb(0, 0, 0);
+}
+
+[theme="dark"] textarea {
+	background-color: rgb(31, 31, 44);
+	color: rgb(255, 255, 255);
+}
+
+[theme="light"] textarea {
+	color: rgb(0, 0, 0);
+	background-color: rgb(216, 216, 216);
 }

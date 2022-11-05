@@ -1,99 +1,102 @@
 <!DOCTYPE html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Better Speedrun Timer</title>
-    <script src= "https://player.twitch.tv/js/embed/v1.js" defer></script>
-    <link rel="stylesheet" href="modes.css">
-    <script src="new_run.js" defer></script>
-    <link rel="stylesheet" href="modes.css">
-    <script src="./translation.js" defer></script>
-    <style>
-    	body { margin: auto; display: block; }
-    	.normal { margin: 10px; }
-    	#video-div { width: 66vw; height: 77vh}
-    	@media (max-width: 600px){
-    		#video-div { width: 100%; height: 35vh; }
-    	}
-    </style>
-  </head>
-  <body>
-    <div class="normal">
-<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'" id="sourcecodebutton">Source Code</button>
-<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
-</div>
-<div class="for-player">
-<br>
-    <div id="video-div"></div>
-<br>
-<div class="normal">
-<span id="sfb">Step forward or backward: </span>
-<br>
-<label for="framerate" id="fra">framerate</label>
-<input type="text" value="30" id="framerate" onchange="validateFramerate()">
-<br>
-<input type="button" value="+10k" onclick="stepBy(10000)" />
-<input type="button" value="+5k" onclick="stepBy(5000)" />
-<input type="button" value="+1k" onclick="stepBy(1000)" />
-<input type="button" value="+500" onclick="stepBy(500)" />
-<input type="button" value="+100" onclick="stepBy(100)" />
-<input type="button" value="+50" onclick="stepBy(50)" />
-<input type="button" value="+10" onclick="stepBy(10)" />
-<input type="button" value="+5" onclick="stepBy(5)" />
-<input type="button" value="+1" onclick="stepBy(1)" />
-<br>
-<input type="button" value="-10k" onclick="stepBy(-10000)" />
-<input type="button" value="-5k" onclick="stepBy(-5000)" />
-<input type="button" value="-1k" onclick="stepBy(-1000)" />
-<input type="button" value="-500" onclick="stepBy(-500)" />
-<input type="button" value="-100" onclick="stepBy(-100)" />
-<input type="button" value="-50" onclick="stepBy(-50)" />
-<input type="button" value="-10" onclick="stepBy(-10)" />
-<input type="button" value="-5" onclick="stepBy(-5)" />
-<input type="button" value="-1" onclick="stepBy(-1)" />
-<br>
-<span id="ctml">Current Time (in milliseconds): </span><span id="current-time">0</span>
-<br>
-<span id="cf">Current Frame: </span><span id="current-frame">0</span>
-<br>
-<div>
-        <input type="hidden" id="start-value" name="startValue" value="" />
-        <span id="st">Start Time: </span><span id="start">Not set</span>
-        <input id='set-start' type="button" value="Set current time as start" onclick="setStart()" />
-        <input id='go-to-start' type="button" value="Go to start time" onclick="goToStart()" style="visibility: hidden" />
-    </div>
-    <div>
-           <input type="hidden" id="end-value" name="endValue" value="" />
-        <span id="et">End Time: </span><span id="end">Not set</span>
-        <input id='set-end' type="button" value="Set current time as end" onclick="setEnd()" />
-        <input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()" style="visibility: hidden" />
-  </div>
-        <span id="ttt">Total Time: </span><span id="total-time">Please set a start and end time</span>
-  </div>
-</div>
-  <div class="for-debug" style="display: none;">
-    <p>
-    <label for="framerateAlt">framerate</label>
-<input type="text" value="30" id="framerateAlt" onchange="validateFramerate()">
-    </p>
-    <p>
-      <label for="startobj">Starting frame: </label>
-      <input type="text" id="startobj" style='width:80%' onchange='parseForTime(event)' />
-    </p>
-    <p>
-      <label for="endobj">Ending frame: </label>
-      <input type="text" id="endobj" style='width:80%' onchange='parseForTime(event)' />
-    </p>
-    <h3 id="video-time">Video Time</h3>
-    <button id="computeButton" onclick="updateTotalTime()">Compute time</button>
-  </div>    
-        
-    
- <textarea id="modMessage" cols="40" rows="5" disabled></textarea>
- <br>
-    
-    <button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
-    </div>
-    </body>
-    
 
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Better Speedrun Timer</title>
+	<script src="https://player.twitch.tv/js/embed/v1.js" defer></script>
+	<link rel="stylesheet" href="modes.css">
+	<script src="new_run.js" defer></script>
+	<link rel="stylesheet" href="modes.css">
+	<script src="./translation.js" defer></script>
+	<style>
+		body { margin: auto; display: block; }
+		.normal { margin: 10px; }
+		#video-div { width: 66vw; height: 77vh; }
+		@media (max-width: 600px) {
+			#video-div { width: 100%; height: 35vh; }
+		}
+	</style>
+</head>
+
+<body>
+	<div class="normal">
+		<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'"
+			id="sourcecodebutton">Source Code</button>
+		<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
+	</div>
+	<div class="for-player">
+		<br>
+		<div id="video-div"></div>
+		<br>
+		<div class="normal">
+			<span id="sfb">Step forward or backward: </span>
+			<br>
+			<label for="framerate" id="fra">framerate</label>
+			<input type="text" value="30" id="framerate" onchange="validateFramerate()">
+			<br>
+			<input type="button" value="+10k" onclick="stepBy(10000)" />
+			<input type="button" value="+5k" onclick="stepBy(5000)" />
+			<input type="button" value="+1k" onclick="stepBy(1000)" />
+			<input type="button" value="+500" onclick="stepBy(500)" />
+			<input type="button" value="+100" onclick="stepBy(100)" />
+			<input type="button" value="+50" onclick="stepBy(50)" />
+			<input type="button" value="+10" onclick="stepBy(10)" />
+			<input type="button" value="+5" onclick="stepBy(5)" />
+			<input type="button" value="+1" onclick="stepBy(1)" />
+			<br>
+			<input type="button" value="-10k" onclick="stepBy(-10000)" />
+			<input type="button" value="-5k" onclick="stepBy(-5000)" />
+			<input type="button" value="-1k" onclick="stepBy(-1000)" />
+			<input type="button" value="-500" onclick="stepBy(-500)" />
+			<input type="button" value="-100" onclick="stepBy(-100)" />
+			<input type="button" value="-50" onclick="stepBy(-50)" />
+			<input type="button" value="-10" onclick="stepBy(-10)" />
+			<input type="button" value="-5" onclick="stepBy(-5)" />
+			<input type="button" value="-1" onclick="stepBy(-1)" />
+			<br>
+			<span id="ctml">Current Time (in milliseconds): </span><span id="current-time">0</span>
+			<br>
+			<span id="cf">Current Frame: </span><span id="current-frame">0</span>
+			<br>
+			<div>
+				<input type="hidden" id="start-value" name="startValue" value="" />
+				<span id="st">Start Time: </span><span id="start">Not set</span>
+				<input id='set-start' type="button" value="Set current time as start" onclick="setStart()" />
+				<input id='go-to-start' type="button" value="Go to start time" onclick="goToStart()"
+					style="visibility: hidden" />
+			</div>
+			<div>
+				<input type="hidden" id="end-value" name="endValue" value="" />
+				<span id="et">End Time: </span><span id="end">Not set</span>
+				<input id='set-end' type="button" value="Set current time as end" onclick="setEnd()" />
+				<input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()"
+					style="visibility: hidden" />
+			</div>
+			<span id="ttt">Total Time: </span><span id="total-time">Please set a start and end time</span>
+		</div>
+	</div>
+	<div class="for-debug" style="display: none;">
+		<p>
+			<label for="framerateAlt">framerate</label>
+			<input type="text" value="30" id="framerateAlt" onchange="validateFramerate()">
+		</p>
+		<p>
+			<label for="startobj">Starting frame: </label>
+			<input type="text" id="startobj" style='width:80%' onchange='parseForTime(event)' />
+		</p>
+		<p>
+			<label for="endobj">Ending frame: </label>
+			<input type="text" id="endobj" style='width:80%' onchange='parseForTime(event)' />
+		</p>
+		<h3 id="video-time">Video Time</h3>
+		<button id="computeButton" onclick="updateTotalTime()">Compute time</button>
+	</div>
+
+
+	<textarea id="modMessage" cols="40" rows="5" disabled></textarea>
+	<br>
+
+	<button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
+	</div>
+</body>
