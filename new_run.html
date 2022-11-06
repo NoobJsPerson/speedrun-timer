@@ -12,9 +12,9 @@
 	<style>
 		body { margin: auto; display: block; }
 		.normal { margin: 10px; }
-		#video-div { width: 66vw; height: 77vh; }
+		#video-div { width: 66vw; height: 77vh; padding: 5px; border-radius: 15px; }
 		@media (max-width: 600px) {
-			#video-div { width: 100%; height: 35vh; }
+			#video-div { width: 100%; height: 35vh; padding: 0; }
 		}
 	</style>
 </head>
@@ -26,9 +26,7 @@
 		<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
 	</div>
 	<div class="for-player">
-		<br>
 		<div id="video-div"></div>
-		<br>
 		<div class="normal">
 			<span id="sfb">Step forward or backward: </span>
 			<br>
@@ -60,18 +58,16 @@
 			<span id="cf">Current Frame: </span><span id="current-frame">0</span>
 			<br>
 			<div>
-				<input type="hidden" id="start-value" name="startValue" value="" />
 				<span id="st">Start Time: </span><span id="start">Not set</span>
 				<input id='set-start' type="button" value="Set current time as start" onclick="setStart()" />
 				<input id='go-to-start' type="button" value="Go to start time" onclick="goToStart()"
-					style="visibility: hidden" />
+					style="display: none;" />
 			</div>
 			<div>
-				<input type="hidden" id="end-value" name="endValue" value="" />
 				<span id="et">End Time: </span><span id="end">Not set</span>
 				<input id='set-end' type="button" value="Set current time as end" onclick="setEnd()" />
 				<input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()"
-					style="visibility: hidden" />
+					style="display: none;" />
 			</div>
 			<span id="ttt">Total Time: </span><span id="total-time">Please set a start and end time</span>
 		</div>
@@ -92,11 +88,10 @@
 		<h3 id="video-time">Video Time</h3>
 		<button id="computeButton" onclick="updateTotalTime()">Compute time</button>
 	</div>
-
-
+	<div class="normal">
 	<textarea id="modMessage" cols="40" rows="5" disabled></textarea>
-	<br>
 
 	<button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
+	</div>
 	</div>
 </body>

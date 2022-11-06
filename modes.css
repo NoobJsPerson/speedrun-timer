@@ -6,15 +6,6 @@ html body {
 	font-weight: 400;
 }
 
-iframe {
-	padding: 5px;
-	border-radius: 15px;
-}
-
-div {
-	padding: 3px;
-}
-
 #better-speedrun-timer {
 	font-size: 8vw;
 	font-weight: 600;
@@ -24,6 +15,7 @@ input, select {
 	background-color: rgb(216, 216, 216);
 	color: rgb(0, 0, 0);
 	padding: 7pt;
+	margin: 1px;
 	border-radius: 7px;
 	border: none;
 }
@@ -38,6 +30,7 @@ textarea {
 	display: block;
 	resize: none;
 	padding: 7pt;
+	margin-bottom: 7pt;
 	border-radius: 7px;
 	border: none;
 }

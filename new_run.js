@@ -30,8 +30,6 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // Load page elements
 const totalTimeSpan = document.getElementById('total-time'),
     siteVideoIdInput = document.getElementById('video-id'),
-    startValueInput = document.getElementById('start-value'),
-    endValueInput = document.getElementById('end-value'),
     startSpan = document.getElementById('start'),
     goToStartButton = document.getElementById('go-to-start'),
     endSpan = document.getElementById('end'),
@@ -141,7 +139,6 @@ function showStart() {
 function setStart() {
     updateCurrentTime();
     start = currentMillis;
-    startValueInput.value = start;
     showStart();
     updateTotalTime();
 }
@@ -164,7 +161,6 @@ function showEnd() {
 function setEnd() {
     updateCurrentTime();
     end = currentMillis;
-    endValueInput.value = end;
     showEnd();
     updateTotalTime();
 }
