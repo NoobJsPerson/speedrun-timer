@@ -11,8 +11,6 @@ To add a new language please check [The Translation Guide](./translation.md)
 * [badonyt](https://github.com/badonyt) contributer
 * [Oxknifer](https://github.com/zromick) bug tester
 * [ConnerConnerConner](https://github.com/ConnerConnerConner) responsible for the better styling
-* [Badisnotfunny](https://github.com/badonyt) Contributer and translator(Portuguese)
-* [Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated italian and french
-* [Badisnotfunny brother, Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated spanish
-
+* [Badisnotfunny](https://github.com/badonyt) Contributer and translator (Portuguese and Spanish)
+* [shenef](https://github.com/shenef) tester and feedback provider<br>
 If you think i forgot to credit you make an issue or dm me on discord `AmineCrafter101#7818`
