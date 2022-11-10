@@ -15,4 +15,4 @@ To add a new language please check [The Translation Guide](./translation.md)
 * [Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated italian and french
 * [Badisnotfunny brother, Badisnotfunny Mom, Google Translate](https://Translate.google.com) Translated spanish
 
-If you think i forgot to credit you make an issue or dm me on discord `AmineCrafter101#7818`
+If you think i forgot to credit you can make an issue or dm me on discord `AmineCrafter101#7818`
