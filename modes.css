@@ -11,16 +11,26 @@ html body {
 	font-weight: 600;
 }
 
-input, select {
-	background-color: rgb(216, 216, 216);
-	color: rgb(0, 0, 0);
+#sourcecodebutton {
+	float: right;
+	margin-left: 5px;
+}
+
+input {
 	padding: 7pt;
-	margin: 1px;
 	border-radius: 7px;
 	border: none;
 }
 
-button {
+select {
+	height: 35px;
+}
+
+button, input {
+	margin: 1px;
+}
+
+button, select {
 	padding: 7pt;
 	border-radius: 7px;
 	border: none;
@@ -33,16 +43,6 @@ textarea {
 	margin-bottom: 7pt;
 	border-radius: 7px;
 	border: none;
-}
-
-[theme="dark"] .header-buttons button {
-	background-color: rgb(31, 31, 44);
-	color: rgb(255, 255, 255);
-}
-
-[theme="white"] .header-buttons button {
-	background-color: rgb(255, 255, 255);
-	color: rgb(0, 0, 0);
 }
 
 [theme="dark"] {
@@ -63,7 +63,7 @@ textarea {
 	color: rgb(0, 0, 0);
 }
 
-[theme="dark"] input, [theme="dark"] select {
+[theme="dark"] input {
 	background-color: rgb(31, 31, 44);
 	color: rgb(255, 255, 255);
 	transition: 0.25s;
@@ -78,8 +78,8 @@ textarea {
 	color: rgb(75, 75, 95);
 }
 
-[theme="light"] input, [theme="light"] select {
-	background-color: rgb(216, 216, 216);
+[theme="light"] input {
+	background-color: rgb(235, 235, 235);
 	color: rgb(0, 0, 0);
 	transition: 0.25s;
 }
@@ -93,24 +93,24 @@ textarea {
 	color: rgb(83, 83, 83);
 }
 
-[theme="dark"] button {
+[theme="dark"] button, [theme="dark"] select {
 	background-color: rgb(31, 31, 44);
 	color: rgb(255, 255, 255);
 	transition: 0.25s;
 }
 
-[theme="dark"] button:hover {
+[theme="dark"] button:hover, [theme="dark"] select:hover {
 	background-color: rgb(40, 40, 58);
 	color: rgb(255, 255, 255);
 }
 
-[theme="light"] button {
+[theme="light"] button, [theme="light"] select {
 	background-color: rgb(216, 216, 216);
 	color: rgb(0, 0, 0);
 	transition: 0.25s
 }
 
-[theme="light"] button:hover {
+[theme="light"] button:hover, [theme="light"] select:hover {
 	background-color: rgb(160, 160, 160);
 	color: rgb(0, 0, 0);
 }

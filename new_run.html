@@ -12,46 +12,46 @@
 	<style>
 		body { margin: auto; display: block; }
 		.normal { margin: 10px; }
-		#video-div { width: 66vw; height: 77vh; padding: 5px; border-radius: 15px; }
-		@media (max-width: 600px) {
-			#video-div { width: 100%; height: 35vh; padding: 0; }
+		iframe { width: 66vw; height: 77vh; padding: 5px; border-radius: 15px; }
+		@media (max-width: 700px) {
+			iframe { width: 100%; height: 35vh; padding: 0; border-radius: 0; }
 		}
 	</style>
 </head>
 
 <body>
 	<div class="normal">
+		<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
 		<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'"
 			id="sourcecodebutton">Source Code</button>
-		<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
 	</div>
 	<div class="for-player">
 		<div id="video-div"></div>
 		<div class="normal">
 			<span id="sfb">Step forward or backward: </span>
 			<br>
-			<label for="framerate" id="fra">framerate</label>
+			<label for="framerate" id="fra">Framerate</label>
 			<input type="text" value="30" id="framerate" onchange="validateFramerate()">
 			<br>
-			<input type="button" value="+10k" onclick="stepBy(10000)" />
-			<input type="button" value="+5k" onclick="stepBy(5000)" />
-			<input type="button" value="+1k" onclick="stepBy(1000)" />
-			<input type="button" value="+500" onclick="stepBy(500)" />
-			<input type="button" value="+100" onclick="stepBy(100)" />
-			<input type="button" value="+50" onclick="stepBy(50)" />
-			<input type="button" value="+10" onclick="stepBy(10)" />
-			<input type="button" value="+5" onclick="stepBy(5)" />
-			<input type="button" value="+1" onclick="stepBy(1)" />
+			<button onclick="stepBy(10000)" >+10k</button>
+			<button onclick="stepBy(5000)" >+5k</button>
+			<button onclick="stepBy(1000)" >+1k</button>
+			<button onclick="stepBy(500)" >+500</button>
+			<button onclick="stepBy(100)" >+100</button>
+			<button onclick="stepBy(50)" >+50</button>
+			<button onclick="stepBy(10)" >+10</button>
+			<button onclick="stepBy(5)" >+5</button>
+			<button onclick="stepBy(1)" >+1</button>
 			<br>
-			<input type="button" value="-10k" onclick="stepBy(-10000)" />
-			<input type="button" value="-5k" onclick="stepBy(-5000)" />
-			<input type="button" value="-1k" onclick="stepBy(-1000)" />
-			<input type="button" value="-500" onclick="stepBy(-500)" />
-			<input type="button" value="-100" onclick="stepBy(-100)" />
-			<input type="button" value="-50" onclick="stepBy(-50)" />
-			<input type="button" value="-10" onclick="stepBy(-10)" />
-			<input type="button" value="-5" onclick="stepBy(-5)" />
-			<input type="button" value="-1" onclick="stepBy(-1)" />
+			<button onclick="stepBy(-10000)" >-10k</button>
+			<button onclick="stepBy(-5000)" >-5k</button>
+			<button onclick="stepBy(-1000)" >-1k</button>
+			<button onclick="stepBy(-500)" >-500</button>
+			<button onclick="stepBy(-100)" >-100</button>
+			<button onclick="stepBy(-50)" >-50</button>
+			<button onclick="stepBy(-10)" >-10</button>
+			<button onclick="stepBy(-5)" >-5</button>
+			<button onclick="stepBy(-1)" >-1</button>
 			<br>
 			<span id="ctml">Current Time (in milliseconds): </span><span id="current-time">0</span>
 			<br>

@@ -1,17 +1,13 @@
 let modMessage = "Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)";
-let currentModMessage = localStorage.getItem("cmm");
+let currentModMessage = localStorage.getItem("cmm") || modMessage;
 const select = document.getElementsByTagName("select")[0];
-select.value = localStorage.getItem('LA');
+select.value = localStorage.getItem('LA') || 'EN';
 select.onchange = function (event) {
   localStorage.setItem('LA', event.target.value);
   translatePage(false);
 }
 document.getElementById("cstmmsg").value = currentModMessage;
-if (!currentModMessage) {
-  localStorage.setItem("cmm", modMessage);
-  currentModMessage = modMessage;
-}
-document.documentElement.setAttribute("theme", localStorage.getItem('theme'));
+document.documentElement.setAttribute("theme", localStorage.getItem('theme') || 'light');
 function smm(event) {
   if (event && event.target.value.replace(/\s/g, "") && event.target.value != modMessage) {
     currentModMessage = event.target.value;
@@ -25,7 +21,6 @@ function changeMode() {
 }
 
 function resetmodmessage() {
-  localStorage.setItem("cmm", modMessage);
-  currentModMessage = modMessage;
-  document.getElementById('cstmmsg').value = currentModMessage;
+  localStorage.removeItem("cmm");
+  document.getElementById('cstmmsg').value = modMessage;
 }

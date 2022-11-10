@@ -39,7 +39,7 @@ const totalTimeSpan = document.getElementById('total-time'),
     modMessageButton = document.getElementById("modMessageButton"),
     currentFrameSpan = document.getElementById('current-frame'),
     framerateElement = document.getElementById("framerate"),
-    type = searchParams.get("type")[0];
+    type = searchParams.get("type")?.[0];
 let videoDiv = document.getElementById('video-div'),
     cmm = localStorage.getItem("cmm") || "Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)";
 // Create page variables
@@ -48,7 +48,8 @@ let start = null,
     currentMillis = 0,
     currentFrame = 0,
     framerate = 30,
-    isLoaded = false;
+    isLoaded = false,
+	twitch;
 
 // Apply Appearance Mode
 document.documentElement.setAttribute("theme", localStorage.getItem('theme'));
@@ -180,11 +181,12 @@ function updateCurrentTimeSpan() {
 function onPlayerReady() {
     videoDiv = document.getElementById('video-div');
     player.playVideo();
-    if (type == "t") setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 6000);
+    if (type == "t") setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
     setInterval(updateCurrentTimeSpan, 50);
 }
 
 // Load the player.
+console.log(type);
 if (type == "y") {
 
     let youtube;
@@ -236,21 +238,16 @@ if (type == "y") {
         };
         onPlayerReady();
     }
-} else {
-    let twitch = new Twitch.Player("video-div", {
+} else if(type == "t") {
+    twitch = new Twitch.Player("video-div", {
         video: videoId
     });
 
     player = {
         seekTo: function (timestamp) {
-            player.playVideo();
-            setTimeout(function () {
-                twitch.seek(timestamp);
-                setTimeout(function () {
-                    twitch.seek(timestamp);
-                    player.pauseVideo();
-                }, 50)
-            }, 50);
+            // player.playVideo();
+            twitch.seek(timestamp);
+			// player.pauseVideo();
         },
         pauseVideo: function () {
             twitch.pause();
@@ -263,9 +260,8 @@ if (type == "y") {
         }
     };
     twitch.addEventListener(Twitch.Player.READY, onPlayerReady);
-}
-function computeFromDebugValues() {
-
+} else {
+	document.body.innerText = "You shouldn't be here";
 }
 function parseForTime(event) {
     framerate = parseInt(document.getElementById('framerateAlt').value || framerate);

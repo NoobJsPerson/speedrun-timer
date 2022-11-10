@@ -19,7 +19,6 @@ function translatePage(isFirstCall) {
 		translation.start = translation.end; // to prevent reptition in the json file
 		if (!translation) return; // dont crash if an invalid language is provided (by devtools for example)
 		for (let i in translation) {
-			console.log(i)
 			const el = document.getElementById(i)
 			if (el) el.innerText = translation[i];
 		}
