@@ -64,7 +64,7 @@ textarea {
 }
 
 [theme="dark"] input {
-	background-color: rgb(31, 31, 44);
+	background-color: rgb(36, 36, 50);
 	color: rgb(255, 255, 255);
 	transition: 0.25s;
 }
