@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Better Speedrun Timer</title>
 	<script src="https://player.twitch.tv/js/embed/v1.js" defer></script>
 	<link rel="stylesheet" href="modes.css">
+	<link rel="shortcut icon" href="icon.png">
+	<link rel="apple-touch-icon" href="icon.png">
 	<script src="new_run.js" defer></script>
-	<link rel="stylesheet" href="modes.css">
 	<script src="./translation.js" defer></script>
 	<style>
 		body { margin: auto; display: block; }
 		.normal { margin: 10px; }
-		iframe { width: 66vw; height: 77vh; padding: 5px; border-radius: 15px; }
+		iframe, img { width: 66vw; height: 77vh; padding: 5px; border-radius: 15px; border: 0; }
 		@media (max-width: 700px) {
-			iframe { width: 100%; height: 35vh; padding: 0; border-radius: 0; }
+			iframe, img { width: 100%; height: 35vh; padding: 0; border-radius: 0; }
 		}
 	</style>
 </head>
@@ -95,3 +96,4 @@
 	</div>
 	</div>
 </body>
+</html>

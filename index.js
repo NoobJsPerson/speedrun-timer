@@ -1,46 +1,42 @@
-const inputUrl = document.getElementById('url');
-const theme = localStorage.getItem("theme");
+const inputUrl = document.getElementById('url'),
+	theme = localStorage.getItem("theme"),
+	ytRegex = /youtu(?:be\..+?|.be)\/(?:watch.*?v=|embed\/|shorts\/|)(.*?)(?:&|\/|$)/,
+	twRegex = /twitch\.tv\/videos\/(\d+)/,
+	generalIdRegex = /[a-zA-Z0-9]+/;
 
 document.documentElement.setAttribute("theme", localStorage.getItem('theme') || 'light');
 
 const select = document.getElementsByTagName("select")[0];
 select.value = localStorage.getItem('LA') || 'EN';
 select.onchange = function (event) {
-  localStorage.setItem('LA', event.target.value);
-  translatePage(false);
+	localStorage.setItem('LA', event.target.value);
+	translatePage(false);
 }
 
 function parseTwitchId(vodUrl) {
-	const reg = vodUrl.match(/twitch\.tv\/videos\/(\d+)/);
+	if(!vodUrl || !vodUrl.match(generalIdRegex)) return alert("Please enter a valid Twitch VOD link");
+	const reg = vodUrl.match(twRegex);
 	if (reg && reg.length >= 2) return reg[1];
+	if(vodUrl.match(ytRegex)) return alert("You seem to have entered a Youtube Video link. You may want to press the \"Load from Youtube\" Button instead.");
+	return vodUrl;
 }
 
 function parseYoutubeId(videoUrl) {
-	const reg1 = videoUrl.match(/youtube\..+?\/watch.*?v=(.*?)(?:&|\/|$)/);
-	if (reg1 && reg1.length >= 2) {
-		return reg1[1];
-	}
-	const reg2 = videoUrl.match(/youtu\.be\/(.*?)(?:\?|&|\/|$)/);
-	if (reg2 && reg2.length >= 2) {
-		return reg2[1];
-	}
-	const reg3 = videoUrl.match(/youtube\..+?\/embed\/(.*?)(?:\?|&|\/|$)/);
-	if (reg3 && reg3.length >= 2) {
-		return reg3[1];
-	}
-	const reg4 = videoUrl.match(/youtube\..+?\/shorts\/(.*?)(?:&|\/|$)/);
-	if (reg4 && reg4.length >= 2) {
-		return reg4[1];
-	}
+	if(!videoUrl || !videoUrl.match(generalIdRegex)) return alert("Please enter a valid Youtube Video link");
+	const reg1 = videoUrl.match(ytRegex);
+	if (reg1 && reg1.length >= 2) return reg1[1];
+	if(vodUrl.match(twRegex)) return alert("You seem to have entered a Twitch VOD link. You may want to press the \"Load from Twitch\" Button instead.");
 	return videoUrl;
 }
 
 
 
 function redirectYoutube() {
-	window.location.href = "new_run.html?id=" + parseYoutubeId(inputUrl.value) + "&type=y";
+	const id = parseYoutubeId(inputUrl.value);
+	if(id) window.location.href = "new_run.html?id=" + id + "&type=y";
 }
 
 function redirectTwitch() {
-	window.location.href = "new_run.html?id=" + parseTwitchId(inputUrl.value) + "&type=t";
+	const id = parseTwitchId(inputUrl.value);
+	if(id) window.location.href = "new_run.html?id=" + id + "&type=t";
 }
