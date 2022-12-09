@@ -18,8 +18,15 @@ function format(duration) {
 
 };
 // Initialise URL Params
-const searchParams = new URLSearchParams(window.location.search);
-const videoId = searchParams.get('id');
+const searchParams = new URLSearchParams(window.location.search),
+	videoIframe = document.querySelector("iframe"),
+	videoId = searchParams.get('id'),
+	type = searchParams.get("type")?.[0];
+
+if(type == 'y') {
+	videoIframe.src = `https://img.youtube.com/vi/${videoId}/0.jpg`
+}
+
 // Load the IFrame Player API code asynchronously.
 let tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -39,9 +46,7 @@ const totalTimeSpan = document.getElementById('total-time'),
     modMessageButton = document.getElementById("modMessageButton"),
     currentFrameSpan = document.getElementById('current-frame'),
     framerateElement = document.getElementById("framerate"),
-    type = searchParams.get("type")?.[0];
-let videoDiv = document.getElementById('video-div'),
-    cmm = localStorage.getItem("cmm") || "Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)";
+	cmm = localStorage.getItem("cmm") || "Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)";
 // Create page variables
 let start = null,
     end = null,
@@ -179,7 +184,6 @@ function updateCurrentTimeSpan() {
 }
 
 function onPlayerReady() {
-    videoDiv = document.getElementById('video-div');
     player.playVideo();
     if (type == "t") setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
     setInterval(updateCurrentTimeSpan, 50);
@@ -188,11 +192,10 @@ function onPlayerReady() {
 // Load the player.
 console.log(type);
 if (type == "y") {
-
+	videoIframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`
     let youtube;
     function onYouTubePlayerAPIReady() {
-        youtube = new YT.Player("video-div", {
-            videoId: videoId,
+        youtube = new YT.Player("video-iframe", {
             playerlets: {
                 rel: 0,
             },

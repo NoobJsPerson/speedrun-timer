@@ -40,3 +40,8 @@ function redirectTwitch() {
 	const id = parseTwitchId(inputUrl.value);
 	if(id) window.location.href = "new_run.html?id=" + id + "&type=t";
 }
+if ('serviceWorker' in navigator) {
+	window.addEventListener('load', () => {
+	  navigator.serviceWorker.register('/ServiceWorker.js');
+	});
+  }
