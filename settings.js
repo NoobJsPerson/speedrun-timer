@@ -24,3 +24,10 @@ function resetmodmessage() {
   localStorage.removeItem("cmm");
   document.getElementById('cstmmsg').value = modMessage;
 }
+
+function changecss() {
+  let wanted = localStorage.getItem("css") == "css" ? "non" : "css"
+  document.documentElement.setAttribute("theme", wanted)
+  localStorage.setItem("css", wanted);
+  location = ""
+}
