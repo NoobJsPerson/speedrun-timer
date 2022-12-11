@@ -13,7 +13,6 @@ To add a new language please check the [Translation Guide](./translation.md).
 * [Mango0x45](https://github.com/Mango0x45) | Maker of [retime.mcbe.wtf](https://github.com/Mango0x45/retime.mcbe.wtf). It helped me learn how to implement dark mode.
 * [YummyBeacon5](https://github.com/YummyBacon5) | Bug tester and contributor
 * [marty123](https://github.com/marty321) | Contributor
-* [badonyt](https://github.com/badonyt) | Contributor
 * [Oxknifer](https://github.com/zromick) | Bug tester
 * [ConnerConnerConner](https://github.com/ConnerConnerConner) | Responsible for better styling
 * [Badisnotfunny](https://github.com/badonyt) | Contributor and translator (Portuguese and Spanish)
