@@ -26,7 +26,7 @@ function resetmodmessage() {
 }
 
 function changecss() {
-  let wanted = localStorage.getItem("css") == "css" ? "non" : "css"
+  let wanted = localStorage.getItem("css") == "old_css" ? "normal" : "old_css"
   document.documentElement.setAttribute("theme", wanted)
   localStorage.setItem("css", wanted);
   location = ""

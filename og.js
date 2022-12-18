@@ -1,4 +1,4 @@
-if (localStorage.getItem("css") == "css") {
+if (localStorage.getItem("css") == "old_css") {
 
     document.querySelectorAll('style,link[rel="stylesheet"]').forEach(item => item.remove())
 
