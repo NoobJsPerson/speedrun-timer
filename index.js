@@ -9,37 +9,37 @@ document.documentElement.setAttribute('theme', localStorage.getItem('theme') || 
 const select = document.getElementsByTagName('select')[0];
 select.value = localStorage.getItem('LA') || 'EN';
 select.onchange = function (event) {
-  localStorage.setItem('LA', event.target.value);
-  translatePage(false);
+	localStorage.setItem('LA', event.target.value);
+	translatePage(false);
 };
 
 function parseTwitchId(vodUrl) {
-  if (!vodUrl || !vodUrl.match(generalIdRegex)) return alert('Please enter a valid Twitch VOD link');
-  const reg = vodUrl.match(twRegex);
-  if (reg && reg.length >= 2) return reg[1];
-  if (vodUrl.match(ytRegex)) return alert('You seem to have entered a Youtube Video link. You may want to press the "Load from Youtube" Button instead.');
-  return vodUrl;
+	if (!vodUrl || !vodUrl.match(generalIdRegex)) return alert('Please enter a valid Twitch VOD link');
+	const reg = vodUrl.match(twRegex);
+	if (reg && reg.length >= 2) return reg[1];
+	if (vodUrl.match(ytRegex)) return alert('You seem to have entered a Youtube Video link. You may want to press the "Load from Youtube" Button instead.');
+	return vodUrl;
 }
 
 function parseYoutubeId(videoUrl) {
-  if (!videoUrl || !videoUrl.match(generalIdRegex)) return alert('Please enter a valid Youtube Video link');
-  const reg1 = videoUrl.match(ytRegex);
-  if (reg1 && reg1.length >= 2) return reg1[1];
-  if (vodUrl.match(twRegex)) return alert('You seem to have entered a Twitch VOD link. You may want to press the "Load from Twitch" Button instead.');
-  return videoUrl;
+	if (!videoUrl || !videoUrl.match(generalIdRegex)) return alert('Please enter a valid Youtube Video link');
+	const reg1 = videoUrl.match(ytRegex);
+	if (reg1 && reg1.length >= 2) return reg1[1];
+	if (vodUrl.match(twRegex)) return alert('You seem to have entered a Twitch VOD link. You may want to press the "Load from Twitch" Button instead.');
+	return videoUrl;
 }
 
 function redirectYoutube() {
-  const id = parseYoutubeId(inputUrl.value);
-  if (id) window.location.href = `new_run.html?id=${id}&type=y`;
+	const id = parseYoutubeId(inputUrl.value);
+	if (id) window.location.href = `new_run.html?id=${id}&type=y`;
 }
 
 function redirectTwitch() {
-  const id = parseTwitchId(inputUrl.value);
-  if (id) window.location.href = `new_run.html?id=${id}&type=t`;
+	const id = parseTwitchId(inputUrl.value);
+	if (id) window.location.href = `new_run.html?id=${id}&type=t`;
 }
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-	  navigator.serviceWorker.register('/speedrun-timer/ServiceWorker.js');
-  });
+	window.addEventListener('load', () => {
+		navigator.serviceWorker.register('/speedrun-timer/ServiceWorker.js');
+	});
 }

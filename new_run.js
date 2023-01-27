@@ -6,9 +6,9 @@ function interpolate(template, variables) {
 }
 
 function format(duration) {
-  const hours = ~~(duration / 3600000);
+  const hours = Math.floor(duration / 3600000);
 
-  let minutes = ~~((duration % 3600000) / 60000);
+  let minutes = Math.floor((duration % 3600000) / 60000);
   let seconds = ((duration % 60000) / 1000).toFixed(3);
 
   minutes = minutes < 10 ? `0${minutes}` : minutes;
@@ -22,20 +22,19 @@ const videoIframe = document.querySelector('iframe');
 const videoId = searchParams.get('id');
 const type = searchParams.get('type')?.[0];
 
-if (type == 'y') {
+if (type === 'y') {
   videoIframe.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
   // Load the IFrame Player API code asynchronously.
   const tag = document.createElement('script');
   tag.src = 'https://www.youtube.com/iframe_api';
   const firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-} else if (type == 't') {
+} else if (type ==='t') {
   videoIframe.hidden = true;
 }
 
 // Load page elements
 const totalTimeSpan = document.getElementById('total-time');
-const siteVideoIdInput = document.getElementById('video-id');
 const startSpan = document.getElementById('start');
 const goToStartButton = document.getElementById('go-to-start');
 const endSpan = document.getElementById('end');
@@ -109,7 +108,7 @@ function updateTotalTime() {
     const startFrame = Math.round(start / 1000 * framerate);
     const frames = endFrame - startFrame;
 
-    const ms = ~~(frames * 1000 / framerate);
+    const ms = Math.floor(frames * 1000 / framerate);
     const timeStr = format(ms);
     const params = {
       start: format(start),
@@ -175,13 +174,13 @@ function updateCurrentTimeSpan() {
 
 function onPlayerReady() {
   player.playVideo();
-  if (type == 't') setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
+  if (type ==='t') setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
   setInterval(updateCurrentTimeSpan, 50);
 }
 
 // Load the player.
 console.log(type);
-if (type == 'y') {
+if (type === 'y') {
   videoIframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
   let youtube;
   function onYouTubePlayerAPIReady() {
@@ -201,7 +200,7 @@ if (type == 'y') {
   }
 
   function onYoutubeChange(event) {
-    if (event.data == -1) isLoaded = true;
+    if (event.data === -1) isLoaded = true;
   }
 
   function onYoutubeError(event) {
@@ -212,7 +211,6 @@ if (type == 'y') {
   }
 
   function onYoutubeReady() {
-    console.log('ready');
     player = {
       seekTo(timestamp) {
         youtube.seekTo(timestamp);
@@ -229,7 +227,7 @@ if (type == 'y') {
     };
     onPlayerReady();
   }
-} else if (type == 't') {
+} else if (type ==='t') {
   twitch = new Twitch.Player('video-div', {
     video: videoId,
   });
@@ -258,7 +256,7 @@ function parseForTime(event) {
   framerate = parseInt(document.getElementById('framerateAlt').value || framerate);
   const lct = parseFloat((JSON.parse(event.target.value)).lct);
   if (isNaN(lct)) return;
-  if (event.target.id == 'startobj') start = lct;
+  if (event.target.id ==='startobj') start = lct;
   else end = lct;
   document.getElementById(event.target.id).value = `${Math.floor(lct * framerate) / framerate}`;
 }
