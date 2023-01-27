@@ -16,8 +16,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     // Try cache
-    caches.match(event.request).then((response) =>
-      // Fallback to network
-      response || fetch(event.request)).catch(() => caches.match('./index.html')),
+    // Fallback to network
+    caches.match(event.request).then((response) => response || fetch(event.request)).catch(() => caches.match('./index.html')),
   );
 });
