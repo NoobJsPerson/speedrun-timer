@@ -30,7 +30,7 @@ if (type == 'y') {
 	tag.src = "https://www.youtube.com/iframe_api";
 	let firstScriptTag = document.getElementsByTagName('script')[0];
 	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-} else if(type == 't') {
+} else if (type == 't') {
 	videoIframe.hidden = true;
 }
 
