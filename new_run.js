@@ -22,14 +22,14 @@ const videoIframe = document.querySelector('iframe');
 const videoId = searchParams.get('id');
 const type = searchParams.get('type')?.[0];
 
-if (type == 'y') {
+if (type === 'y') {
   videoIframe.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
   // Load the IFrame Player API code asynchronously.
   const tag = document.createElement('script');
   tag.src = 'https://www.youtube.com/iframe_api';
   const firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-} else if (type == 't') {
+} else if (type === 't') {
   videoIframe.hidden = true;
 }
 
@@ -45,7 +45,7 @@ const modMessageText = document.getElementById('modMessage');
 const modMessageButton = document.getElementById('modMessageButton');
 const currentFrameSpan = document.getElementById('current-frame');
 const framerateElement = document.getElementById('framerate');
-const cmm = localStorage.getItem('cmm') || 'Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)';
+const currentModMessage = localStorage.getItem('currentModMessage') || 'Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)';
 // Create page variables
 let start = null;
 let end = null;
@@ -75,7 +75,7 @@ let player = {
 };
 
 function validateFramerate() {
-  framerate = parseInt(framerateElement.value || framerate);
+  framerate = parseInt(framerateElement.value || framerate, 10);
   framerateElement.value = framerate;
 }
 
@@ -105,11 +105,11 @@ function copyModMessage() {
 function updateTotalTime() {
   // handle negative time I guess
   if (start !== null && end !== null && start <= end) {
-    const endFrame = Math.round(end / 1000 * framerate);
-    const startFrame = Math.round(start / 1000 * framerate);
+    const endFrame = Math.round((end / 1000) * framerate);
+    const startFrame = Math.round((start / 1000) * framerate);
     const frames = endFrame - startFrame;
 
-    const ms = ~~(frames * 1000 / framerate);
+    const ms = ~~((frames * 1000) / framerate);
     const timeStr = format(ms);
     const params = {
       start: format(start),
@@ -118,7 +118,7 @@ function updateTotalTime() {
       framerate,
     };
 
-    const modMessage = interpolate(cmm, params);
+    const modMessage = interpolate(currentModMessage, params);
     totalTimeSpan.innerHTML = timeStr;
     modMessageText.value = modMessage;
 
@@ -175,13 +175,13 @@ function updateCurrentTimeSpan() {
 
 function onPlayerReady() {
   player.playVideo();
-  if (type == 't') setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
+  if (type === 't') setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
   setInterval(updateCurrentTimeSpan, 50);
 }
 
 // Load the player.
 console.log(type);
-if (type == 'y') {
+if (type === 'y') {
   videoIframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
   let youtube;
   function onYouTubePlayerAPIReady() {
@@ -196,12 +196,12 @@ if (type == 'y') {
       },
     });
     setTimeout(() => {
-      if (isLoaded != true) onYoutubeError();
+      if (isLoaded !== true) onYoutubeError();
     }, 5000);
   }
 
   function onYoutubeChange(event) {
-    if (event.data == -1) isLoaded = true;
+    if (event.data === -1) isLoaded = true;
   }
 
   function onYoutubeError(event) {
@@ -229,7 +229,7 @@ if (type == 'y') {
     };
     onPlayerReady();
   }
-} else if (type == 't') {
+} else if (type === 't') {
   twitch = new Twitch.Player('video-div', {
     video: videoId,
   });
@@ -255,10 +255,10 @@ if (type == 'y') {
   document.body.innerText = "You shouldn't be here";
 }
 function parseForTime(event) {
-  framerate = parseInt(document.getElementById('framerateAlt').value || framerate);
+  framerate = parseInt(document.getElementById('framerateAlt').value || framerate, 10);
   const lct = parseFloat((JSON.parse(event.target.value)).lct);
-  if (isNaN(lct)) return;
-  if (event.target.id == 'startobj') start = lct;
+  if (Number.isNaN(lct)) return;
+  if (event.target.id === 'startobj') start = lct;
   else end = lct;
   document.getElementById(event.target.id).value = `${Math.floor(lct * framerate) / framerate}`;
 }
