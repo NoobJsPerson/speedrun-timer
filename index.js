@@ -1,6 +1,6 @@
 const inputUrl = document.getElementById('url'),
 	theme = localStorage.getItem("theme"),
-	ytRegex = /youtu(?:be\..+?|.be)\/(?:watch.*?v=|embed\/|shorts\/|)(.*?)\?t=(\d+)(?:&|\/|$)/,
+	ytRegex = /youtu(?:be\..+?|.be)\/(?:watch.*?v=|embed\/|shorts\/|)(.*?)(?:\?|&)+t=(\d+)(?:&|\/|$)/,
 	twRegex = /twitch\.tv\/videos\/(\d+)/,
 	generalIdRegex = /[a-zA-Z0-9]+/;
 
