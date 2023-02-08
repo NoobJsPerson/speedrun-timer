@@ -20,9 +20,10 @@ function format(duration) {
 // Initialise URL Params
 const searchParams = new URLSearchParams(window.location.search),
 	videoIframe = document.querySelector("iframe"),
-	videoId = searchParams.get('id'),
-	type = searchParams.get("type")?.[0];
-
+	videoId = searchParams.get("id"),
+	type = searchParams.get("type"),
+	time = +searchParams.get("t");
+console.log(time)
 if (type == 'y') {
 	videoIframe.src = `https://img.youtube.com/vi/${videoId}/0.jpg`
 	// Load the IFrame Player API code asynchronously.
@@ -187,6 +188,7 @@ function updateCurrentTimeSpan() {
 
 function onPlayerReady() {
 	player.playVideo();
+	if (time) player.seekTo(time);
 	if (type == "t") setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
 	setInterval(updateCurrentTimeSpan, 50);
 }
@@ -219,7 +221,7 @@ if (type == "y") {
 
 	function onYoutubeError(event) {
 		console.log(event)
-		if (event.data === '5') return; // return if the video is private
+		if (event?.data === '5') return; // return if the video is private
 		document.querySelector(".for-debug").style.display = "initial";
 		document.querySelector(".for-player").style.display = "none";
 
