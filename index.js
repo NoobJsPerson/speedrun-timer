@@ -25,7 +25,7 @@ function parseYoutubeId(videoUrl) {
 	if (!videoUrl || !videoUrl.match(generalIdRegex)) return alert("Please enter a valid Youtube Video link");
 	const reg1 = videoUrl.match(ytRegex);
 	if (reg1 && reg1.length >= 2) return [reg1[1], reg1[2]];
-	if (vodUrl.match(twRegex)) return alert("You seem to have entered a Twitch VOD link. You may want to press the \"Load from Twitch\" Button instead.");
+	if (videoUrl.match(twRegex)) return alert("You seem to have entered a Twitch VOD link. You may want to press the \"Load from Twitch\" Button instead.");
 	return videoUrl;
 }
 
