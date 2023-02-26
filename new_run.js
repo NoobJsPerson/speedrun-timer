@@ -101,9 +101,10 @@ function stepBy(amount) {
 function copyModMessage() {
 	// Allow user to copy mod message to clipboard
 
-	modMessageText.focus();
-	modMessageText.select();
-	document.execCommand('copy');
+	// modMessageText.focus();
+	// modMessageText.select();
+	// document.execCommand('copy');
+	navigator.clipboard.writeText(modMessageText.innerText);
 	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`);
 }
 function updateTotalTime() {
