@@ -107,13 +107,18 @@ async function copyModMessage() {
 	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`)
 
 	// I dont know why this approach doesn't. If you can fix it please make a pull request
+	// function oldCopy() {
+	// 	modMessageText.focus();
+	// 	modMessageText.select();
+	// 	document.execCommand('copy');
+	// 	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`)
+	// }
 	// const result = await navigator.permissions.query({ name: "clipboard-write" })
 	// console.log(result.state)
 	// if (result.state == "granted") {
 	// 	navigator.clipboard.writeText(modMessageText.innerText).then(
-	// 		() => {},
+	// 		() => { alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`) },
 	// 		oldCopy);
-	// 	// setTimeout(() => { }, 0)
 	// } else {
 	// 	oldCopy();
 	// }
