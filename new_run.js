@@ -98,14 +98,26 @@ function stepBy(amount) {
 	updateCurrentTime();
 	setTime(Math.ceil(((currentFrame + amount) / framerate) * 1000) / 1000);
 }
-function copyModMessage() {
+async function copyModMessage() {
 	// Allow user to copy mod message to clipboard
 
-	// modMessageText.focus();
-	// modMessageText.select();
-	// document.execCommand('copy');
-	navigator.clipboard.writeText(modMessageText.innerText);
-	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`);
+	modMessageText.focus();
+	modMessageText.select();
+	document.execCommand('copy');
+	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`)
+
+	// I dont know why this approach doesn't. If you can fix it please make a pull request
+	// const result = await navigator.permissions.query({ name: "clipboard-write" })
+	// console.log(result.state)
+	// if (result.state == "granted") {
+	// 	navigator.clipboard.writeText(modMessageText.innerText).then(
+	// 		() => {},
+	// 		oldCopy);
+	// 	// setTimeout(() => { }, 0)
+	// } else {
+	// 	oldCopy();
+	// }
+
 }
 function updateTotalTime() {
 
