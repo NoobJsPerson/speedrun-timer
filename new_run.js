@@ -17,20 +17,21 @@ function format(duration) {
   return `${hours}:${minutes}:${seconds}`;
 }
 // Initialise URL Params
-const searchParams = new URLSearchParams(window.location.search);
-const videoIframe = document.querySelector('iframe');
-const videoId = searchParams.get('id');
-const type = searchParams.get('type')?.[0];
-
-if (type === 'y') {
-  videoIframe.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
-  // Load the IFrame Player API code asynchronously.
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  const firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-} else if (type ==='t') {
-  videoIframe.hidden = true;
+const searchParams = new URLSearchParams(window.location.search),
+	videoIframe = document.querySelector("iframe"),
+	videoId = searchParams.get("id"),
+	type = searchParams.get("type"),
+	time = +searchParams.get("t");
+console.log(time)
+if (type == 'y') {
+	videoIframe.src = `https://img.youtube.com/vi/${videoId}/0.jpg`
+	// Load the IFrame Player API code asynchronously.
+	let tag = document.createElement('script');
+	tag.src = "https://www.youtube.com/iframe_api";
+	let firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+} else if (type == 't') {
+	videoIframe.hidden = true;
 }
 
 // Load page elements
@@ -93,13 +94,31 @@ function stepBy(amount) {
   updateCurrentTime();
   setTime(Math.ceil(((currentFrame + amount) / framerate) * 1000) / 1000);
 }
-function copyModMessage() {
-  // Allow user to copy mod message to clipboard
+async function copyModMessage() {
+	// Allow user to copy mod message to clipboard
 
-  modMessageText.focus();
-  modMessageText.select();
-  document.execCommand('copy');
-  alert('The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.');
+	modMessageText.focus();
+	modMessageText.select();
+	document.execCommand('copy');
+	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`)
+
+	// I dont know why this approach doesn't. If you can fix it please make a pull request
+	// function oldCopy() {
+	// 	modMessageText.focus();
+	// 	modMessageText.select();
+	// 	document.execCommand('copy');
+	// 	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`)
+	// }
+	// const result = await navigator.permissions.query({ name: "clipboard-write" })
+	// console.log(result.state)
+	// if (result.state == "granted") {
+	// 	navigator.clipboard.writeText(modMessageText.innerText).then(
+	// 		() => { alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`) },
+	// 		oldCopy);
+	// } else {
+	// 	oldCopy();
+	// }
+
 }
 function updateTotalTime() {
   // handle negative time I guess
@@ -173,9 +192,10 @@ function updateCurrentTimeSpan() {
 }
 
 function onPlayerReady() {
-  player.playVideo();
-  if (type === 't') setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
-  setInterval(updateCurrentTimeSpan, 50);
+	player.playVideo();
+	if (time) player.seekTo(time);
+	if (type == "t") setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
+	setInterval(updateCurrentTimeSpan, 50);
 }
 
 // Load the player.
@@ -203,12 +223,13 @@ if (type === 'y') {
     if (event.data === -1) isLoaded = true;
   }
 
-  function onYoutubeError(event) {
-    console.log(event);
-    if (event.data === '5') return; // return if the video is private
-    document.querySelector('.for-debug').style.display = 'initial';
-    document.querySelector('.for-player').style.display = 'none';
-  }
+	function onYoutubeError(event) {
+		console.log(event)
+		if (event?.data === '5') return; // return if the video is private
+		document.querySelector(".for-debug").style.display = "initial";
+		document.querySelector(".for-player").style.display = "none";
+
+	}
 
   function onYoutubeReady() {
     player = {
