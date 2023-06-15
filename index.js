@@ -39,13 +39,7 @@ function redirectTwitch() {
 	if (id) window.location.href = `new_run.html?id=${id}&type=t`;
 }
 if ('serviceWorker' in navigator) {
-<<<<<<< HEAD
 	window.addEventListener('load', () => {
 		navigator.serviceWorker.register('/speedrun-timer/ServiceWorker.js');
 	});
-=======
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/speedrun-timer/ServiceWorker.js');
-  });
->>>>>>> 968343aa87570075309064c037eeb1b790a33a64
 }
