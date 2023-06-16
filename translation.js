@@ -26,8 +26,7 @@ function translatePage(isFirstCall) {
 	const translationData = new Promise((resolve) => {
 		const oReq = new XMLHttpRequest();
 		oReq.overrideMimeType('application/json');
-		// eslint-disable-next-line func-names
-		oReq.onload = function () {
+		oReq.onload = () => {
 			const json = JSON.parse(this.responseText);
 			// cache to not request the json file each time you switch between languages;
 			window.translations = json;

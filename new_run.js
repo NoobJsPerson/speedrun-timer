@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-inner-declarations */
 
@@ -104,22 +103,29 @@ async function copyModMessage() {
 	document.execCommand('copy');
 	alert('The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.');
 
+	/*
 	// I dont know why this approach doesn't work. If you can fix it please make a pull request
-	// function oldCopy() {
-	// 	modMessageText.focus();
-	// 	modMessageText.select();
-	// 	document.execCommand('copy');
-	// 	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`)
-	// }
-	// const result = await navigator.permissions.query({ name: "clipboard-write" })
-	// console.log(result.state)
-	// if (result.state == "granted") {
-	// 	navigator.clipboard.writeText(modMessageText.innerText).then(
-	// 		() => { alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`) },
-	// 		oldCopy);
-	// } else {
-	// 	oldCopy();
-	// }
+	function oldCopy() {
+		modMessageText.focus();
+		modMessageText.select();
+		document.execCommand('copy');
+		alert('The mod message has been copied to clipboard! '
+		+ 'Please paste it into the comment of the run you are verifying.');
+	}
+	const result = await navigator.permissions.query({ name: 'clipboard-write' });
+	console.log(result.state);
+	if (result.state === 'granted') {
+		navigator.clipboard.writeText(modMessageText.innerText).then(
+			() => {
+				alert('The mod message has been copied to clipboard! '
+				+ 'Please paste it into the comment of the run you are verifying.');
+			},
+			oldCopy,
+		);
+	} else {
+		oldCopy();
+	}
+	*/
 }
 function updateTotalTime() {
 	// handle negative time I guess
