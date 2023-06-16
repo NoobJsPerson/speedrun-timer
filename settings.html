@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="modes.css">
   <link rel="shortcut icon" href="icon.png">
   <link rel="apple-touch-icon" href="icon.png">
-  <script src="./translation.js" defer></script>
+  <script src="settheme.js"></script>
+  <script src="translation.js" defer></script>
   <script src="settings.js" defer></script>
 </head>
 
@@ -25,9 +26,9 @@
 		<option value="ES">Español</option>
 	</select>
 
-	<h3 for="cstmmsg" id="cmds">Custom Mod Message</h3>
-	<textarea id="cstmmsg" cols="40" rows="6" onchange="smm(event)"></textarea>
-	<button onclick="resetmodmessage()" id="resetbutton">Reset</button>
+	<h3 for="customModMessage" id="cmds">Custom Mod Message</h3>
+	<textarea id="customModMessage" cols="40" rows="6" onchange="setModMessage(event)"></textarea>
+	<button onclick="resetModMessage()" id="resetbutton">Reset</button>
 	<p><code>${start}</code> : <span id="wstts">what moment the timer starts</span><br>
 		<code>${end}</code> : <span id="wstte">what moment the timer ends</span><br>
 		<code>${framerate}</code> : <span id="fv">framerate of the video</span><br>

@@ -66,7 +66,6 @@ textarea {
 [theme="dark"] input {
 	background-color: rgb(36, 36, 50);
 	color: rgb(255, 255, 255);
-	transition: 0.25s;
 }
 
 [theme="dark"] input:hover {
@@ -81,7 +80,6 @@ textarea {
 [theme="light"] input {
 	background-color: rgb(235, 235, 235);
 	color: rgb(0, 0, 0);
-	transition: 0.25s;
 }
 
 [theme="light"] input:hover {
@@ -96,7 +94,6 @@ textarea {
 [theme="dark"] button, [theme="dark"] select {
 	background-color: rgb(31, 31, 44);
 	color: rgb(255, 255, 255);
-	transition: 0.25s;
 }
 
 [theme="dark"] button:hover, [theme="dark"] select:hover {
@@ -107,7 +104,6 @@ textarea {
 [theme="light"] button, [theme="light"] select {
 	background-color: rgb(216, 216, 216);
 	color: rgb(0, 0, 0);
-	transition: 0.25s
 }
 
 [theme="light"] button:hover, [theme="light"] select:hover {
