@@ -14,14 +14,15 @@
 	<style>
 		body { margin: auto; display: block; }
 		.normal { margin: 10px; }
-		iframe, img { width: 66vw; height: 77vh; padding: 5px; border-radius: 15px; border: 0; }
+		iframe, img , .global-container { width: 66vw; height: 77vh; padding: 5px; border-radius: 15px; border: 0; }
 		@media (max-width: 700px) {
-			iframe, img { width: 100%; height: 35vh; padding: 0; border-radius: 0; }
+			iframe, img , .global-container { width: 100%; height: 35vh; padding: 0; border-radius: 0; }
 		}
 	</style>
 </head>
 
 <body>
+	<div class="global-container">
 	<div class="normal">
 		<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
 		<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'"
@@ -29,32 +30,32 @@
 	</div>
 	<div class="for-player">
 		<div id="video-div"></div>
-		<iframe id="video-iframe"></iframe>
+		<iframe id="video-iframe" allowfullscreen></iframe>
 		<div class="normal">
 			<span id="sfb">Step forward or backward: </span>
 			<br>
 			<label for="framerate" id="fra">Framerate</label>
 			<input type="text" value="30" id="framerate" onchange="validateFramerate()">
 			<br>
-			<button onclick="stepBy(10000)" >+10k</button>
-			<button onclick="stepBy(5000)" >+5k</button>
-			<button onclick="stepBy(1000)" >+1k</button>
-			<button onclick="stepBy(500)" >+500</button>
-			<button onclick="stepBy(100)" >+100</button>
-			<button onclick="stepBy(50)" >+50</button>
-			<button onclick="stepBy(10)" >+10</button>
-			<button onclick="stepBy(5)" >+5</button>
-			<button onclick="stepBy(1)" >+1</button>
+			<button class="frame-advance" onclick="stepBy(10000)" >+10k</button>
+			<button class="frame-advance" onclick="stepBy(5000)" >+5k</button>
+			<button class="frame-advance" onclick="stepBy(1000)" >+1k</button>
+			<button class="frame-advance" onclick="stepBy(500)" >+500</button>
+			<button class="frame-advance" onclick="stepBy(100)" >+100</button>
+			<button class="frame-advance" onclick="stepBy(50)" >+50</button>
+			<button class="frame-advance" onclick="stepBy(10)" >+10</button>
+			<button class="frame-advance" onclick="stepBy(5)" >+5</button>
+			<button class="frame-advance" onclick="stepBy(1)" >+1</button>
 			<br>
-			<button onclick="stepBy(-10000)" >-10k</button>
-			<button onclick="stepBy(-5000)" >-5k</button>
-			<button onclick="stepBy(-1000)" >-1k</button>
-			<button onclick="stepBy(-500)" >-500</button>
-			<button onclick="stepBy(-100)" >-100</button>
-			<button onclick="stepBy(-50)" >-50</button>
-			<button onclick="stepBy(-10)" >-10</button>
-			<button onclick="stepBy(-5)" >-5</button>
-			<button onclick="stepBy(-1)" >-1</button>
+			<button class="frame-advance" onclick="stepBy(-10000)" >-10k</button>
+			<button class="frame-advance" onclick="stepBy(-5000)" >-5k</button>
+			<button class="frame-advance" onclick="stepBy(-1000)" >-1k</button>
+			<button class="frame-advance" onclick="stepBy(-500)" >-500</button>
+			<button class="frame-advance" onclick="stepBy(-100)" >-100</button>
+			<button class="frame-advance" onclick="stepBy(-50)" >-50</button>
+			<button class="frame-advance" onclick="stepBy(-10)" >-10</button>
+			<button class="frame-advance" onclick="stepBy(-5)" >-5</button>
+			<button class="frame-advance" onclick="stepBy(-1)" >-1</button>
 			<br>
 			<span id="ctml">Current Time (in milliseconds): </span><span id="current-time">0</span>
 			<br>
@@ -97,5 +98,6 @@
 	<button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
 	</div>
 	</div>
+</div>
 </body>
 </html>

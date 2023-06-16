@@ -11,6 +11,16 @@ html body {
 	font-weight: 600;
 }
 
+.global-container {
+	margin: auto;
+}
+
+.frame-advance {
+	padding-top: 13px;
+	padding-bottom: 13px;
+	margin-top: 5px;
+}
+
 #sourcecodebutton {
 	float: right;
 	margin-left: 5px;

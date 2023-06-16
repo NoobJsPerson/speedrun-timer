@@ -59,6 +59,9 @@ let framerate = 30;
 let isLoaded = false;
 let twitch;
 
+const customFramerate = localStorage.getItem('framerate');
+if (customFramerate) framerateElement.value = customFramerate;
+
 // Fallback Player
 let player = {
 	seekTo() {
@@ -158,7 +161,7 @@ function showStart() {
 	}
 
 	startSpan.innerHTML = start;
-	goToStartButton.style.visibility = 'visible';
+	goToStartButton.style.display = 'inline';
 }
 
 function setStart() {
@@ -178,7 +181,7 @@ function showEnd() {
 	}
 
 	endSpan.innerHTML = end;
-	goToEndButton.style.visibility = 'visible';
+	goToEndButton.style.display = 'inline';
 }
 
 function setEnd() {
