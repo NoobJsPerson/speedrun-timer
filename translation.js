@@ -26,7 +26,7 @@ function translatePage(isFirstCall) {
 	const translationData = new Promise((resolve) => {
 		const oReq = new XMLHttpRequest();
 		oReq.overrideMimeType('application/json');
-		oReq.onload = () => {
+		oReq.onload = function onload() {
 			const json = JSON.parse(this.responseText);
 			// cache to not request the json file each time you switch between languages;
 			window.translations = json;
