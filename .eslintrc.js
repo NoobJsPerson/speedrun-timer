@@ -16,5 +16,6 @@ module.exports = {
 		'no-alert': 0,
 		'no-console': 0,
 		'no-plusplus': 0,
+		'linebreak-style': ['error', 'unix'],
 	},
 };
