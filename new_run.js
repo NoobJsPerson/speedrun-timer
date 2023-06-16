@@ -106,7 +106,7 @@ async function copyModMessage() {
 	document.execCommand('copy');
 	alert(`The mod message has been copied to clipboard! Please paste it into the comment of the run you are verifying.`)
 
-	// I dont know why this approach doesn't. If you can fix it please make a pull request
+	// I dont know why this approach doesn't work. If you can fix it please make a pull request
 	// function oldCopy() {
 	// 	modMessageText.focus();
 	// 	modMessageText.select();
