@@ -51,7 +51,7 @@ const modMessageButton = document.getElementById('modMessageButton');
 const currentFrameSpan = document.getElementById('current-frame');
 const framerateElement = document.getElementById('framerate');
 // eslint-disable-next-line no-template-curly-in-string
-const currentModMessage = localStorage.getItem('currentModMessage') || 'Mod Message: time starts at ${start} and ends at ${end} with a framerate of ${framerate} fps to get a final time of ${timeStr}, retimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)';
+const currentModMessage = localStorage.getItem('currentModMessage') || 'Mod Message: Time starts at ${start} and ends at ${end} with a framerate of ${framerate} FPS to get a final time of ${timeStr}.\nRetimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)';
 // Create page variables
 let start = null;
 let end = null;

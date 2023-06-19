@@ -8,8 +8,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="version" content="1.2.1" />
-	<meta name="description" content="Takes start and stop points of a YouTube video, down to the frame, and gives the time between them in the format 1:23:45.678">
+	<meta name="version" content="1.3" />
+	<meta name="description"
+		content="Takes start and stop points of a YouTube video, down to the frame, and gives the time between them in the format 1:23:45.678">
 	<meta name="theme-color" content="#000000" />
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -27,8 +28,8 @@
 
 <body>
 	<h2 id="better-speedrun-timer">Better Speedrun Timer</h2>
-	<label for="url" id="urllabel">YouTube/Twitch Video URL:</label>
-	<input id="url" type="text">
+	<label for="url" id="urllabel" class="bold">YouTube/Twitch Video URL:</label>
+	<input id="url" type="text" style="margin-bottom: 6px;">
 	<button onclick="redirectYoutube()" id="lfyt">Load from YouTube</button> <button onclick="redirectTwitch()"
 		id="lft">Load from Twitch</button>
 	<button onclick="window.location.href = 'settings.html'" id="settingsbutton">Settings</button>

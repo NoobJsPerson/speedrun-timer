@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
@@ -12,92 +13,116 @@
 	<script src="new_run.js" defer></script>
 	<script src="translation.js" defer></script>
 	<style>
-		body { margin: auto; display: block; }
-		.normal { margin: 10px; }
-		iframe, img , .global-container { width: 66vw; height: 77vh; padding: 5px; border-radius: 15px; border: 0; }
+		body {
+			margin: auto;
+			display: block;
+		}
+
+		.normal {
+			margin: 10px;
+		}
+
+		iframe,
+		img,
+		.global-container {
+			width: 66vw;
+			height: 77vh;
+			padding: 5px;
+			border-radius: 15px;
+			border: 0;
+		}
+
 		@media (max-width: 700px) {
-			iframe, img , .global-container { width: 100%; height: 35vh; padding: 0; border-radius: 0; }
+			iframe,
+			img,
+			.global-container {
+				width: 100%;
+				height: 35vh;
+				padding: 0;
+				border-radius: 0;
+			}
 		}
 	</style>
 </head>
 
 <body>
 	<div class="global-container">
-	<div class="normal">
-		<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
-		<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'"
-			id="sourcecodebutton">Source Code</button>
-	</div>
-	<div class="for-player">
-		<div id="video-div"></div>
-		<iframe id="video-iframe" allowfullscreen></iframe>
 		<div class="normal">
-			<span id="sfb">Step forward or backward: </span>
-			<br>
-			<label for="framerate" id="fra">Framerate</label>
-			<input type="text" value="30" id="framerate" onchange="validateFramerate()">
-			<br>
-			<button class="frame-advance" onclick="stepBy(10000)" >+10k</button>
-			<button class="frame-advance" onclick="stepBy(5000)" >+5k</button>
-			<button class="frame-advance" onclick="stepBy(1000)" >+1k</button>
-			<button class="frame-advance" onclick="stepBy(500)" >+500</button>
-			<button class="frame-advance" onclick="stepBy(100)" >+100</button>
-			<button class="frame-advance" onclick="stepBy(50)" >+50</button>
-			<button class="frame-advance" onclick="stepBy(10)" >+10</button>
-			<button class="frame-advance" onclick="stepBy(5)" >+5</button>
-			<button class="frame-advance" onclick="stepBy(1)" >+1</button>
-			<br>
-			<button class="frame-advance" onclick="stepBy(-10000)" >-10k</button>
-			<button class="frame-advance" onclick="stepBy(-5000)" >-5k</button>
-			<button class="frame-advance" onclick="stepBy(-1000)" >-1k</button>
-			<button class="frame-advance" onclick="stepBy(-500)" >-500</button>
-			<button class="frame-advance" onclick="stepBy(-100)" >-100</button>
-			<button class="frame-advance" onclick="stepBy(-50)" >-50</button>
-			<button class="frame-advance" onclick="stepBy(-10)" >-10</button>
-			<button class="frame-advance" onclick="stepBy(-5)" >-5</button>
-			<button class="frame-advance" onclick="stepBy(-1)" >-1</button>
-			<br>
-			<span id="ctml">Current Time (in milliseconds): </span><span id="current-time">0</span>
-			<br>
-			<span id="cf">Current Frame: </span><span id="current-frame">0</span>
-			<br>
-			<div>
-				<span id="st">Start Time: </span><span id="start">Not set</span>
-				<input id='set-start' type="button" value="Set current time as start" onclick="setStart()" />
-				<input id='go-to-start' type="button" value="Go to start time" onclick="goToStart()"
-					style="display: none;" />
+			<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
+			<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'"
+				id="sourcecodebutton">Source Code</button>
+		</div>
+		<div class="for-player">
+			<div id="video-div"></div>
+			<iframe id="video-iframe" allowfullscreen></iframe>
+			<div class="normal">
+				<label for="framerate" id="fra" class="bold">Framerate: </label>
+				<input type="text" value="30" id="framerate" onchange="validateFramerate()">
+				<br>
+				<span id="sfb" class="bold">Step forward or backward:</span>
+				<br>
+				<button class="frame-advance" onclick="stepBy(10000)">+10k</button>
+				<button class="frame-advance" onclick="stepBy(5000)">+5k</button>
+				<button class="frame-advance" onclick="stepBy(1000)">+1k</button>
+				<button class="frame-advance" onclick="stepBy(500)">+500</button>
+				<button class="frame-advance" onclick="stepBy(100)">+100</button>
+				<button class="frame-advance" onclick="stepBy(50)">+50</button>
+				<button class="frame-advance" onclick="stepBy(10)">+10</button>
+				<button class="frame-advance" onclick="stepBy(5)">+5</button>
+				<button class="frame-advance" onclick="stepBy(1)">+1</button>
+				<br>
+				<button class="frame-advance" onclick="stepBy(-10000)">-10k</button>
+				<button class="frame-advance" onclick="stepBy(-5000)">-5k</button>
+				<button class="frame-advance" onclick="stepBy(-1000)">-1k</button>
+				<button class="frame-advance" onclick="stepBy(-500)">-500</button>
+				<button class="frame-advance" onclick="stepBy(-100)">-100</button>
+				<button class="frame-advance" onclick="stepBy(-50)">-50</button>
+				<button class="frame-advance" onclick="stepBy(-10)">-10</button>
+				<button class="frame-advance" onclick="stepBy(-5)">-5</button>
+				<button class="frame-advance" onclick="stepBy(-1)">-1</button>
+				<br>
+				<span id="ctml" class="bold">Current Time (in milliseconds): </span><span id="current-time">0</span>
+				<br>
+				<span id="cf" class="bold">Current Frame: </span><span id="current-frame">0</span>
+				<br>
+				<div>
+					<span id="st" class="bold">Start Time: </span><span id="start">Not set</span>
+					<input id='set-start' type="button" value="Set current time as start" onclick="setStart()" />
+					<input id='go-to-start' type="button" value="Go to start time" onclick="goToStart()"
+						style="display: none;" />
+				</div>
+				<div>
+					<span id="et" class="bold">End Time: </span><span id="end">Not set</span>
+					<input id='set-end' type="button" value="Set current time as end" onclick="setEnd()" />
+					<input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()"
+						style="display: none;" />
+				</div>
+				<span id="ttt" class="bold">Total Time: </span><span id="total-time">Please set a start and end time.</span>
 			</div>
-			<div>
-				<span id="et">End Time: </span><span id="end">Not set</span>
-				<input id='set-end' type="button" value="Set current time as end" onclick="setEnd()" />
-				<input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()"
-					style="display: none;" />
-			</div>
-			<span id="ttt">Total Time: </span><span id="total-time">Please set a start and end time</span>
+		</div>
+		<div class="for-debug" style="display: none;">
+			<p>
+				<label for="framerateAlt">framerate</label>
+				<input type="text" value="30" id="framerateAlt" onchange="validateFramerate()">
+			</p>
+			<p>
+				<label for="startobj">Starting frame: </label>
+				<input type="text" id="startobj" style='width:80%' onchange='parseForTime(event)' />
+			</p>
+			<p>
+				<label for="endobj">Ending frame: </label>
+				<input type="text" id="endobj" style='width:80%' onchange='parseForTime(event)' />
+			</p>
+			<h3 id="video-time">Video Time</h3>
+			<button id="computeButton" onclick="updateTotalTime()">Compute time</button>
+		</div>
+		<div class="normal">
+			<textarea id="modMessage" cols="40" rows="5" disabled></textarea>
+
+			<button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
+			<br><br>
 		</div>
 	</div>
-	<div class="for-debug" style="display: none;">
-		<p>
-			<label for="framerateAlt">framerate</label>
-			<input type="text" value="30" id="framerateAlt" onchange="validateFramerate()">
-		</p>
-		<p>
-			<label for="startobj">Starting frame: </label>
-			<input type="text" id="startobj" style='width:80%' onchange='parseForTime(event)' />
-		</p>
-		<p>
-			<label for="endobj">Ending frame: </label>
-			<input type="text" id="endobj" style='width:80%' onchange='parseForTime(event)' />
-		</p>
-		<h3 id="video-time">Video Time</h3>
-		<button id="computeButton" onclick="updateTotalTime()">Compute time</button>
-	</div>
-	<div class="normal">
-	<textarea id="modMessage" cols="40" rows="5" disabled></textarea>
-
-	<button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
-	</div>
-	</div>
-</div>
 </body>
+
 </html>

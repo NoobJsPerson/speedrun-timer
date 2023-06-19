@@ -2,40 +2,62 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Settings</title>
-  <link rel="stylesheet" href="modes.css">
-  <link rel="shortcut icon" href="icon.png">
-  <link rel="apple-touch-icon" href="icon.png">
-  <script src="settheme.js"></script>
-  <script src="translation.js" defer></script>
-  <script src="settings.js" defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Settings</title>
+	<link rel="stylesheet" href="modes.css">
+	<link rel="shortcut icon" href="icon.png">
+	<link rel="apple-touch-icon" href="icon.png">
+	<script src="settheme.js"></script>
+	<script src="translation.js" defer></script>
+	<script src="settings.js" defer></script>
+	<style>
+		.global-container {
+			width: 66vw;
+			height: 77vh;
+			padding: 5px;
+			border-radius: 15px;
+			border: 0;
+		}
+
+		@media (max-width: 700px) {
+			.global-container {
+				width: 100%;
+				height: 35vh;
+				padding: 0;
+				border-radius: 0;
+			}
+		}
+	</style>
 </head>
 
 <body>
-	<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'" id="sourcecodebutton">Source
-		Code</button>
-	<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
-	<button onclick="changeMode()" id="theme">Change Theme</button>
-	<select style="float: right;">
-		<option value="EN" selected>English</option>
-		<option value="PT">Português</option>
-		<option value="IT">Italiano</option>
-		<option value="FR">Français</option>
-		<option value="ES">Español</option>
-	</select>
+	<div class="global-container">
+		<button onclick="window.location.href='https://github.com/NoobJsPerson/speedrun-timer'"
+			id="sourcecodebutton">Source
+			Code</button>
+		<button onclick="window.location = '/speedrun-timer';" id="backtohome">Back to Home</button>
+		<button onclick="changeMode()" id="theme">Change Theme</button>
+		<select style="float: right;">
+			<option value="EN" selected>English</option>
+			<option value="PT">Português</option>
+			<option value="IT">Italiano</option>
+			<option value="FR">Français</option>
+			<option value="ES">Español</option>
+		</select>
 
-	<h3 for="customModMessage" id="cmds">Custom Mod Message</h3>
-	<textarea id="customModMessage" cols="40" rows="6" onchange="setModMessage(event)"></textarea>
-	<button onclick="resetModMessage()" id="resetbutton">Reset</button>
-	<p><code>${start}</code> : <span id="wstts">what moment the timer starts</span><br>
-		<code>${end}</code> : <span id="wstte">what moment the timer ends</span><br>
-		<code>${framerate}</code> : <span id="fv">framerate of the video</span><br>
-		<code>${timeStr}</code> : <span id="ft">final time</span>
-	</p>
-	<h3 for="framerate" id="fra">Framerate</h3>
-	<input id="framerate-input">
+		<h2 for="customModMessage" id="cmds">Custom Mod Message</h2>
+		<p><code>${start}</code> – <span id="wstts">The moment the timer starts</span><br>
+			<code>${end}</code> – <span id="wstte">The moment the timer ends</span><br>
+			<code>${framerate}</code> – <span id="fv">Framerate of the video</span><br>
+			<code>${timeStr}</code> – <span id="ft">Final time</span>
+		</p>
+		<textarea id="customModMessage" cols="40" rows="7" onchange="setModMessage(event)"></textarea>
+		<button onclick="resetModMessage()" id="resetbutton">Reset</button>
+		<h2 for="framerate" id="fra">Framerate:</h2>
+		<p>Set a custom default Framerate.</p>
+		<input id="framerate-input">
+	</div>
 </body>
 
 </html>
