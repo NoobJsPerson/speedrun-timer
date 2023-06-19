@@ -9,16 +9,18 @@ function interpolate(template, variables) {
 }
 
 function format(duration) {
-	const hours = Math.floor(duration / 3600000);
+	// Calculate the hours, minutes, and seconds using modulo operators.
+	const hours = duration / 3600000 | 0; /* eslint-disable-line no-bitwise */
+	const minutes = (duration / 60000) % 60 | 0; /* eslint-disable-line no-bitwise */
+	const seconds = (duration / 1000) % 60 | 0; /* eslint-disable-line no-bitwise */
+	const milliseconds = duration % 1000;
 
-	let minutes = Math.floor((duration % 3600000) / 60000);
-	let seconds = ((duration % 60000) / 1000).toFixed(3);
+	// Format the time.
+	const formattedTime = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')}`;
 
-	minutes = minutes < 10 ? `0${minutes}` : minutes;
-	seconds = seconds < 10 ? `0${seconds}` : seconds;
-
-	return `${hours}:${minutes}:${seconds}`;
+	return formattedTime;
 }
+
 // Initialise URL Params
 const searchParams = new URLSearchParams(window.location.search);
 const videoIframe = document.querySelector('iframe');
