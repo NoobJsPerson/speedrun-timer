@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;600&display=optional');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600&display=optional');
 
 html body {
-	line-height: 1.5;
+	line-height: 2;
 	font-family: 'Lexend Deca', sans-serif;
-	font-weight: 400;
+	font-weight: 300;
 }
 
 #better-speedrun-timer {
@@ -11,19 +11,36 @@ html body {
 	font-weight: 600;
 }
 
+.paddingleft {
+	padding-left: 10px;
+}
+
+.bold {
+	font-weight: 500;
+}
+
 .global-container {
 	margin: auto;
 }
 
 .frame-advance {
-	padding-top: 13px;
-	padding-bottom: 13px;
-	margin-top: 5px;
+	width: 3.5em;
+	height: 3em;
+	padding: 0px;
+	margin-top: 10px;
 }
 
 #sourcecodebutton {
 	float: right;
 	margin-left: 5px;
+}
+
+h2 {
+	margin-bottom: 5px;
+}
+
+p {
+	margin: 5px 0px 10px 0px;
 }
 
 input {
@@ -36,11 +53,13 @@ select {
 	height: 35px;
 }
 
-button, input {
+button,
+input {
 	margin: 1px;
 }
 
-button, select {
+button,
+select {
 	padding: 7pt;
 	border-radius: 7px;
 	border: none;
@@ -62,7 +81,7 @@ textarea {
 
 [theme="light"] {
 	background-color: rgb(255, 255, 255);
-	color:rgb(0, 0, 0)
+	color: rgb(0, 0, 0)
 }
 
 [theme="dark"] .title {
@@ -101,22 +120,26 @@ textarea {
 	color: rgb(83, 83, 83);
 }
 
-[theme="dark"] button, [theme="dark"] select {
+[theme="dark"] button,
+[theme="dark"] select {
 	background-color: rgb(31, 31, 44);
 	color: rgb(255, 255, 255);
 }
 
-[theme="dark"] button:hover, [theme="dark"] select:hover {
+[theme="dark"] button:hover,
+[theme="dark"] select:hover {
 	background-color: rgb(40, 40, 58);
 	color: rgb(255, 255, 255);
 }
 
-[theme="light"] button, [theme="light"] select {
+[theme="light"] button,
+[theme="light"] select {
 	background-color: rgb(216, 216, 216);
 	color: rgb(0, 0, 0);
 }
 
-[theme="light"] button:hover, [theme="light"] select:hover {
+[theme="light"] button:hover,
+[theme="light"] select:hover {
 	background-color: rgb(160, 160, 160);
 	color: rgb(0, 0, 0);
 }
