@@ -1,2 +1,2 @@
 # Enforce LF line endings on all text files
-* text eol=lf
+# * text eol=lf
