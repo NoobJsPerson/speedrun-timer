@@ -17,6 +17,6 @@ To add a new language please check the [Translation Guide](./translation.md).
 * [Oxknifer](https://github.com/zromick) | Bug tester
 * [ConnerConnerConner](https://github.com/ConnerConnerConner) | Responsible for better styling
 * [Badisnotfunny](https://github.com/badonyt) | Contributor and translator (Portuguese and Spanish)
-* [shenef](https://github.com/shenef) | Testing and feedback
+* [shenef](https://github.com/shenef) | Contributor, Bug Tester and responsible for the service worker
 
 If you think i forgot to credit you, make an issue or dm me on discord `AmineCrafter101#7818`
