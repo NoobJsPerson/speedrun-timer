@@ -11,6 +11,10 @@ html body {
 	font-weight: 600;
 }
 
+.paddingleft {
+	padding-left: 10px;
+}
+
 .bold {
 	font-weight: 500;
 }

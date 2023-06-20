@@ -17,7 +17,7 @@
 			height: 77vh;
 			padding: 5px;
 			border-radius: 15px;
-			border: 0;
+			/* border: 1px grey solid; */
 		}
 
 		@media (max-width: 700px) {
@@ -47,16 +47,20 @@
 		</select>
 
 		<h2 for="customModMessage" id="cmds">Custom Mod Message</h2>
-		<p><code>${start}</code> – <span id="wstts">The moment the timer starts</span><br>
-			<code>${end}</code> – <span id="wstte">The moment the timer ends</span><br>
-			<code>${framerate}</code> – <span id="fv">Framerate of the video</span><br>
-			<code>${timeStr}</code> – <span id="ft">Final time</span>
-		</p>
-		<textarea id="customModMessage" cols="40" rows="7" onchange="setModMessage(event)"></textarea>
-		<button onclick="resetModMessage()" id="resetbutton">Reset</button>
-		<h2 for="framerate" id="fra">Framerate:</h2>
-		<p>Set a custom default Framerate.</p>
-		<input id="framerate-input">
+		<div class="paddingleft">
+			<p><code>${start}</code> – <span id="wstts">The moment the timer starts</span><br>
+				<code>${end}</code> – <span id="wstte">The moment the timer ends</span><br>
+				<code>${framerate}</code> – <span id="fv">Framerate of the video</span><br>
+				<code>${timeStr}</code> – <span id="ft">Final time</span>
+			</p>
+			<textarea id="customModMessage" cols="40" rows="7" onchange="setModMessage(event)"></textarea>
+			<button onclick="resetModMessage()" id="resetbutton">Reset</button>
+		</div>
+		<h2 for="framerate" id="fra">Framerate</h2>
+		<div class="paddingleft">
+			<p id="setcustomfps">Set a custom default framerate.</p>
+			<input id="framerate-input">
+		</div>
 	</div>
 </body>
 
