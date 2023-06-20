@@ -289,10 +289,9 @@ if (type === 'y') {
 }
 function parseForTime(event) {
 	framerate = parseInt(document.getElementById('framerateAlt').value || framerate, 10);
-	const lct = parseFloat((JSON.parse(event.target.value)).lct);
+	const { lct } = JSON.parse(event.target.value);
 	// eslint-disable-next-line no-restricted-globals
-	if (isNaN(lct)) return;
-	if (event.target.id === 'startobj') start = lct;
-	else end = lct;
+	if (event.target.id === 'startobj') start = lct * 1000 | 0; /* eslint-disable-line no-bitwise */
+	else end = lct * 1000 | 0; /* eslint-disable-line no-bitwise */
 	document.getElementById(event.target.id).value = `${Math.floor(lct * framerate) / framerate}`;
 }
