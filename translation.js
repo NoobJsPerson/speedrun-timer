@@ -1,3 +1,4 @@
+/* eslint-disable no-multi-assign */
 function translatePage(isFirstCall) {
 	const lang = localStorage.getItem('LA');
 
@@ -7,7 +8,8 @@ function translatePage(isFirstCall) {
 	function applyTranslation(json) {
 		document.documentElement.lang = lang.toLowerCase();
 		const translation = json[lang];
-		translation.start = translation.end; // to prevent reptition in the json file
+		// to prevent reptition in the json file
+		translation['pause-start'] = translation['pause-end'] = translation.start = translation.end;
 		// dont crash if an invalid language is provided (by devtools for example)
 		if (!translation) return;
 		const transKeys = Object.keys(translation);

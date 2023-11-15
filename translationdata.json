@@ -27,7 +27,12 @@
         "total-time":"Please set a start and end time.",
 		"end":"Not Set",
 		"urllabel":"YouTube/Twitch Video URL:",
-		"setcustomfps":"Set a custom default framerate."
+		"setcustomfps":"Set a custom default framerate.",
+		"add-pause":"Add Pause",
+		"pet":"Pause End: ",
+		"pst":"Pause Start: ",
+		"set-pause-start":"Set current time as pause start",
+		"set-pause-end":"Set current time as pause end"
     },
     "PT":{
         "theme":"Mudar o tema",
@@ -57,7 +62,12 @@
         "total-time":"Defina um horário de início e término",
 		"end":"Não configurado",
 		"urllabel":"URL do vídeo do YouTube/Twitch:",
-		"setcustomfps":"Defina uma taxa de quadros padrão personalizada."
+		"setcustomfps":"Defina uma taxa de quadros padrão personalizada.",
+		"add-pause":"Adicionar Pausa",
+		"pet":"Fim da Pausa:",
+		"pst":"Início da Pausa:",
+		"set-pause-start":"Definir o tempo atual como início da pausa",
+		"set-pause-end":"Definir o tempo atual como fim da pausa"
     },
     "IT":{
         "theme":"Cambia Tema",
@@ -87,7 +97,12 @@
         "total-time":"Si prega di impostare un'ora di inizio e di fine",
 		"end":"Non impostato",
 		"urllabel":"YouTube/Twitch Video URL:",
-		"setcustomfps":"Imposta un framerate predefinito personalizzato."
+		"setcustomfps":"Imposta un framerate predefinito personalizzato.",
+		"add-pause":"Aggiungi Pausa",
+		"pet":"Fine Pausa:",
+		"pst":"Inizio Pausa:",
+		"set-pause-start":"Imposta l'orario attuale come inizio pausa",
+		"set-pause-end":"Imposta l'orario attuale come fine pausa"
     },
     "FR":{
         "theme":"Change le Thème",
@@ -96,7 +111,7 @@
         "wstts":"à quel moment le chronomètre démarre",
         "wstte":"à quel moment le chronomètre se termine",
         "fv":"framerate de la vidéo",
-        "ft":"la dernière fois",
+        "ft":"Temps finale",
         "lfyt":"Charger depuis Youtube",
         "lft":"Charger depuis Twitch",
         "settingsbutton":"Réglages",
@@ -117,7 +132,12 @@
         "total-time":"Veuillez définir un moment de début et de fin",
 		"end":"Pas défini",
 		"urllabel":"URL de la vidéo YouTube/Twitch:",
-		"setcustomfps":"Définissez une fréquence d'images par défaut personnalisée."
+		"setcustomfps":"Définissez une fréquence d'images par défaut personnalisée.",
+		"add-pause":"Ajouter Pause",
+		"pet":"Fin Pause: ",
+		"pst":"Début Pause: ",
+		"set-pause-start":"Définir le moment actuelle comme début de la pause",
+		"set-pause-end":"Définir le moment actuelle comme fin de la pause"
     },
     "ES":{
         "theme":"Cambiar de tema",
@@ -147,6 +167,11 @@
         "total-time":"Establezca una hora de inicio y finalización",
 		"end":"no establecido",
 		"urllabel":"URL del vídeo de YouTube/Twitch:",
-		"setcustomfps":"Imposta un framerate predefinito personalizzato."
+		"setcustomfps":"Imposta un framerate predefinito personalizzato.",
+		"add-pause":"Agregar Pausa",
+		"pet":"Fin de Pausa:",
+		"pst":"Inicio de Pausa:",
+		"set-pause-start":"Establecer la hora actual como inicio de la pausa",
+		"set-pause-end":"Establecer la hora actual como fin de la pausa"
     }
 }

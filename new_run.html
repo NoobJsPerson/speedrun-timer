@@ -88,35 +88,35 @@
 				<br>
 				<div>
 					<span id="st" class="bold">Start Time: </span><span id="start">Not set</span>
-					<input id='set-start' type="button" value="Set current time as start" onclick="setStart()" />
-					<input id='go-to-start' type="button" value="Go to start time" onclick="goToStart()"
-						style="display: none;" />
+					<button id='set-start' type="button" onclick="setStart()" >Set current time as start</button>
+					<button id='go-to-start' type="button" onclick="goToStart()"
+						style="display: none;" >Go to start time</button>
 				</div>
 				<div>
 					<span id="et" class="bold">End Time: </span><span id="end">Not set</span>
-					<input id='set-end' type="button" value="Set current time as end" onclick="setEnd()" />
-					<input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()"
-						style="display: none;" />
+					<button id='set-end' onclick="setEnd()" >Set current time as end</button>
+					<button id='go-to-end' type="button" onclick="goToEnd()"
+						style="display: none;" >Go to end time</button>
 				</div>
 				<span id="ttt" class="bold">Total Time: </span><span id="total-time">Please set a start and end
 					time.</span>
 				<div>
-					<button onclick="addPause()">Add Pause</button>
+					<button id="add-pause" onclick="addPause()">Add Pause</button>
 				</div>
 				<div style="display: none;" id="pause-template">
 					<div>
-						<span id="st" class="bold">Pause Start: </span><span id="pause-start">Not set</span>
-						<input id='set-pause-start' type="button" value="Set current time as pause start"
-							onclick="setPauseStart(this)" />
-						<input id='go-to-start-pause' type="button" value="Go to pause start time" onclick="goToPauseStart(this)"
-							style="display: none;" />
+						<span id="pst" class="bold">Pause Start: </span><span id="pause-start">Not set</span>
+						<button id='set-pause-start' type="button"
+							onclick="setPauseStart(this)" >Set current time as pause start</button>
+						<button id='go-to-start-pause' type="button"
+							onclick="goToPauseStart(this)" style="display: none;" >Go to pause start time</button>
 					</div>
 					<div>
-						<span id="et" class="bold">Pause End: </span><span id="pause-end">Not set</span>
-						<input id='set-pause-end' type="button" value="Set current time as end pause"
-							onclick="setPauseEnd(this)" />
-						<input id='go-to-end-pause' type="button" value="Go to pause end time" onclick="goToPauseEnd(this)"
-							style="display: none;" />
+						<span id="pet" class="bold">Pause End: </span><span id="pause-end">Not set</span>
+						<button id='set-pause-end' type="button" onclick="setPauseEnd(this)">Set current time as end
+							pause</button>
+						<button id='go-to-end-pause' type="button" onclick="goToPauseEnd(this)"
+							style="display: none;">Go to pause end time</button>
 					</div>
 					<div>
 						<button onclick="deletePause(this)">Remove Pause</button>
