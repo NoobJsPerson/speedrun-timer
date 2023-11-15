@@ -33,6 +33,7 @@
 		}
 
 		@media (max-width: 700px) {
+
 			iframe,
 			img,
 			.global-container {
@@ -97,32 +98,56 @@
 					<input id='go-to-end' type="button" value="Go to end time" onclick="goToEnd()"
 						style="display: none;" />
 				</div>
-				<span id="ttt" class="bold">Total Time: </span><span id="total-time">Please set a start and end time.</span>
+				<span id="ttt" class="bold">Total Time: </span><span id="total-time">Please set a start and end
+					time.</span>
+				<div>
+					<button onclick="addPause()">Add Pause</button>
+				</div>
+				<div style="display: none;" id="pause-template">
+					<div>
+						<span id="st" class="bold">Pause Start: </span><span id="pause-start">Not set</span>
+						<input id='set-pause-start' type="button" value="Set current time as pause start"
+							onclick="setPauseStart(this)" />
+						<input id='go-to-start-pause' type="button" value="Go to pause start time" onclick="goToPauseStart(this)"
+							style="display: none;" />
+					</div>
+					<div>
+						<span id="et" class="bold">Pause End: </span><span id="pause-end">Not set</span>
+						<input id='set-pause-end' type="button" value="Set current time as end pause"
+							onclick="setPauseEnd(this)" />
+						<input id='go-to-end-pause' type="button" value="Go to pause end time" onclick="goToPauseEnd(this)"
+							style="display: none;" />
+					</div>
+					<div>
+						<button onclick="deletePause(this)">Remove Pause</button>
+					</div>
+				</div>
+				<div id="pause-container">
+				</div>
+			</div>
+			<div class="for-debug" style="display: none;">
+				<p>
+					<label for="framerateAlt">framerate</label>
+					<input type="text" value="30" id="framerateAlt" onchange="validateFramerate()">
+				</p>
+				<p>
+					<label for="startobj">Starting frame: </label>
+					<input type="text" id="startobj" style='width:80%' onchange='parseForTime(event)' />
+				</p>
+				<p>
+					<label for="endobj">Ending frame: </label>
+					<input type="text" id="endobj" style='width:80%' onchange='parseForTime(event)' />
+				</p>
+				<h3 id="video-time">Video Time</h3>
+				<button id="computeButton" onclick="updateTotalTime()">Compute time</button>
+			</div>
+			<div class="normal">
+				<textarea id="modMessage" cols="40" rows="5" disabled></textarea>
+
+				<button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
+				<br><br>
 			</div>
 		</div>
-		<div class="for-debug" style="display: none;">
-			<p>
-				<label for="framerateAlt">framerate</label>
-				<input type="text" value="30" id="framerateAlt" onchange="validateFramerate()">
-			</p>
-			<p>
-				<label for="startobj">Starting frame: </label>
-				<input type="text" id="startobj" style='width:80%' onchange='parseForTime(event)' />
-			</p>
-			<p>
-				<label for="endobj">Ending frame: </label>
-				<input type="text" id="endobj" style='width:80%' onchange='parseForTime(event)' />
-			</p>
-			<h3 id="video-time">Video Time</h3>
-			<button id="computeButton" onclick="updateTotalTime()">Compute time</button>
-		</div>
-		<div class="normal">
-			<textarea id="modMessage" cols="40" rows="5" disabled></textarea>
-
-			<button id="modMessageButton" onclick="copyModMessage()" disabled>Copy Mod Message to Clipboard</button>
-			<br><br>
-		</div>
-	</div>
 </body>
 
 </html>

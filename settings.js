@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-template-curly-in-string
-const modMessage = 'Mod Message: Time starts at ${start} and ends at ${end} with a framerate of ${framerate} FPS to get a final time of ${timeStr}.\nRetimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)';
+const modMessage = 'Mod Message: Time starts at ${start} and ends at ${end}${pauses}with a framerate of ${framerate} FPS to get a final time of ${timeStr}.\nRetimed using [Better Speedrun Timer](https://noobjsperson.github.io/speedrun-timer)';
 let currentModMessage = localStorage.getItem('currentModMessage') || modMessage;
 const currentFramerate = localStorage.getItem('framerate') || 30;
 const select = document.getElementsByTagName('select')[0];

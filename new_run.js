@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-inner-declarations */
 
@@ -50,14 +51,18 @@ const modMessageText = document.getElementById('modMessage');
 const modMessageButton = document.getElementById('modMessageButton');
 const currentFrameSpan = document.getElementById('current-frame');
 const framerateElement = document.getElementById('framerate');
+const templatePauseElement = document.getElementById('pause-template');
+const pauseContainer = document.getElementById('pause-container');
 // eslint-disable-next-line no-template-curly-in-string
-const currentModMessage = localStorage.getItem('currentModMessage') || 'Mod Message: Time starts at ${start} and ends at ${end} with a framerate of ${framerate} FPS to get a final time of ${timeStr}.\nRetimed using [Better SpeedrunTimer](https://noobjsperson.github.io/speedrun-timer)';
+const currentModMessage = localStorage.getItem('currentModMessage') || 'Mod Message: Time starts at ${start} and ends at ${end}${pauses}with a framerate of ${framerate} FPS to get a final time of ${timeStr}.\nRetimed using [Better Speedrun Timer](https://noobjsperson.github.io/speedrun-timer)';
+const pauseTimes = [];
 // Create page variables
 let start = null;
 let end = null;
 let currentMillis = 0;
 let currentFrame = 0;
 let framerate = 30;
+let pauseCount = 0;
 let isLoaded = false;
 let twitch;
 
@@ -137,16 +142,33 @@ function updateTotalTime() {
 	if (start !== null && end !== null && start <= end) {
 		const endFrame = Math.round((end / 1000) * framerate);
 		const startFrame = Math.round((start / 1000) * framerate);
-		const frames = endFrame - startFrame;
+		let frames = endFrame - startFrame;
+
+		for (let i = 0; i < pauseTimes.length; i++) {
+			const pauseStart = pauseTimes[i][0];
+			const pauseEnd = pauseTimes[i][1];
+			if (pauseStart !== undefined && pauseEnd !== undefined && pauseStart <= pauseEnd) {
+				const pauseEndFrame = Math.round((pauseEnd / 1000) * framerate);
+				const pauseStartFrame = Math.round((pauseStart / 1000) * framerate);
+				frames -= pauseEndFrame - pauseStartFrame;
+			}
+		}
 
 		const ms = Math.floor((frames * 1000) / framerate);
+
 		const timeStr = format(ms);
 		const params = {
 			start: format(start),
 			end: format(end),
 			timeStr,
 			framerate,
+			pauses: ' ',
 		};
+		if (pauseTimes.length) {
+			console.log('does this work?');
+			// eslint-disable-next-line quotes
+			params.pauses = ` with pauses from ${pauseTimes.map((x) => (x[0] !== undefined && x[1] !== undefined && x[0] <= x[1] ? `from ${format(x[0])} to ${format(x[1])} ` : '')).join('and ')}`;
+		}
 
 		const modMessage = interpolate(currentModMessage, params);
 		totalTimeSpan.innerHTML = timeStr;
@@ -294,4 +316,56 @@ function parseForTime(event) {
 	if (event.target.id === 'startobj') start = lct * 1000 | 0; /* eslint-disable-line no-bitwise */
 	else end = lct * 1000 | 0; /* eslint-disable-line no-bitwise */
 	document.getElementById(event.target.id).value = `${Math.floor(lct * framerate) / framerate}`;
+}
+function addPause() {
+	const pause = templatePauseElement.cloneNode(true);
+	pauseCount++;
+	pause.id = pauseCount;
+	pause.style.display = 'block';
+	pauseContainer.appendChild(pause);
+}
+function deletePause(el) {
+	pauseTimes.splice(+el.id - 1, 1);
+	el.parentNode.parentNode.remove();
+	pauseCount--;
+}
+function showPauseEnd(el) {
+	const pauseEnd = pauseTimes[+el.parentNode.parentNode.id - 1][1];
+	if (pauseEnd === null) {
+		return;
+	}
+
+	el.parentNode.parentNode.querySelector('#pause-end').innerHTML = pauseEnd;
+	el.parentNode.parentNode.querySelector('#go-to-end-pause').style.display = 'inline';
+}
+function showPauseStart(el) {
+	const pauseStart = pauseTimes[+el.parentNode.parentNode.id - 1][0];
+	if (pauseStart === null) {
+		return;
+	}
+
+	el.parentNode.parentNode.querySelector('#pause-start').innerHTML = pauseStart;
+	el.parentNode.parentNode.querySelector('#go-to-start-pause').style.display = 'inline';
+}
+function setPauseStart(el) {
+	updateCurrentTime();
+	const id = +el.parentNode.parentNode.id - 1;
+	if (!pauseTimes[id]) pauseTimes[id] = [];
+	pauseTimes[id][0] = currentMillis;
+	showPauseStart(el);
+	updateTotalTime();
+}
+function setPauseEnd(el) {
+	updateCurrentTime();
+	const id = +el.parentNode.parentNode.id - 1;
+	if (!pauseTimes[id]) pauseTimes[id] = [];
+	pauseTimes[id][1] = currentMillis;
+	showPauseEnd(el);
+	updateTotalTime();
+}
+function goToPauseEnd(el) {
+	setTime(pauseTimes[+el.parentNode.parentNode.id - 1][1] / 1000);
+}
+function goToPauseStart(el) {
+	setTime(pauseTimes[+el.parentNode.parentNode.id - 1][0] / 1000);
 }
