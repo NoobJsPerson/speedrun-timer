@@ -1,8 +1,11 @@
+/* eslint-disable func-names */
+/* eslint-disable consistent-return */
+/* eslint-disable prefer-arrow-callback */
 /* eslint-disable no-restricted-globals */
-const cachedFiles = ['bst-v1.3'];
+const cachedFiles = ['bst-v1.4'];
 self.addEventListener('install', (event) => {
 	event.waitUntil(
-		caches.open('bst-v1.3').then((cache) => cache.addAll([
+		caches.open('bst-v1.4').then((cache) => cache.addAll([
 			'./index.html',
 			'./icon.png',
 			'./icon-512.png',
@@ -15,23 +18,25 @@ self.addEventListener('install', (event) => {
 	);
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', function (event) {
 	// Delete all caches that aren't named in CURRENT_CACHES.
-	var expectedCacheNamesSet = new Set(cachedFiles);
+	const expectedCacheNamesSet = new Set(cachedFiles);
 	event.waitUntil(
-	  caches.keys().then(function(cacheNames) {
-		return Promise.all(
-		  cacheNames.map(function(cacheName) {
-			if (!expectedCacheNamesSet.has(cacheName)) {
-			  // If this cache name isn't present in the set of "expected" cache names, then delete it.
-			  console.log('Deleting out of date cache:', cacheName);
-			  return caches.delete(cacheName);
-			}
-		  })
-		);
-	  })
+		caches.keys().then(function (cacheNames) {
+			return Promise.all(
+				// eslint-disable-next-line array-callback-return
+				cacheNames.map(function (cacheName) {
+					if (!expectedCacheNamesSet.has(cacheName)) {
+						// eslint-disable-next-line max-len
+						// If this cache name isn't present in the set of "expected" cache names, then delete it.
+						console.log('Deleting out of date cache:', cacheName);
+						return caches.delete(cacheName);
+					}
+				}),
+			);
+		}),
 	);
-  });
+});
 
 self.addEventListener('fetch', (event) => {
 	event.respondWith(
