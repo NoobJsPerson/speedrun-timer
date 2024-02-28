@@ -165,7 +165,6 @@ function updateTotalTime() {
 			pauses: ' ',
 		};
 		if (pauseTimes.length) {
-			console.log('does this work?');
 			// eslint-disable-next-line quotes
 			params.pauses = ` with pauses from ${pauseTimes.map((x) => (x[0] !== undefined && x[1] !== undefined && x[0] <= x[1] ? `from ${format(x[0])} to ${format(x[1])} ` : '')).join('and ')}`;
 		}
@@ -325,9 +324,10 @@ function addPause() {
 	pauseContainer.appendChild(pause);
 }
 function deletePause(el) {
-	pauseTimes.splice(+el.id - 1, 1);
+	pauseTimes.splice(+el.parentNode.parentNode.id - 1, 1);
 	el.parentNode.parentNode.remove();
 	pauseCount--;
+	updateTotalTime();
 }
 function showPauseEnd(el) {
 	const pauseEnd = pauseTimes[+el.parentNode.parentNode.id - 1][1];

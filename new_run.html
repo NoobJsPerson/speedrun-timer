@@ -122,16 +122,16 @@
 							pause start</button>
 						<button id='go-to-start-pause' type="button" onclick="goToPauseStart(this)"
 							style="display: none;">Go to pause start time</button>
+						<button id='set-pause-start' onclick="setPauseStart(this)" >Set current time as pause start</button>
+						<button id='go-to-start-pause' onclick="goToPauseStart(this)" style="display: none;" >Go to pause start time</button>
 					</div>
 					<div>
 						<span id="pet" class="bold">Pause End: </span><span id="pause-end">Not set</span>
-						<button id='set-pause-end' type="button" onclick="setPauseEnd(this)">Set current time as end
-							pause</button>
-						<button id='go-to-end-pause' type="button" onclick="goToPauseEnd(this)"
-							style="display: none;">Go to pause end time</button>
+						<button id='set-pause-end' onclick="setPauseEnd(this)">Set current time as end pause</button>
+						<button id='go-to-end-pause' onclick="goToPauseEnd(this)" style="display: none;">Go to pause end time</button>
 					</div>
 					<div>
-						<button onclick="deletePause(this)">Remove Pause</button>
+						<button id="delete-pause" onclick="deletePause(this)">Remove Pause</button>
 					</div>
 				</div>
 				<div id="pause-container">
