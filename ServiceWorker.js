@@ -2,10 +2,10 @@
 /* eslint-disable consistent-return */
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable no-restricted-globals */
-const cachedFiles = ['bst-v1.4'];
+const cachedFiles = ['bst-v1.4.1'];
 self.addEventListener('install', (event) => {
 	event.waitUntil(
-		caches.open('bst-v1.4').then((cache) => cache.addAll([
+		caches.open('bst-v1.4.1').then((cache) => cache.addAll([
 			'./index.html',
 			'./icon.png',
 			'./icon-512.png',
