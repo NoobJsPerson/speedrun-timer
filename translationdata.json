@@ -34,6 +34,9 @@
 		"set-pause-start":"Set current time as pause start",
 		"set-pause-end":"Set current time as pause end",
 		"delete-pause":"Remove Pause",
+		"go-to-start-pause":"Go to pause start",
+		"go-to-end-pause":"Go to pause end",
+		"popup":"You could get the video framerate by left clicking (or holding on mobile) on the YouTube player then clicking on Stats for Nerds. It will be the number next to the @"
 	},
 	"PT":{
 		"theme":"Mudar o tema",
@@ -65,11 +68,14 @@
 		"urllabel":"URL do vídeo do YouTube/Twitch:",
 		"setcustomfps":"Defina uma taxa de quadros padrão personalizada.",
 		"add-pause":"Adicionar Pausa",
-		"pet":"Fim da Pausa:",
-		"pst":"Início da Pausa:",
+		"pet":"Fim da Pausa: ",
+		"pst":"Início da Pausa: ",
 		"set-pause-start":"Definir o tempo atual como início da pausa",
 		"set-pause-end":"Definir o tempo atual como fim da pausa",
 		"delete-pause":"Remover Pausa",
+		"go-to-start-pause":"Ir para o início da pausa",
+		"go-to-end-pause":"ir para o final da pausa",
+		"popup":"Você pode obter a taxa de quadros do vídeo clicando com o botão esquerdo (ou mantendo pressionado em dispositivos móveis) no player do YouTube e depois clicando em 'Estatísticas para Nerds'. Será o número ao lado de @."
 	},
 	"IT":{
 		"theme":"Cambia Tema",
@@ -101,11 +107,14 @@
 		"urllabel":"YouTube/Twitch Video URL:",
 		"setcustomfps":"Imposta un framerate predefinito personalizzato.",
 		"add-pause":"Aggiungi Pausa",
-		"pet":"Fine Pausa:",
-		"pst":"Inizio Pausa:",
+		"pet":"Fine Pausa: ",
+		"pst":"Inizio Pausa: ",
 		"set-pause-start":"Imposta l'orario attuale come inizio pausa",
 		"set-pause-end":"Imposta l'orario attuale come fine pausa",
-		"delete-pause":"Rimuovi Pausa"
+		"delete-pause":"Rimuovi Pausa",
+		"go-to-start-pause":"Vai all'inizio della pausa",
+		"go-to-end-pause":"Vai alla fine della pausa",
+		"popup":"È possibile ottenere il framerate del video cliccando con il pulsante sinistro (o tenendo premuto su dispositivi mobili) sul lettore di YouTube e quindi facendo clic su 'Statistiche per i nerd'. Sarà il numero accanto a @."
 	},
 	"FR":{
 		"theme":"Change le Thème",
@@ -139,9 +148,12 @@
 		"add-pause":"Ajouter Pause",
 		"pet":"Fin Pause: ",
 		"pst":"Début Pause: ",
-		"set-pause-start":"Définir le moment actuelle comme début de la pause",
-		"set-pause-end":"Définir le moment actuelle comme fin de la pause",
-		"delete-pause":"Supprimer Pause"
+		"set-start-pause":"Définir le moment actuelle comme début de la pause",
+		"set-end-pause":"Définir le moment actuelle comme fin de la pause",
+		"delete-pause":"Supprimer Pause",
+		"go-to-start-pause":"Aller au début de la pause",
+		"go-to-end-pause":"Aller à la fin de la pause",
+		"popup":"Vous pouvez obtenir le framerate de la vidéo en cliquant avec le bouton gauche (ou en maintenant appuyé sur mobile) sur le lecteur YouTube, puis en cliquant sur 'Stats pour les geeks'. Ce sera le nombre à côté de @."
 	},
 	"ES":{
 		"theme":"Cambiar de tema",
@@ -173,10 +185,13 @@
 		"urllabel":"URL del vídeo de YouTube/Twitch:",
 		"setcustomfps":"Imposta un framerate predefinito personalizzato.",
 		"add-pause":"Agregar Pausa",
-		"pet":"Fin de Pausa:",
-		"pst":"Inicio de Pausa:",
+		"pet":"Fin de Pausa: ",
+		"pst":"Inicio de Pausa: ",
 		"set-pause-start":"Establecer la hora actual como inicio de la pausa",
 		"set-pause-end":"Establecer la hora actual como fin de la pausa",
-		"deletw-pause":"Eliminar Pausa",
+		"delete-pause":"Eliminar Pausa",
+		"go-to-start-pause":"Ir al inicio de la pausa",
+		"go-to-end-pause":"Ir al final de la pausa",
+		"popup":"Puedes obtener la velocidad de fotogramas del video haciendo clic con el botón izquierdo (o manteniendo presionado en dispositivos móviles) en el reproductor de YouTube y luego haciendo clic en 'Estadísticas para nerds'. Será el número junto a @."
 	}
 }
