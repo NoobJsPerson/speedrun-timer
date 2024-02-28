@@ -154,3 +154,21 @@ textarea {
 	background-color: rgb(216, 216, 216);
 }
 
+[theme="light"] #popup {
+	display: none;
+	position: absolute;
+	text-align: center;
+	background-color: #f9f9f9;
+	border: 1px solid #ccc;
+	padding: 10px;
+	z-index: 1;
+}
+[theme="dark"] #popup {
+	display: none;
+	position: absolute;
+	text-align: center;
+	background-color: rgb(31, 31, 44);;
+	border: 1px solid #585858;
+	padding: 10px;
+	z-index: 1;
+}
