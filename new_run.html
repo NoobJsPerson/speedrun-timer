@@ -33,7 +33,6 @@
 		}
 
 		@media (max-width: 700px) {
-
 			iframe,
 			img,
 			.global-container {
@@ -42,6 +41,16 @@
 				padding: 0;
 				border-radius: 0;
 			}
+		}
+
+		#popup {
+			display: none;
+			position: absolute;
+			text-align: center;
+			background-color: #f9f9f9;
+			border: 1px solid #ccc;
+			padding: 10px;
+			z-index: 1;
 		}
 	</style>
 </head>
@@ -59,6 +68,9 @@
 			<div class="normal">
 				<label for="framerate" id="fra" class="bold">Framerate: </label>
 				<input type="text" value="30" id="framerate" onchange="validateFramerate()">
+				<button id="fpsinfo">?</button>
+				<div id="popup">You could get the video framerate by left clicking (or holding on mobile) on the YouTube
+					player then clicking on Stats for Nerds. It will be the number next to the @</div>
 				<br>
 				<span id="sfb" class="bold">Step forward or backward:</span>
 				<br>
@@ -88,15 +100,15 @@
 				<br>
 				<div>
 					<span id="st" class="bold">Start Time: </span><span id="start">Not set</span>
-					<button id='set-start' type="button" onclick="setStart()" >Set current time as start</button>
-					<button id='go-to-start' type="button" onclick="goToStart()"
-						style="display: none;" >Go to start time</button>
+					<button id='set-start' type="button" onclick="setStart()">Set current time as start</button>
+					<button id='go-to-start' type="button" onclick="goToStart()" style="display: none;">Go to start
+						time</button>
 				</div>
 				<div>
 					<span id="et" class="bold">End Time: </span><span id="end">Not set</span>
-					<button id='set-end' onclick="setEnd()" >Set current time as end</button>
-					<button id='go-to-end' type="button" onclick="goToEnd()"
-						style="display: none;" >Go to end time</button>
+					<button id='set-end' onclick="setEnd()">Set current time as end</button>
+					<button id='go-to-end' type="button" onclick="goToEnd()" style="display: none;">Go to end
+						time</button>
 				</div>
 				<span id="ttt" class="bold">Total Time: </span><span id="total-time">Please set a start and end
 					time.</span>
@@ -106,10 +118,10 @@
 				<div style="display: none;" id="pause-template">
 					<div>
 						<span id="pst" class="bold">Pause Start: </span><span id="pause-start">Not set</span>
-						<button id='set-pause-start' type="button"
-							onclick="setPauseStart(this)" >Set current time as pause start</button>
-						<button id='go-to-start-pause' type="button"
-							onclick="goToPauseStart(this)" style="display: none;" >Go to pause start time</button>
+						<button id='set-pause-start' type="button" onclick="setPauseStart(this)">Set current time as
+							pause start</button>
+						<button id='go-to-start-pause' type="button" onclick="goToPauseStart(this)"
+							style="display: none;">Go to pause start time</button>
 					</div>
 					<div>
 						<span id="pet" class="bold">Pause End: </span><span id="pause-end">Not set</span>

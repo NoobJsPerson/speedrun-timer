@@ -369,3 +369,10 @@ function goToPauseEnd(el) {
 function goToPauseStart(el) {
 	setTime(pauseTimes[+el.parentNode.parentNode.id - 1][0] / 1000);
 }
+document.getElementById('fpsinfo').addEventListener('mouseover', () => {
+	if (type === 'y') document.getElementById('popup').style.display = 'block';
+});
+
+document.getElementById('fpsinfo').addEventListener('mouseout', () => {
+	if (type === 'y') document.getElementById('popup').style.display = 'none';
+});
