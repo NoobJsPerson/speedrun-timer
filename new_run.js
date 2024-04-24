@@ -103,7 +103,7 @@ function setTime(millis) {
 function stepBy(amount) {
 	player.pauseVideo();
 	updateCurrentTime();
-	setTime(Math.ceil(((currentFrame + amount) / framerate) * 1000) / 1000);
+	setTime((currentFrame + amount) / framerate);
 }
 async function copyModMessage() {
 	// Allow user to copy mod message to clipboard
@@ -140,10 +140,8 @@ async function copyModMessage() {
 function updateTotalTime() {
 	// handle negative time I guess
 	if (start !== null && end !== null && start <= end) {
-		const endFrame = Math.round((end / 1000) * framerate);
-		const startFrame = Math.round((start / 1000) * framerate);
-		let frames = endFrame - startFrame;
-
+		// eslint-disable-next-line no-mixed-operators
+		let frames = Math.floor((end - start) * framerate / 1000);
 		for (let i = 0; i < pauseTimes.length; i++) {
 			const pauseStart = pauseTimes[i][0];
 			const pauseEnd = pauseTimes[i][1];
