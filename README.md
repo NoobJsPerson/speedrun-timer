@@ -20,4 +20,4 @@ To add a new language please check the [Translation Guide](./translation.md).
 * [shenef](https://github.com/shenef) | Contributor, Bug Tester and responsible for the service worker
 * [skycloudd](https://github.com/skycloudd) | Contributor and Bug Tester
 
-If you think i forgot to credit you, make an issue or dm me on discord `AmineCrafter101#7818`
+If you think i forgot to credit you, make an issue or dm me on discord `AmineCrafter101`
