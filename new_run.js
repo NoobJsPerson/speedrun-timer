@@ -103,7 +103,7 @@ function setTime(millis) {
 function stepBy(amount) {
 	player.pauseVideo();
 	updateCurrentTime();
-	setTime((currentFrame + amount) / framerate);
+	setTime(Math.ceil(((currentFrame + amount) / framerate) * 1000) / 1000);
 }
 async function copyModMessage() {
 	// Allow user to copy mod message to clipboard
