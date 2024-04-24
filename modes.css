@@ -157,6 +157,7 @@ textarea {
 [theme="light"] #popup {
 	display: none;
 	position: absolute;
+	right: 50%;
 	text-align: center;
 	background-color: #f9f9f9;
 	border: 1px solid #ccc;
@@ -166,6 +167,8 @@ textarea {
 [theme="dark"] #popup {
 	display: none;
 	position: absolute;
+	right: 25%;
+	left: 25%;
 	text-align: center;
 	background-color: rgb(31, 31, 44);;
 	border: 1px solid #585858;
