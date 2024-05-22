@@ -21,6 +21,13 @@ Doubts? see the Translationdata.json example at the bottom of this page
    Copy/paste one of the `option` elements and adjust it to fit your language.  
    Make sure to use the same acronym you used when edting [translationdata.json](./translationdata.json)
 
+## index.html
+
+1. Open [index.html](./index.html)
+2. At about line 36, you will find a select html element.
+   Copy/paste one of the `option` elements and adjust it to fit your language.
+   Make sure to use the same acronym you used when editing [translationdata.json](./translationdata.json)
+
 ## translationdata.json example
 
 **THIS IS AN EXAMPLE**  
@@ -28,12 +35,12 @@ The end of your file should look likes this:
 
 ```json
 {
-    "previous language acronym":{
-        "key":"value",
-    },
-    "language translating acronym":{
-        "key":"value",
-    }
+  "previous language acronym": {
+    "key": "value"
+  },
+  "language translating acronym": {
+    "key": "value"
+  }
 }
 ```
 
