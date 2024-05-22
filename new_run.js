@@ -164,7 +164,7 @@ function updateTotalTime() {
 		};
 		if (pauseTimes.length) {
 			// eslint-disable-next-line quotes
-			params.pauses = ` with pauses from ${pauseTimes.map((x) => (x[0] !== undefined && x[1] !== undefined && x[0] <= x[1] ? `from ${format(x[0])} to ${format(x[1])} ` : '')).join('and ')}`;
+			params.pauses = ` with pauses ${pauseTimes.map((x) => (x[0] !== undefined && x[1] !== undefined && x[0] <= x[1] ? `from ${format(x[0])} to ${format(x[1])} ` : '')).join('and ')}`;
 		}
 
 		const modMessage = interpolate(currentModMessage, params);
