@@ -213,7 +213,7 @@
 		"fra":"Framerate",
 		"st":"Start Zeit: ",
 		"et":"End Zeit: ",
-		"ttt":"Insgesamte Zeut: ",
+		"ttt":"Insgesamte Zeit: ",
 		"set-start":"Start Zeit setzen",
 		"go-to-start":"Zur Start Zeit gehen",
 		"modMessageButton":"In Zwischenablage kopieren",
@@ -231,6 +231,6 @@
 		"delete-pause":"Pause löschen",
 		"go-to-start-pause":"Zum Pausen-Start gehen",
 		"go-to-end-pause":"Zum Pausen-Ende gehen",
-		"popup":"Du kannst die Video-Framerate bekommen indem du die \"Statistiken für Interessierte\" aktivierst. Klicke Linksclick mit der maus auf das Video (oder halte deinen Finger auf das Video) und klicke auf \"Statistiken für interessierte\" um sie zu aktivieren. Die Framerate ist die nummer neben dem @ symbol."
+		"popup":"Du kannst die Video-Framerate bekommen indem du die \"Statistiken für Interessierte\" aktivierst. Klicke Linksklick mit der maus auf das Video (oder halte deinen Finger auf das Video) und klicke auf \"Statistiken für interessierte\" um sie zu aktivieren. Die Framerate ist die nummer neben dem @ symbol."
 	}
 }
