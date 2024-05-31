@@ -53,6 +53,7 @@ const currentFrameSpan = document.getElementById('current-frame');
 const framerateElement = document.getElementById('framerate');
 const templatePauseElement = document.getElementById('pause-template');
 const pauseContainer = document.getElementById('pause-container');
+const fpsInfoButton = document.getElementById('fpsinfo');
 // eslint-disable-next-line no-template-curly-in-string
 const currentModMessage = localStorage.getItem('currentModMessage') || 'Mod Message: Time starts at ${start} and ends at ${end}${pauses}with a framerate of ${framerate} FPS to get a final time of ${timeStr}.\nRetimed using [Better Speedrun Timer](https://noobjsperson.github.io/speedrun-timer)';
 const pauseTimes = [];
@@ -233,6 +234,7 @@ function onPlayerReady() {
 // Load the player.
 console.log(type);
 if (type === 'y') {
+	fpsInfoButton.style.display = 'inline';
 	videoIframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
 	let youtube;
 	function onYoutubeChange(event) {
@@ -367,10 +369,10 @@ function goToPauseEnd(el) {
 function goToPauseStart(el) {
 	setTime(pauseTimes[+el.parentNode.parentNode.id - 1][0] / 1000);
 }
-document.getElementById('fpsinfo').addEventListener('mouseover', () => {
+fpsInfoButton.addEventListener('mouseover', () => {
 	if (type === 'y') document.getElementById('popup').style.display = 'block';
 });
 
-document.getElementById('fpsinfo').addEventListener('mouseout', () => {
+fpsInfoButton.addEventListener('mouseout', () => {
 	if (type === 'y') document.getElementById('popup').style.display = 'none';
 });
