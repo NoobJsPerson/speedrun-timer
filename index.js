@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 const inputUrl = document.getElementById('url');
 const ytRegex = /youtu(?:be\..+?|.be)\/(?:watch.*?v=|embed\/|shorts\/|)([A-Za-z0-9_-]+).*?((?<=(?:\?|&)t=))*(\d+)*/;
-const twRegex = /twitch\.tv\/videos\/(\d+)/;
+const twRegex = /twitch\.tv\/videos\/(\d+)(?:\?t=)(.+)/;
 const generalIdRegex = /([a-zA-Z0-9]+)/;
 
 const select = document.getElementsByTagName('select')[0];
@@ -15,9 +16,9 @@ select.onchange = (event) => {
 function parseTwitchId(vodUrl) {
 	if (!vodUrl || !vodUrl.match(generalIdRegex)) return alert('Please enter a valid Twitch VOD link');
 	const reg = vodUrl.match(twRegex);
-	if (reg && reg.length >= 2) return reg[1];
+	if (reg && reg.length >= 2) return [reg[1], reg[2]];
 	if (vodUrl.match(ytRegex)) return alert('You seem to have entered a Youtube Video link. You may want to press the "Load from Youtube" Button instead.');
-	return vodUrl;
+	return [vodUrl, null];
 }
 
 function parseYoutubeId(videoUrl) {
@@ -34,8 +35,15 @@ function redirectYoutube() {
 }
 
 function redirectTwitch() {
-	const id = parseTwitchId(inputUrl.value);
-	if (id) window.location.href = `new_run.html?id=${id}&type=t`;
+	// eslint-disable-next-line prefer-const
+	let [id, t] = parseTwitchId(inputUrl.value);
+	if (t) {
+		const timeArr = t.split(/h|m/);
+		if (timeArr.length === 3) t = parseInt(timeArr[0]) * 3600 + parseInt(timeArr[1]) * 60 + parseInt(timeArr[2]);
+		else if (timeArr.length === 2) t = parseInt(timeArr[0]) * 60 + parseInt(timeArr[1]);
+		else if (timeArr.length === 1) t = parseInt(timeArr[0]);
+	}
+	if (id) window.location.href = `new_run.html?id=${id}&type=t${t ? `&t=${t}` : ''}`;
 }
 
 function redirectGoogleDrive() {

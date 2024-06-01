@@ -11,7 +11,10 @@ module.exports = {
 		sourceType: 'module',
 	},
 	rules: {
-		indent: ['error', 'tab'],
+		indent: ['error', 'tab', {
+			SwitchCase: 1,
+		}],
+		radix: 0,
 		'no-tabs': 0,
 		'no-alert': 0,
 		'no-console': 0,
