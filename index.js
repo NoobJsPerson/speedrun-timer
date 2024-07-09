@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 const inputUrl = document.getElementById('url');
 const ytRegex = /youtu(?:be\..+?|.be)\/(?:watch.*?v=|embed\/|shorts\/|)([A-Za-z0-9_-]+).*?((?<=(?:\?|&)t=))*(\d+)*/;
-const twitchRegex = /twitch\.tv\/videos\/(\d+)/;
+const twitchRegex = /twitch\.tv\/videos\/(\d+)(?:\?t=)(.+)/;
 const driveRegex = /drive\.google\.com\/file\/d\/(.*)\//;
 
 const select = document.getElementsByTagName('select')[0];
@@ -12,10 +13,10 @@ select.onchange = (event) => {
 	translatePage(false);
 };
 
-function parseTwitchId(videoUrl) {
-	const reg = videoUrl.match(twitchRegex);
-	if (reg && reg.length >= 2) return reg[1];
-	return null;
+function parseTwitchId(vodUrl) {
+	const reg = vodUrl.match(twitchRegex);
+	if (reg && reg.length >= 2) return [reg[1], reg[2]];
+	return [null];
 }
 
 function parseYoutubeId(videoUrl) {
@@ -35,9 +36,16 @@ function redirectYoutube(url) {
 	if (id) window.location.href = `new_run.html?id=${id}&type=y${t ? `&t=${t}` : ''}`;
 }
 
-function redirectTwitch(url) {
-	const id = parseTwitchId(url);
-	if (id) window.location.href = `new_run.html?id=${id}&type=t`;
+function redirectTwitch() {
+	// eslint-disable-next-line prefer-const
+	let [id, t] = parseTwitchId(inputUrl.value);
+	if (t) {
+		const timeArr = t.split(/h|m/);
+		if (timeArr.length === 3) t = parseInt(timeArr[0]) * 3600 + parseInt(timeArr[1]) * 60 + parseInt(timeArr[2]);
+		else if (timeArr.length === 2) t = parseInt(timeArr[0]) * 60 + parseInt(timeArr[1]);
+		else if (timeArr.length === 1) t = parseInt(timeArr[0]);
+	}
+	if (id) window.location.href = `new_run.html?id=${id}&type=t${t ? `&t=${t}` : ''}`;
 }
 
 function redirectDrive(url) {

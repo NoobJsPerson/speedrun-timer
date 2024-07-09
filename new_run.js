@@ -28,7 +28,6 @@ const videoIframe = document.querySelector('iframe');
 const videoId = searchParams.get('id');
 const type = searchParams.get('type');
 const time = +searchParams.get('t');
-console.log(time);
 if (type === 'y') {
 	videoIframe.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
 	// Load the IFrame Player API code asynchronously.
@@ -66,6 +65,7 @@ let framerate = 30;
 let pauseCount = 0;
 let isLoaded = false;
 let twitch;
+let youtube;
 
 const customFramerate = localStorage.getItem('framerate');
 if (customFramerate) framerateElement.value = customFramerate;
@@ -96,7 +96,14 @@ function updateCurrentTime() {
 	currentFrame = Math.floor(player.getCurrentTime() * framerate);
 }
 
+function updateCurrentTimeSpan() {
+	updateCurrentTime();
+	currentTimeSpan.innerHTML = currentMillis;
+	currentFrameSpan.innerHTML = currentFrame;
+}
+
 function setTime(millis) {
+	updateCurrentTimeSpan();
 	player.pauseVideo();
 	player.seekTo(millis);
 }
@@ -217,97 +224,98 @@ function goToEnd() {
 	setTime(end / 1000);
 }
 
-function updateCurrentTimeSpan() {
-	updateCurrentTime();
-	currentTimeSpan.innerHTML = currentMillis;
-	currentFrameSpan.innerHTML = currentFrame;
-}
-
 function onPlayerReady() {
 	player.playVideo();
 	if (time) player.seekTo(time);
 	// eslint-disable-next-line no-return-assign
-	if (type === 't') setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3000);
+	if (type === 't') setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3500);
 	setInterval(updateCurrentTimeSpan, 50);
 }
 
 // Load the player.
-console.log(type);
-if (type === 'y') {
-	fpsInfoButton.style.display = 'inline';
-	videoIframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
-	let youtube;
-	function onYoutubeChange(event) {
-		if (event.data === -1) isLoaded = true;
-	}
+switch (type) {
+	case 'y':
+	{
+		fpsInfoButton.style.display = 'inline';
+		videoIframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
+		function onYoutubeChange(event) {
+			if (event.data === -1) isLoaded = true;
+		}
 
-	function onYoutubeError(event) {
-		console.log(event);
-		if (event?.data === '5') return; // return if the video is private
-		document.querySelector('.for-debug').style.display = 'initial';
-		document.querySelector('.for-player').style.display = 'none';
-	}
+		function onYoutubeError(event) {
+			console.log(event);
+			if (event?.data === '5') return; // return if the video is private
+			document.querySelector('.for-debug').style.display = 'initial';
+			document.querySelector('.for-player').style.display = 'none';
+		}
 
-	function onYoutubeReady() {
+		function onYoutubeReady() {
+			player = {
+				seekTo(timestamp) {
+					youtube.seekTo(timestamp);
+				},
+				pauseVideo() {
+					youtube.pauseVideo();
+				},
+				getCurrentTime() {
+					return youtube.getCurrentTime();
+				},
+				playVideo() {
+					youtube.playVideo();
+				},
+			};
+			onPlayerReady();
+		}
+		function onYouTubePlayerAPIReady() {
+			// eslint-disable-next-line no-undef
+			youtube = new YT.Player('video-iframe', {
+				playerlets: {
+					rel: 0,
+				},
+				events: {
+					onReady: onYoutubeReady,
+					onError: onYoutubeError,
+					onStateChange: onYoutubeChange,
+				},
+			});
+			setTimeout(() => {
+				if (isLoaded !== true) onYoutubeError();
+			}, 5000);
+		}
+		break;
+	}
+	case 't':
+	{
+		// eslint-disable-next-line no-undef
+		twitch = new Twitch.Player('video-div', {
+			video: videoId,
+		});
+
 		player = {
 			seekTo(timestamp) {
-				youtube.seekTo(timestamp);
+				// player.playVideo();
+				twitch.seek(timestamp);
+				// player.pauseVideo();
 			},
 			pauseVideo() {
-				youtube.pauseVideo();
+				twitch.pause();
 			},
 			getCurrentTime() {
-				return youtube.getCurrentTime();
+				return twitch.getCurrentTime();
 			},
 			playVideo() {
-				youtube.playVideo();
+				twitch.play();
 			},
 		};
-		onPlayerReady();
-	}
-	function onYouTubePlayerAPIReady() {
 		// eslint-disable-next-line no-undef
-		youtube = new YT.Player('video-iframe', {
-			playerlets: {
-				rel: 0,
-			},
-			events: {
-				onReady: onYoutubeReady,
-				onError: onYoutubeError,
-				onStateChange: onYoutubeChange,
-			},
-		});
-		setTimeout(() => {
-			if (isLoaded !== true) onYoutubeError();
-		}, 5000);
+		twitch.addEventListener(Twitch.Player.READY, onPlayerReady);
+		break;
 	}
-} else if (type === 't') {
-	// eslint-disable-next-line no-undef
-	twitch = new Twitch.Player('video-div', {
-		video: videoId,
-	});
-
-	player = {
-		seekTo(timestamp) {
-			// player.playVideo();
-			twitch.seek(timestamp);
-			// player.pauseVideo();
-		},
-		pauseVideo() {
-			twitch.pause();
-		},
-		getCurrentTime() {
-			return twitch.getCurrentTime();
-		},
-		playVideo() {
-			twitch.play();
-		},
-	};
-	// eslint-disable-next-line no-undef
-	twitch.addEventListener(Twitch.Player.READY, onPlayerReady);
-} else {
-	document.body.innerText = "You shouldn't be here";
+	default:
+		document.body.innerText = "You shouldn't be here";
+		break;
 }
+
 function parseForTime(event) {
 	framerate = parseInt(document.getElementById('framerateAlt').value || framerate, 10);
 	const { lct } = JSON.parse(event.target.value);
@@ -320,36 +328,67 @@ function addPause() {
 	const pause = templatePauseElement.cloneNode(true);
 	pauseCount++;
 	pause.id = pauseCount;
+	// for each div in the pause element, set the data-id to the pause id
+	// this will allow us to access the pause id from the buttons' click events
+	pause.childNodes.forEach((el) => {
+		if (el.tagName === 'DIV') {
+			// eslint-disable-next-line default-case
+			switch (el.id) {
+				case 'pause-start-div':
+				{
+					el.querySelector('#set-pause-start').dataset.id = pause.id;
+					el.querySelector('#go-to-start-pause').dataset.id = pause.id;
+					break;
+				}
+				case 'pause-end-div':
+				{
+					el.querySelector('#set-pause-end').dataset.id = pause.id;
+					el.querySelector('#go-to-end-pause').dataset.id = pause.id;
+					break;
+				}
+				case 'pause-delete-div':
+				{
+					el.querySelector('#delete-pause').dataset.id = pause.id;
+					break;
+				}
+			}
+		}
+	});
 	pause.style.display = 'block';
 	pauseContainer.appendChild(pause);
 }
 function deletePause(el) {
-	pauseTimes.splice(+el.parentNode.parentNode.id - 1, 1);
-	el.parentNode.parentNode.remove();
+	console.log(el.dataset);
+	const parentDiv = document.getElementById(el.dataset.id);
+	pauseTimes.splice(parseInt(parentDiv.id) - 1, 1);
+	parentDiv.remove();
 	pauseCount--;
 	updateTotalTime();
 }
 function showPauseEnd(el) {
-	const pauseEnd = pauseTimes[+el.parentNode.parentNode.id - 1][1];
+	const parentDiv = document.getElementById(el.dataset.id);
+	const pauseEnd = pauseTimes[parseInt(parentDiv.id) - 1][1];
 	if (pauseEnd === null) {
 		return;
 	}
 
-	el.parentNode.parentNode.querySelector('#pause-end').innerHTML = pauseEnd;
-	el.parentNode.parentNode.querySelector('#go-to-end-pause').style.display = 'inline';
+	parentDiv.querySelector('#pause-end').innerHTML = pauseEnd;
+	parentDiv.querySelector('#go-to-end-pause').style.display = 'inline';
 }
 function showPauseStart(el) {
-	const pauseStart = pauseTimes[+el.parentNode.parentNode.id - 1][0];
+	const parentDiv = document.getElementById(el.dataset.id);
+	const pauseStart = pauseTimes[parseInt(parentDiv.id) - 1][0];
 	if (pauseStart === null) {
 		return;
 	}
 
-	el.parentNode.parentNode.querySelector('#pause-start').innerHTML = pauseStart;
-	el.parentNode.parentNode.querySelector('#go-to-start-pause').style.display = 'inline';
+	parentDiv.querySelector('#pause-start').innerHTML = pauseStart;
+	parentDiv.querySelector('#go-to-start-pause').style.display = 'inline';
 }
 function setPauseStart(el) {
 	updateCurrentTime();
-	const id = +el.parentNode.parentNode.id - 1;
+	const parentDiv = document.getElementById(el.dataset.id);
+	const id = parseInt(parentDiv.id) - 1;
 	if (!pauseTimes[id]) pauseTimes[id] = [];
 	pauseTimes[id][0] = currentMillis;
 	showPauseStart(el);
@@ -357,17 +396,20 @@ function setPauseStart(el) {
 }
 function setPauseEnd(el) {
 	updateCurrentTime();
-	const id = +el.parentNode.parentNode.id - 1;
+	const parentDiv = document.getElementById(el.dataset.id);
+	const id = parseInt(parentDiv.id) - 1;
 	if (!pauseTimes[id]) pauseTimes[id] = [];
 	pauseTimes[id][1] = currentMillis;
 	showPauseEnd(el);
 	updateTotalTime();
 }
 function goToPauseEnd(el) {
-	setTime(pauseTimes[+el.parentNode.parentNode.id - 1][1] / 1000);
+	const parentDiv = document.getElementById(el.dataset.id);
+	setTime(pauseTimes[parseInt(parentDiv.id) - 1][1] / 1000);
 }
 function goToPauseStart(el) {
-	setTime(pauseTimes[+el.parentNode.parentNode.id - 1][0] / 1000);
+	const parentDiv = document.getElementById(el.dataset.id);
+	setTime(pauseTimes[parseInt(parentDiv.id) - 1][0] / 1000);
 }
 fpsInfoButton.addEventListener('mouseover', () => {
 	if (type === 'y') document.getElementById('popup').style.display = 'block';
