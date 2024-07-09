@@ -411,10 +411,19 @@ function goToPauseStart(el) {
 	const parentDiv = document.getElementById(el.dataset.id);
 	setTime(pauseTimes[parseInt(parentDiv.id) - 1][0] / 1000);
 }
-fpsInfoButton.addEventListener('mouseover', () => {
-	if (type === 'y') document.getElementById('popup').style.display = 'block';
-});
+// fpsInfoButton.addEventListener('mouseover', () => {
+// 	if (type === 'y') document.getElementById('popup').style.display = 'block';
+// });
 
-fpsInfoButton.addEventListener('mouseout', () => {
-	if (type === 'y') document.getElementById('popup').style.display = 'none';
-});
+// fpsInfoButton.addEventListener('mouseout', () => {
+// 	if (type === 'y') document.getElementById('popup').style.display = 'none';
+// });
+
+if (type === 'y') {
+	fpsInfoButton.addEventListener('mouseover', () => {
+		document.getElementById('popup').style.display = 'block';
+	});
+	fpsInfoButton.addEventListener('mouseout', () => {
+		document.getElementById('popup').style.display = 'none';
+	});
+}
