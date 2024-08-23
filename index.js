@@ -2,8 +2,8 @@
 /* eslint-disable no-unused-vars */
 const inputUrl = document.getElementById('url');
 const ytRegex = /youtu(?:be\..+?|.be)\/(?:watch.*?v=|embed\/|shorts\/|)([A-Za-z0-9_-]+).*?((?<=(?:\?|&)t=))*(\d+)*/;
-const twRegex = /twitch\.tv\/videos\/(\d+)(?:\?t=)(.+)/;
-const generalIdRegex = /([a-zA-Z0-9]+)/;
+const twitchRegex = /twitch\.tv\/videos\/(\d+)(?:\?t=)(.+)/;
+const driveRegex = /drive\.google\.com\/file\/d\/(.*)\//;
 
 const select = document.getElementsByTagName('select')[0];
 select.value = localStorage.getItem('LA') || 'EN';
@@ -14,23 +14,25 @@ select.onchange = (event) => {
 };
 
 function parseTwitchId(vodUrl) {
-	if (!vodUrl || !vodUrl.match(generalIdRegex)) return alert('Please enter a valid Twitch VOD link');
-	const reg = vodUrl.match(twRegex);
+	const reg = vodUrl.match(twitchRegex);
 	if (reg && reg.length >= 2) return [reg[1], reg[2]];
-	if (vodUrl.match(ytRegex)) return alert('You seem to have entered a Youtube Video link. You may want to press the "Load from Youtube" Button instead.');
-	return [vodUrl, null];
+	return [null];
 }
 
 function parseYoutubeId(videoUrl) {
-	if (!videoUrl || !videoUrl.match(generalIdRegex)) return alert('Please enter a valid Youtube Video link');
 	const reg1 = videoUrl.match(ytRegex);
 	if (reg1 && reg1.length >= 2) return [reg1[1], reg1[2]];
-	if (videoUrl.match(twRegex)) return alert('You seem to have entered a Twitch VOD link. You may want to press the "Load from Twitch" Button instead.');
-	return [videoUrl, null];
+	return [null];
 }
 
-function redirectYoutube() {
-	const [id, t] = parseYoutubeId(inputUrl.value);
+function parseDriveId(videoUrl) {
+	const reg = videoUrl.match(driveRegex);
+	if (reg && reg.length >= 2) return reg[1];
+	return null;
+}
+
+function redirectYoutube(url) {
+	const [id, t] = parseYoutubeId(url);
 	if (id) window.location.href = `new_run.html?id=${id}&type=y${t ? `&t=${t}` : ''}`;
 }
 
@@ -46,9 +48,16 @@ function redirectTwitch() {
 	if (id) window.location.href = `new_run.html?id=${id}&type=t${t ? `&t=${t}` : ''}`;
 }
 
-function redirectGoogleDrive() {
+function redirectDrive(url) {
+	const id = parseDriveId(url);
+	if (id) window.location.href = `new_run.html?id=${id}&type=d`;
+}
 
-	// if (id) window.location.href = `new_run.html?id=${id}&type=g`
+function redirect() {
+	const url = inputUrl.value;
+	redirectYoutube(url);
+	redirectTwitch(url);
+	redirectDrive(url);
 }
 
 if ('serviceWorker' in navigator) {

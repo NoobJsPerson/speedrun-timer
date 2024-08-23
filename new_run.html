@@ -24,6 +24,7 @@
 
 		iframe,
 		img,
+		video,
 		.global-container {
 			width: 66vw;
 			height: 77vh;
@@ -35,6 +36,7 @@
 		@media (max-width: 700px) {
 			iframe,
 			img,
+			video,
 			.global-container {
 				width: 100%;
 				height: 35vh;
@@ -55,6 +57,7 @@
 		<div class="for-player">
 			<div id="video-div"></div>
 			<iframe id="video-iframe" allowfullscreen></iframe>
+			<video id="video" controls style="display: none;"></video>
 			<div class="normal">
 				<label for="framerate" id="fra" class="bold">Framerate: </label>
 				<input type="text" value="30" id="framerate" onchange="validateFramerate()">
