@@ -113,7 +113,53 @@ function stepBy(amount) {
 	updateCurrentTime();
 	setTime(Math.ceil(((currentFrame + amount) / framerate) * 1000) / 1000);
 }
-async function copyModMessage() {
+
+function getLocalVideoFps(videoPlayer) {
+	// https://stackoverflow.com/a/73094937/19702779
+	let lastMediaTimer;
+	let lastFrameNum;
+	let fps;
+	const fpsRounder = [];
+	let frameNotSeeked = true;
+	function getFpsAverage() {
+		return fpsRounder.reduce((a, b) => a + b) / fpsRounder.length;
+	}
+	function ticker(_now, metadata) {
+		const mediaTimeDiff = Math.abs(metadata.mediaTime - lastMediaTimer);
+		const frameNumDiff = Math.abs(metadata.presentedFrames - lastFrameNum);
+		const diff = mediaTimeDiff / frameNumDiff;
+		if (
+			diff
+        && diff < 1
+        && frameNotSeeked
+        && fpsRounder.length < 50
+        && videoPlayer.playbackRate === 1
+        && document.hasFocus()
+		) {
+			fpsRounder.push(diff);
+			fps = Math.round(1 / getFpsAverage());
+			console.log(`FPS: ${fps}, certainty: ${fpsRounder.length * 2}%`);
+			if (fpsRounder.length === 50) {
+				alert(`Found fps: ${fps}`);
+				framerate = fps;
+				validateFramerate();
+				return;
+			}
+		}
+		frameNotSeeked = true;
+		lastMediaTimer = metadata.mediaTime;
+		lastFrameNum = metadata.presentedFrames;
+		videoPlayer.requestVideoFrameCallback(ticker);
+	}
+	if ('requestVideoFrameCallback' in videoPlayer) videoPlayer.requestVideoFrameCallback(ticker);
+	else alert("Couldn't auto detect framerate because 'requestVideoFrameCallback' is unsupported. Please get the framerate manually and put it in the framerate input!");
+	videoPlayer.addEventListener('seeked', () => {
+		fpsRounder.pop();
+		frameNotSeeked = false;
+	});
+}
+
+function copyModMessage() {
 	// Allow user to copy mod message to clipboard
 
 	modMessageText.focus();
@@ -309,6 +355,37 @@ switch (type) {
 		};
 		// eslint-disable-next-line no-undef
 		twitch.addEventListener(Twitch.Player.READY, onPlayerReady);
+		break;
+	}
+	case 'd':
+	{
+		let driveUser = 0;
+		let srcUrl = `https://drive.google.com/uc?export=download&id=${videoId}`;
+		const driveAPIKey = 'AIzaSyCv76of8z_m0jnOflw0rFQ50gphUBFvwcw';
+		const maxDriveUsers = 4;
+		const videoPlayer = document.getElementById('video');
+		videoIframe.remove();
+		videoPlayer.setAttribute('src', srcUrl);
+		videoPlayer.load();
+		getLocalVideoFps(videoPlayer);
+		videoPlayer.style.display = 'block';
+		videoPlayer.onerror = () => {
+			// console.log("error loading drive video");
+			if (driveUser < maxDriveUsers - 1) {
+				driveUser++;
+				srcUrl = `https://drive.google.com/u/${driveUser}/uc?export=download&id=${videoId}`;
+				videoPlayer.setAttribute('src', srcUrl);
+				videoPlayer.load();
+				getLocalVideoFps(videoPlayer);
+			} else if (driveUser === maxDriveUsers - 1) {
+				// unless there are more than 10 users, the file is large
+				srcUrl = `https://www.googleapis.com/drive/v3/files/${videoId}?alt=media&key=${driveAPIKey}`;
+				videoPlayer.setAttribute('src', srcUrl);
+				videoPlayer.load();
+				getLocalVideoFps(videoPlayer);
+				driveUser = maxDriveUsers;
+			}
+		};
 		break;
 	}
 	default:
