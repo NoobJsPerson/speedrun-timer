@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 const inputUrl = document.getElementById('url');
 const ytRegex = /youtu(?:be\..+?|.be)\/(?:watch.*?v=|embed\/|shorts\/|)([A-Za-z0-9_-]+).*?((?<=(?:\?|&)t=))*(\d+)*/;
-const twitchRegex = /twitch\.tv\/videos\/(\d+)(?:\?t=)(.+)/;
+const twitchRegex = /twitch\.tv\/videos\/(\d+)(?:\?t=)?(.+)?/;
 const driveRegex = /drive\.google\.com\/file\/d\/(.*)\//;
 
 const select = document.getElementsByTagName('select')[0];
