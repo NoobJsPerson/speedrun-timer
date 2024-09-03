@@ -140,7 +140,6 @@ function getLocalVideoFps(videoPlayer) {
 			fps = Math.round(1 / getFpsAverage());
 			console.log(`FPS: ${fps}, certainty: ${fpsRounder.length * 2}%`);
 			if (fpsRounder.length === 50) {
-				alert(`Found fps: ${fps}`);
 				framerate = fps;
 				validateFramerate();
 				return;
@@ -385,6 +384,22 @@ switch (type) {
 				getLocalVideoFps(videoPlayer);
 				driveUser = maxDriveUsers;
 			}
+		};
+		player = {
+			seekTo(timestamp) {
+				// player.playVideo();
+				videoPlayer.currentTime = timestamp;
+				// player.pauseVideo();
+			},
+			pauseVideo() {
+				videoPlayer.pause();
+			},
+			getCurrentTime() {
+				return videoPlayer.currentTime;
+			},
+			playVideo() {
+				videoPlayer.play();
+			},
 		};
 		break;
 	}
