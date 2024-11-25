@@ -191,16 +191,6 @@ function copyModMessage() {
 	}
 	*/
 }
-function snapToClosestValidTimestamp(ms) {
-	// the biggest difference caused by a repeating decimal (that i know of)
-	const epsilon = 8 / 9;
-	// snap the ms to closest valid ms in given framerate
-	const snapped = Math.round(ms / 1000 * framerate) * 1000 / framerate;
-	const delta = Math.abs(ms - snapped);
-	console.log(delta, epsilon);
-	if (delta <= epsilon) return snapped;
-	return ms;
-}
 
 function snapToClosestValidFrame(ms) {
 	// the biggest difference caused by a repeating decimal (that i know of)
