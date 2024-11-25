@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-inner-declarations */
@@ -190,17 +191,41 @@ function copyModMessage() {
 	}
 	*/
 }
+function snapToClosestValidTimestamp(ms) {
+	// the biggest difference caused by a repeating decimal (that i know of)
+	const epsilon = 8 / 9;
+	// snap the ms to closest valid ms in given framerate
+	const snapped = Math.round(ms / 1000 * framerate) * 1000 / framerate;
+	const delta = Math.abs(ms - snapped);
+	console.log(delta, epsilon);
+	if (delta <= epsilon) return snapped;
+	return ms;
+}
+
+function snapToClosestValidFrame(ms) {
+	// the biggest difference caused by a repeating decimal (that i know of)
+	const epsilon = 8 / 9;
+	// snap the ms to closest valid frame in given framerate
+	const snapped = Math.round(ms / 1000 * framerate);
+	const delta = Math.abs(ms - snapped * 1000 / framerate);
+	console.log(delta, epsilon);
+	if (delta <= epsilon) return snapped;
+	return Math.floor(ms / 1000 * framerate);
+}
+
 function updateTotalTime() {
 	// handle negative time I guess
 	if (start !== null && end !== null && start <= end) {
 		// eslint-disable-next-line no-mixed-operators
-		let frames = Math.floor((end - start) * framerate / 1000);
+		const adjustedEnd = snapToClosestValidTimestamp(end);
+		const adjustedStart = snapToClosestValidTimestamp(start);
+		let frames = Math.floor((adjustedEnd - adjustedStart) / 1000 * framerate);
 		for (let i = 0; i < pauseTimes.length; i++) {
 			const pauseStart = pauseTimes[i][0];
 			const pauseEnd = pauseTimes[i][1];
 			if (pauseStart !== undefined && pauseEnd !== undefined && pauseStart <= pauseEnd) {
-				const pauseEndFrame = Math.round((pauseEnd / 1000) * framerate);
-				const pauseStartFrame = Math.round((pauseStart / 1000) * framerate);
+				const pauseEndFrame = snapToClosestValidFrame(pauseEnd);
+				const pauseStartFrame = snapToClosestValidFrame(pauseStart);
 				frames -= pauseEndFrame - pauseStartFrame;
 			}
 		}
