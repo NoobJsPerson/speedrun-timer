@@ -217,9 +217,9 @@ function updateTotalTime() {
 	// handle negative time I guess
 	if (start !== null && end !== null && start <= end) {
 		// eslint-disable-next-line no-mixed-operators
-		const adjustedEnd = snapToClosestValidTimestamp(end);
-		const adjustedStart = snapToClosestValidTimestamp(start);
-		let frames = Math.floor((adjustedEnd - adjustedStart) / 1000 * framerate);
+		const endFrame = snapToClosestValidFrame(end);
+		const startFrame = snapToClosestValidFrame(start);
+		let frames = endFrame - startFrame;
 		for (let i = 0; i < pauseTimes.length; i++) {
 			const pauseStart = pauseTimes[i][0];
 			const pauseEnd = pauseTimes[i][1];
