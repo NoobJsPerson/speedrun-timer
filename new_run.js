@@ -191,16 +191,6 @@ function copyModMessage() {
 	}
 	*/
 }
-function snapToClosestValidTimestamp(ms) {
-	// the biggest difference caused by a repeating decimal (that i know of)
-	const epsilon = 8 / 9;
-	// snap the ms to closest valid ms in given framerate
-	const snapped = Math.round(ms / 1000 * framerate) * 1000 / framerate;
-	const delta = Math.abs(ms - snapped);
-	console.log(delta, epsilon);
-	if (delta <= epsilon) return snapped;
-	return ms;
-}
 
 function snapToClosestValidFrame(ms) {
 	// the biggest difference caused by a repeating decimal (that i know of)
@@ -217,9 +207,9 @@ function updateTotalTime() {
 	// handle negative time I guess
 	if (start !== null && end !== null && start <= end) {
 		// eslint-disable-next-line no-mixed-operators
-		const adjustedEnd = snapToClosestValidTimestamp(end);
-		const adjustedStart = snapToClosestValidTimestamp(start);
-		let frames = Math.floor((adjustedEnd - adjustedStart) / 1000 * framerate);
+		const endFrame = snapToClosestValidFrame(end);
+		const startFrame = snapToClosestValidFrame(start);
+		let frames = endFrame - startFrame;
 		for (let i = 0; i < pauseTimes.length; i++) {
 			const pauseStart = pauseTimes[i][0];
 			const pauseEnd = pauseTimes[i][1];
