@@ -54,6 +54,7 @@ const framerateElement = document.getElementById('framerate');
 const templatePauseElement = document.getElementById('pause-template');
 const pauseContainer = document.getElementById('pause-container');
 const fpsInfoButton = document.getElementById('fpsinfo');
+const vidInfoButton = document.getElementById('vidinfo');
 // eslint-disable-next-line no-template-curly-in-string
 const currentModMessage = localStorage.getItem('currentModMessage') || 'Mod Message: Time starts at ${start} and ends at ${end}${pauses}with a framerate of ${framerate} FPS to get a final time of ${timeStr}.\nRetimed using [Better Speedrun Timer](https://noobjsperson.github.io/speedrun-timer)';
 const pauseTimes = [];
@@ -65,6 +66,7 @@ let currentFrame = 0;
 let framerate = 30;
 let pauseCount = 0;
 let isLoaded = false;
+let showVidInfo = false;
 let twitch;
 let youtube;
 
@@ -87,9 +89,51 @@ let player = {
 	},
 };
 
+function updateTotalTime() {
+	// handle negative time I guess
+	if (start !== null && end !== null && start <= end) {
+		// eslint-disable-next-line no-mixed-operators
+		const endFrame = Math.floor(end / 1000 * framerate);
+		const startFrame = Math.floor(start / 1000 * framerate);
+		let frames = endFrame - startFrame;
+		for (let i = 0; i < pauseTimes.length; i++) {
+			const pauseStart = pauseTimes[i][0];
+			const pauseEnd = pauseTimes[i][1];
+			if (pauseStart !== undefined && pauseEnd !== undefined && pauseStart <= pauseEnd) {
+				const pauseEndFrame = Math.floor(pauseEnd / 1000 * framerate);
+				const pauseStartFrame = Math.floor(pauseStart / 1000 * framerate);
+				frames -= pauseEndFrame - pauseStartFrame;
+			}
+		}
+
+		const ms = Math.floor((frames * 1000) / framerate);
+
+		const timeStr = format(ms);
+		const params = {
+			start: format(start),
+			end: format(end),
+			timeStr,
+			framerate,
+			pauses: ' ',
+		};
+		if (pauseTimes.length) {
+			// eslint-disable-next-line quotes
+			params.pauses = ` with pauses ${pauseTimes.map((x) => (x[0] !== undefined && x[1] !== undefined && x[0] <= x[1] ? `from ${format(x[0])} to ${format(x[1])} ` : '')).join('and ')}`;
+		}
+
+		const modMessage = interpolate(currentModMessage, params);
+		totalTimeSpan.innerHTML = timeStr;
+		modMessageText.value = modMessage;
+
+		modMessageButton.disabled = false;
+		modMessageText.disabled = false;
+	}
+}
+
 function validateFramerate() {
 	framerate = parseInt(framerateElement.value || framerate, 10);
 	framerateElement.value = framerate;
+	updateTotalTime();
 }
 
 function updateCurrentTime() {
@@ -192,47 +236,6 @@ function copyModMessage() {
 	*/
 }
 
-function updateTotalTime() {
-	// handle negative time I guess
-	if (start !== null && end !== null && start <= end) {
-		// eslint-disable-next-line no-mixed-operators
-		const endFrame = Math.floor(end / 1000 * framerate);
-		const startFrame = Math.floor(start / 1000 * framerate);
-		let frames = endFrame - startFrame;
-		for (let i = 0; i < pauseTimes.length; i++) {
-			const pauseStart = pauseTimes[i][0];
-			const pauseEnd = pauseTimes[i][1];
-			if (pauseStart !== undefined && pauseEnd !== undefined && pauseStart <= pauseEnd) {
-				const pauseEndFrame = Math.floor(pauseEnd / 1000 * framerate);
-				const pauseStartFrame = Math.floor(pauseStart / 1000 * framerate);
-				frames -= pauseEndFrame - pauseStartFrame;
-			}
-		}
-
-		const ms = Math.floor((frames * 1000) / framerate);
-
-		const timeStr = format(ms);
-		const params = {
-			start: format(start),
-			end: format(end),
-			timeStr,
-			framerate,
-			pauses: ' ',
-		};
-		if (pauseTimes.length) {
-			// eslint-disable-next-line quotes
-			params.pauses = ` with pauses ${pauseTimes.map((x) => (x[0] !== undefined && x[1] !== undefined && x[0] <= x[1] ? `from ${format(x[0])} to ${format(x[1])} ` : '')).join('and ')}`;
-		}
-
-		const modMessage = interpolate(currentModMessage, params);
-		totalTimeSpan.innerHTML = timeStr;
-		modMessageText.value = modMessage;
-
-		modMessageButton.disabled = false;
-		modMessageText.disabled = false;
-	}
-}
-
 function showStart() {
 	if (start === null) {
 		return;
@@ -273,6 +276,18 @@ function goToEnd() {
 	setTime(end / 1000);
 }
 
+function toggleVideoInfo() {
+	if (showVidInfo) {
+		youtube.hideVideoInfo();
+		vidInfoButton.innerText = 'Show Video Info';
+		showVidInfo = false;
+	} else {
+		youtube.showVideoInfo();
+		vidInfoButton.innerText = 'Hide Video Info';
+		showVidInfo = true;
+	}
+}
+
 function onPlayerReady() {
 	player.playVideo();
 	if (time) player.seekTo(time);
@@ -286,6 +301,7 @@ switch (type) {
 	case 'y':
 	{
 		fpsInfoButton.style.display = 'inline';
+		vidInfoButton.style.display = 'inline';
 		videoIframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
 		function onYoutubeChange(event) {
 			if (event.data === -1) isLoaded = true;
