@@ -65,6 +65,8 @@ let currentMillis = 0;
 let currentFrame = 0;
 let framerate = 30;
 let pauseCount = 0;
+let userChoseFps = false;
+let isFpsDetected = false;
 let isLoaded = false;
 let showVidInfo = false;
 let twitch;
@@ -130,8 +132,11 @@ function updateTotalTime() {
 	}
 }
 
-function validateFramerate() {
-	framerate = parseInt(framerateElement.value || framerate, 10);
+function validateFramerate(isFromUser) {
+	const newFramerate = parseFloat(framerateElement.value);
+	if (!newFramerate) return;
+	framerate = newFramerate;
+	if (isFromUser) userChoseFps = true;
 	framerateElement.value = framerate;
 	updateTotalTime();
 }
@@ -175,11 +180,11 @@ function getLocalVideoFps(videoPlayer) {
 		const diff = mediaTimeDiff / frameNumDiff;
 		if (
 			diff
-        && diff < 1
-        && frameNotSeeked
-        && fpsRounder.length < 50
-        && videoPlayer.playbackRate === 1
-        && document.hasFocus()
+			&& diff < 1
+			&& frameNotSeeked
+			&& fpsRounder.length < 50
+			&& videoPlayer.playbackRate === 1
+			&& document.hasFocus()
 		) {
 			fpsRounder.push(diff);
 			fps = Math.round(1 / getFpsAverage());
@@ -291,9 +296,29 @@ function toggleVideoInfo() {
 function onPlayerReady() {
 	player.playVideo();
 	if (time) player.seekTo(time);
-	// eslint-disable-next-line no-return-assign
-	if (type === 't') setTimeout(() => framerateElement.value = twitch.getPlaybackStats().fps, 3500);
 	setInterval(updateCurrentTimeSpan, 50);
+}
+
+function onPlayerPlaying() {
+	if (userChoseFps || isFpsDetected) return;
+	const qualities = twitch.getQualities();
+	console.log('Qualities:', qualities);
+	let fps = qualities?.[1].framerate;
+	if (fps) {
+		isFpsDetected = true;
+		framerateElement.value = fps;
+	} else {
+		setTimeout(() => {
+			const stats = twitch.getPlaybackStats();
+			console.log('Stats:', stats);
+			fps = stats.fps;
+			if (fps) {
+				isFpsDetected = true;
+				framerateElement.value = fps;
+			} else alert('FPS could\'nt be detected. please enter the fps manually (You can click \'Show Video Info\' to retrieve it, Twitch VODs have variable framerate so consider rounding 28 or 33 to 30 and so on)');
+		}, 1000);
+	}
+	validateFramerate();
 }
 
 // Load the player.
@@ -374,6 +399,8 @@ switch (type) {
 		};
 		// eslint-disable-next-line no-undef
 		twitch.addEventListener(Twitch.Player.READY, onPlayerReady);
+		// eslint-disable-next-line no-undef
+		twitch.addEventListener(Twitch.Player.PLAYING, onPlayerPlaying);
 		break;
 	}
 	case 'd':
